@@ -1,0 +1,3865 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>Cuaderno Digital Pro · AleDev Studios</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Entorno profesional de estudio y evaluación - Cuaderno Digital v3.0">
+<meta name="author" content="AleDev Studios">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   CUADERNO DIGITAL PRO v3.0 - ALEDEV STUDIOS
+   Sistema completo de estudio con corrección animada profesional
+   ================================================================ */
+
+/* ================================================================
+   1. VARIABLES CSS & RESET
+   ================================================================ */
+:root {
+  /* Paleta de colores - Modo Claro (Papel Profesional) */
+  --bg-paper: #fdfbf7;
+  --bg-paper-alt: #f8f5ef;
+  --grid-line: #e2e8f0;
+  --grid-line-soft: #f1f5f9;
+  --margin-line: #fecaca;
+  --margin-line-strong: #ef4444;
+  
+  /* Superficies */
+  --s1: rgba(255, 255, 255, 0.95);
+  --s2: rgba(241, 245, 249, 0.9);
+  --s3: rgba(226, 232, 240, 0.6);
+  
+  /* Bordes */
+  --bd: #cbd5e1;
+  --bd-soft: #e2e8f0;
+  --bd-strong: #94a3b8;
+  
+  /* Texto */
+  --tx: #0f172a;
+  --tx-soft: #334155;
+  --mut: #64748b;
+  --mut-soft: #94a3b8;
+  
+  /* Tintas profesionales (como bolígrafos reales) */
+  --ink-blue: #2563eb;      /* Tinta azul principal */
+  --ink-blue-soft: #3b82f6;
+  --ink-red: #dc2626;       /* Tinta roja corrección */
+  --ink-red-soft: #ef4444;
+  --ink-green: #16a34a;     /* Tinta verde acierto */
+  --ink-green-soft: #22c55e;
+  --ink-orange: #d97706;    /* Rotulador naranja */
+  --ink-orange-soft: #f59e0b;
+  --ink-purple: #7c3aed;    /* Rotulador morado */
+  
+  /* Variables semánticas */
+  --a: var(--ink-blue);
+  --b: var(--ink-red);
+  --ok: var(--ink-green);
+  --warn: var(--ink-orange);
+  --c: var(--a);
+  
+  /* Sombras profesionales */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -1px rgba(0,0,0,0.04);
+  --shadow-md: 0 6px 12px -2px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.05);
+  --shadow-xl: 0 20px 40px -10px rgba(0,0,0,0.15);
+  --shadow-inset: inset 0 2px 4px rgba(0,0,0,0.04);
+  
+  /* Radios */
+  --r-sm: 4px;
+  --r: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  
+  /* Transiciones */
+  --t-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --t-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Espaciado */
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp: 16px;
+  --sp-md: 24px;
+  --sp-lg: 32px;
+  --sp-xl: 48px;
+  
+  color-scheme: light;
+}
+
+/* Modo Oscuro Profesional */
+[data-theme="dark"] {
+  --bg-paper: #0f172a;
+  --bg-paper-alt: #1e293b;
+  --grid-line: #1e293b;
+  --grid-line-soft: #162033;
+  --margin-line: #451a1a;
+  --margin-line-strong: #7f1d1d;
+  --s1: rgba(30, 41, 59, 0.95);
+  --s2: rgba(51, 65, 85, 0.9);
+  --s3: rgba(71, 85, 105, 0.6);
+  --bd: #334155;
+  --bd-soft: #1e293b;
+  --bd-strong: #475569;
+  --tx: #f1f5f9;
+  --tx-soft: #cbd5e1;
+  --mut: #94a3b8;
+  --mut-soft: #64748b;
+  --ink-blue: #60a5fa;
+  --ink-blue-soft: #93c5fd;
+  --ink-red: #f87171;
+  --ink-red-soft: #fca5a5;
+  --ink-green: #4ade80;
+  --ink-green-soft: #86efac;
+  --ink-orange: #fbbf24;
+  --ink-orange-soft: #fcd34d;
+  --ink-purple: #a78bfa;
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+  --shadow-md: 0 6px 12px -2px rgba(0,0,0,0.5);
+  --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.6);
+  --shadow-xl: 0 20px 40px -10px rgba(0,0,0,0.7);
+  color-scheme: dark;
+}
+
+/* Reset completo */
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-paper);
+  background-image: 
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+  background-attachment: fixed;
+  color: var(--tx);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Margen rojo de cuaderno profesional */
+body::before {
+  content: '';
+  position: fixed;
+  left: 48px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--margin-line);
+  z-index: 0;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.1);
+}
+
+/* Segunda línea de margen más sutil */
+body::after {
+  content: '';
+  position: fixed;
+  left: 52px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--margin-line);
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  body::before { left: 24px; }
+  body::after { left: 28px; }
+}
+
+/* ================================================================
+   2. TIPOGRAFÍA PROFESIONAL
+   ================================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Caveat', cursive;
+  line-height: 1.1;
+  color: var(--tx);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  color: var(--a);
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: clamp(1.4rem, 2.5vw, 1.875rem);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+p { margin-bottom: 12px; }
+
+.mono {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  font-size: 0.9em;
+  letter-spacing: -0.02em;
+}
+
+.handwritten {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4em;
+  color: var(--b);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.handwritten.ok { color: var(--ok); }
+.handwritten.warn { color: var(--warn); }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--a);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--mut);
+  max-width: 65ch;
+  line-height: 1.7;
+}
+
+/* ================================================================
+   3. COMPONENTES BASE
+   ================================================================ */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  transition: all var(--t);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Botones profesionales */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--r);
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: var(--a);
+  color: white;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid transparent;
+  transition: all var(--t);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn.s {
+  background: var(--s2);
+  color: var(--tx);
+  border: 1px solid var(--bd);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn.s:hover:not(:disabled) {
+  background: var(--s3);
+  border-color: var(--bd-strong);
+}
+
+.btn.big {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  border-radius: var(--r-md);
+}
+
+.btn.danger {
+  background: var(--b);
+}
+
+.btn.success {
+  background: var(--ok);
+}
+
+.btn.warn {
+  background: var(--warn);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--a);
+  border: 1px solid var(--a);
+}
+
+.btn.ghost:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--a) 10%, transparent);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Inputs profesionales */
+.input-pro {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--r);
+  border: 2px solid var(--bd);
+  background: var(--s1);
+  color: var(--tx);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: all var(--t);
+}
+
+.input-pro:focus {
+  outline: none;
+  border-color: var(--a);
+  background: var(--bg-paper);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--a) 15%, transparent);
+}
+
+.input-pro.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+}
+
+.input-pro.error {
+  border-color: var(--b);
+  background: color-mix(in srgb, var(--b) 5%, var(--s1));
+}
+
+.input-pro.success {
+  border-color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 5%, var(--s1));
+}
+
+/* Labels */
+.label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--mut);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ================================================================
+   4. LAYOUT PRINCIPAL
+   ================================================================ */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: color-mix(in srgb, var(--bg-paper) 88%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--bd);
+  box-shadow: var(--shadow-sm);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--tx);
+  text-decoration: none;
+  transition: transform var(--t);
+}
+
+.brand:hover {
+  transform: scale(1.02);
+}
+
+.brand .logo-icon {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.brand .version {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--s2);
+  border: 1px solid var(--bd);
+  color: var(--mut);
+  letter-spacing: 0.05em;
+}
+
+#cr {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--mut);
+  font-family: 'JetBrains Mono', monospace;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#cr button {
+  color: var(--a);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  padding: 2px 4px;
+}
+
+#cr button:hover {
+  text-decoration-style: solid;
+}
+
+#cr .sep {
+  margin: 0 6px;
+  color: var(--mut-soft);
+}
+
+.ibtn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r);
+  border: 1px solid var(--bd);
+  background: var(--s1);
+  font-size: 1.2rem;
+  display: grid;
+  place-items: center;
+  transition: all var(--t);
+}
+
+.ibtn:hover {
+  background: var(--s2);
+  border-color: var(--bd-strong);
+  transform: translateY(-1px);
+}
+
+.ibtn:active {
+  transform: translateY(1px);
+}
+
+.ibtn.off {
+  opacity: 0.4;
+}
+
+#app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px 140px;
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 80px);
+}
+
+/* ================================================================
+   5. TARJETAS Y GRID
+   ================================================================ */
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.grid-2 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid-3 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.card {
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  border-left: 4px solid var(--c);
+  border-radius: var(--r-sm);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: all var(--t);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--c), transparent);
+  opacity: 0.6;
+}
+
+.card:hover:not(:disabled) {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--c);
+}
+
+.card:active:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.card.dis {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--s2);
+}
+
+.card.dis:hover {
+  transform: none;
+  box-shadow: var(--shadow);
+}
+
+.card .tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--r-sm);
+  background: var(--s2);
+  border: 1px solid var(--bd);
+  color: var(--mut);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.card .tag.ok {
+  background: color-mix(in srgb, var(--ok) 15%, transparent);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.card .tag.warn {
+  background: color-mix(in srgb, var(--warn) 15%, transparent);
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.card h3 {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-size: 1.6rem;
+}
+
+.card p {
+  color: var(--mut);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.card .stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.card .stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: var(--r-sm);
+  background: var(--s2);
+  border: 1px solid var(--bd);
+  color: var(--mut);
+}
+
+.card .stat b {
+  color: var(--a);
+  margin-right: 4px;
+}
+
+/* ================================================================
+   6. PANELES Y SECCIONES
+   ================================================================ */
+.panel {
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  border-radius: var(--r-md);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.panel.accent {
+  border-left: 4px solid var(--a);
+}
+
+.panel.warn {
+  border-left: 4px solid var(--warn);
+  background: color-mix(in srgb, var(--warn) 5%, var(--s1));
+}
+
+.panel.success {
+  border-left: 4px solid var(--ok);
+  background: color-mix(in srgb, var(--ok) 5%, var(--s1));
+}
+
+.panel.danger {
+  border-left: 4px solid var(--b);
+  background: color-mix(in srgb, var(--b) 5%, var(--s1));
+}
+
+/* Pestañas profesionales */
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid var(--bd);
+  margin-bottom: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  padding: 12px 20px;
+  font-weight: 600;
+  color: var(--mut);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem;
+  white-space: nowrap;
+  transition: all var(--t);
+  position: relative;
+}
+
+.tab-btn:hover:not(.locked) {
+  color: var(--a);
+  background: var(--s2);
+}
+
+.tab-btn.on {
+  color: var(--a);
+  border-bottom-color: var(--a);
+  font-weight: 700;
+}
+
+.tab-btn.locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.tab-btn.locked::after {
+  content: ' 🔒';
+  font-size: 0.85rem;
+  margin-left: 4px;
+}
+
+/* Pills de navegación */
+.pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  scrollbar-width: thin;
+}
+
+.pill {
+  white-space: nowrap;
+  border: 1px solid var(--bd);
+  background: var(--s2);
+  border-radius: var(--r);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--t);
+  color: var(--tx-soft);
+}
+
+.pill:hover {
+  background: var(--s3);
+  border-color: var(--bd-strong);
+}
+
+.pill.on {
+  background: var(--a);
+  border-color: var(--a);
+  color: white;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ================================================================
+   7. PREGUNTAS Y EJERCICIOS
+   ================================================================ */
+.q-card {
+  background: var(--s2);
+  border: 1px solid var(--bd);
+  border-radius: var(--r-md);
+  padding: 20px;
+  margin-bottom: 16px;
+  position: relative;
+  transition: all var(--t-slow);
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.q-card.ok {
+  border-color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 8%, var(--s2));
+  box-shadow: 0 0 0 1px var(--ok), var(--shadow-sm);
+}
+
+.q-card.ko {
+  border-color: var(--b);
+  background: color-mix(in srgb, var(--b) 8%, var(--s2));
+  box-shadow: 0 0 0 1px var(--b), var(--shadow-sm);
+}
+
+.q-header {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.q-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--a);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.q-card.ok .q-num { background: var(--ok); }
+.q-card.ko .q-num { background: var(--b); }
+
+.q-text {
+  font-weight: 600;
+  font-size: 1.05rem;
+  flex: 1;
+  line-height: 1.5;
+  padding-top: 4px;
+}
+
+.q-type {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--r-sm);
+  background: var(--s3);
+  color: var(--mut);
+  margin-left: 8px;
+  vertical-align: middle;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.q-pts {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--mut);
+  margin-left: auto;
+  white-space: nowrap;
+  padding-top: 8px;
+}
+
+/* Opciones de respuesta */
+.q-ops {
+  margin: 12px 0;
+}
+
+.q-ops label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin: 6px 0;
+  border-radius: var(--r);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--t);
+  background: var(--s1);
+  font-size: 0.95rem;
+}
+
+.q-ops label:hover {
+  background: var(--s3);
+  border-color: var(--bd);
+  transform: translateX(2px);
+}
+
+.q-ops input[type="radio"],
+.q-ops input[type="checkbox"] {
+  accent-color: var(--a);
+  transform: scale(1.2);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.q-ops input:disabled {
+  cursor: not-allowed;
+}
+
+/* Estados de corrección */
+.q-card.done .q-ops label.right {
+  background: color-mix(in srgb, var(--ok) 15%, transparent);
+  border-color: var(--ok);
+  color: var(--tx);
+  font-weight: 600;
+}
+
+.q-card.done .q-ops label.right::after {
+  content: ' ✓';
+  color: var(--ok);
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.q-card.done .q-ops label.wrong {
+  background: color-mix(in srgb, var(--b) 12%, transparent);
+  border-color: var(--b);
+  text-decoration: line-through;
+  opacity: 0.75;
+  color: var(--mut);
+}
+
+.q-card.done .q-ops label.wrong::after {
+  content: ' ✗';
+  color: var(--b);
+  font-weight: 700;
+  margin-left: auto;
+}
+
+/* Feedback box */
+.feedback-box {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--r);
+  background: var(--s1);
+  border-left: 4px solid var(--a);
+  font-size: 0.95rem;
+  color: var(--tx-soft);
+  display: none;
+  animation: fadeIn 0.4s ease-out;
+  box-shadow: var(--shadow-xs);
+}
+
+.q-card.done .feedback-box {
+  display: block;
+}
+
+.q-card.ok .feedback-box {
+  border-left-color: var(--ok);
+}
+
+.q-card.ko .feedback-box {
+  border-left-color: var(--b);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Efecto máquina de escribir */
+.typewriter-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3em;
+  color: var(--b);
+  font-weight: 700;
+  border-right: 2px solid var(--b);
+  padding-right: 2px;
+  animation: blink 0.8s infinite;
+  white-space: pre-wrap;
+  display: inline-block;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* ================================================================
+   8. HOJA DE SUCIO (SCRATCHPAD)
+   ================================================================ */
+#scratchpad-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t);
+}
+
+#scratchpad-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#scratchpad {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg-paper);
+  background-image: 
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-top: 3px solid var(--a);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+  transform: translateY(100%);
+  transition: transform var(--t-slow);
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+  min-height: 300px;
+}
+
+#scratchpad.open {
+  transform: translateY(0);
+}
+
+.sp-handle {
+  width: 48px;
+  height: 5px;
+  background: var(--bd-strong);
+  border-radius: 3px;
+  margin: 12px auto 8px;
+  cursor: grab;
+  flex-shrink: 0;
+  transition: background var(--t);
+}
+
+.sp-handle:hover {
+  background: var(--a);
+}
+
+.sp-header {
+  padding: 0 24px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--bd);
+  flex-shrink: 0;
+}
+
+.sp-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--a);
+}
+
+.sp-tools {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.sp-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--mut);
+  padding: 4px 10px;
+  background: var(--s2);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--bd);
+}
+
+#scratchpad textarea {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--tx);
+  padding: 20px 24px 20px 60px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  line-height: 24px;
+  resize: none;
+  outline: none;
+  background-image: linear-gradient(transparent 23px, var(--grid-line) 24px);
+  background-size: 100% 24px;
+  background-attachment: local;
+  background-position: 0 0;
+}
+
+#scratchpad textarea::placeholder {
+  color: var(--mut-soft);
+  font-style: italic;
+}
+
+/* Botón flotante para abrir hoja de sucio */
+#fab-scratch {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 80;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--warn);
+  color: white;
+  box-shadow: var(--shadow-lg);
+  font-size: 1.6rem;
+  display: grid;
+  place-items: center;
+  transition: all var(--t);
+  border: 3px solid var(--bg-paper);
+}
+
+#fab-scratch:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: var(--shadow-xl);
+}
+
+#fab-scratch:active {
+  transform: scale(0.95);
+}
+
+#fab-scratch .badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--b);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  border: 2px solid var(--bg-paper);
+}
+
+/* ================================================================
+   9. ANIMACIÓN DE MANO Y CORRECCIÓN
+   ================================================================ */
+#correction-hand {
+  position: fixed;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  width: 200px;
+  height: 200px;
+  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.25));
+  will-change: transform, opacity;
+}
+
+#correction-hand.active {
+  opacity: 1;
+}
+
+#correction-hand svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+#correction-hand.writing svg {
+  animation: wiggle 0.3s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg) translate(0, 0); }
+  25% { transform: rotate(-2deg) translate(-1px, 1px); }
+  75% { transform: rotate(2deg) translate(1px, -1px); }
+}
+
+/* SVG Path Animation */
+.draw-path {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+.draw-path.animate {
+  animation: drawPath 0.7s ease-out forwards;
+}
+
+@keyframes drawPath {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Indicador de corrección en progreso */
+#correction-status {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  z-index: 150;
+  background: var(--a);
+  color: white;
+  padding: 10px 18px;
+  border-radius: var(--r);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all var(--t);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#correction-status.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#correction-status .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ================================================================
+   10. TEMPORIZADOR Y RESULTADOS
+   ================================================================ */
+#timer {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  z-index: 60;
+  padding: 10px 20px;
+  border-radius: var(--r);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.3rem;
+  background: var(--ok);
+  color: white;
+  box-shadow: var(--shadow-lg);
+  display: none;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid var(--bg-paper);
+}
+
+#timer.visible {
+  display: flex;
+}
+
+#timer.warn {
+  background: var(--warn);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+#timer.bad {
+  background: var(--b);
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Panel de resultado final */
+.result-card {
+  background: var(--s1);
+  border: 2px solid var(--c);
+  border-radius: var(--r-lg);
+  padding: 32px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  margin-top: 32px;
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.result-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--c), var(--ok), var(--c));
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% 0; }
+}
+
+.result-grade {
+  font-family: 'Caveat', cursive;
+  font-size: 6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c);
+  margin: 16px 0;
+  text-shadow: 0 4px 12px color-mix(in srgb, var(--c) 30%, transparent);
+}
+
+.result-grade.big {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--c);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+  background: color-mix(in srgb, var(--c) 10%, var(--s1));
+}
+
+.result-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.result-detail {
+  padding: 16px;
+  background: var(--s2);
+  border-radius: var(--r);
+  border: 1px solid var(--bd);
+}
+
+.result-detail .val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--a);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.result-detail .lbl {
+  font-size: 0.8rem;
+  color: var(--mut);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ================================================================
+   11. CONFIGURACIÓN Y FORMULARIOS
+   ================================================================ */
+.cfg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.fld {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fld label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--mut);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.chip {
+  cursor: pointer;
+  position: relative;
+}
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chip span {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--r);
+  background: var(--s2);
+  border: 1px solid var(--bd);
+  color: var(--tx-soft);
+  transition: all var(--t);
+}
+
+.chip:hover span {
+  background: var(--s3);
+  border-color: var(--bd-strong);
+}
+
+.chip input:checked + span {
+  background: color-mix(in srgb, var(--a) 15%, transparent);
+  border-color: var(--a);
+  color: var(--a);
+  font-weight: 700;
+  box-shadow: 0 0 0 1px var(--a);
+}
+
+/* ================================================================
+   12. CONSEJOS PROFESIONALES
+   ================================================================ */
+.pro-tip {
+  background: color-mix(in srgb, var(--warn) 8%, var(--s1));
+  border-left: 4px solid var(--warn);
+  padding: 14px 18px;
+  border-radius: 0 var(--r) var(--r) 0;
+  margin: 20px 0;
+  font-size: 0.95rem;
+  color: var(--tx-soft);
+  line-height: 1.6;
+  box-shadow: var(--shadow-xs);
+}
+
+.pro-tip strong {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+.pro-tip.ok {
+  background: color-mix(in srgb, var(--ok) 8%, var(--s1));
+  border-left-color: var(--ok);
+}
+
+.pro-tip.ok strong { color: var(--ok); }
+
+.pro-tip.info {
+  background: color-mix(in srgb, var(--a) 8%, var(--s1));
+  border-left-color: var(--a);
+}
+
+.pro-tip.info strong { color: var(--a); }
+
+.pro-tip.danger {
+  background: color-mix(in srgb, var(--b) 8%, var(--s1));
+  border-left-color: var(--b);
+}
+
+.pro-tip.danger strong { color: var(--b); }
+
+/* ================================================================
+   13. DEFINICIONES Y TABLAS
+   ================================================================ */
+.defs {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  margin: 16px 0;
+}
+
+.def {
+  padding: 14px 16px;
+  border-radius: var(--r);
+  background: var(--s2);
+  border: 1px solid var(--bd);
+  border-left: 3px solid var(--a);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all var(--t);
+}
+
+.def:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--a);
+}
+
+.def b {
+  color: var(--a);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.def span {
+  color: var(--tx-soft);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Tablas profesionales */
+.tw {
+  overflow-x: auto;
+  margin: 16px 0;
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  background: var(--s1);
+  box-shadow: var(--shadow-xs);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--s2);
+  text-align: left;
+  padding: 12px 14px;
+  color: var(--a);
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--bd);
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 14px;
+  border-top: 1px solid var(--bd-soft);
+  vertical-align: top;
+  color: var(--tx-soft);
+}
+
+tr:hover td {
+  background: var(--s2);
+}
+
+/* Flow charts */
+.fl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.fl span {
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  padding: 6px 14px;
+  border-radius: var(--r);
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  box-shadow: var(--shadow-xs);
+  color: var(--tx-soft);
+}
+
+.fl i {
+  font-style: normal;
+  color: var(--a);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* ================================================================
+   14. LABORATORIO BINARIO
+   ================================================================ */
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.lab-field {
+  background: var(--s2);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  padding: 14px;
+  transition: all var(--t);
+}
+
+.lab-field:focus-within {
+  border-color: var(--a);
+  background: var(--s1);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--a) 15%, transparent);
+}
+
+.lab-field label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--mut);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lab-field input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--tx);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 4px 0;
+  outline: none;
+}
+
+/* Bits visualizer */
+.bits-viz {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.bit {
+  width: 44px;
+  height: 56px;
+  border-radius: var(--r);
+  background: var(--s2);
+  border: 2px solid var(--bd);
+  display: grid;
+  place-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--mut);
+  transition: all var(--t);
+  cursor: pointer;
+  position: relative;
+}
+
+.bit.on {
+  background: var(--a);
+  border-color: var(--a);
+  color: white;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--a) 50%, transparent);
+  transform: translateY(-2px);
+}
+
+.bit .weight {
+  position: absolute;
+  bottom: -20px;
+  font-size: 0.7rem;
+  color: var(--mut);
+  font-weight: 500;
+}
+
+/* ================================================================
+   15. ESTADÍSTICAS Y PROGRESO
+   ================================================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.stat-card {
+  background: var(--s1);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  padding: 20px;
+  text-align: center;
+  transition: all var(--t);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--c, var(--a));
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card .icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.stat-card .value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--a);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.stat-card .label {
+  font-size: 0.8rem;
+  color: var(--mut);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Progress bar */
+.progress {
+  width: 100%;
+  height: 8px;
+  background: var(--s2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+  border: 1px solid var(--bd-soft);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--a), var(--ok));
+  border-radius: 4px;
+  transition: width var(--t-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: progressShine 2s linear infinite;
+}
+
+@keyframes progressShine {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+/* ================================================================
+   16. LOGROS Y MEDALLAS
+   ================================================================ */
+.achievements {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.achievement {
+  background: var(--s1);
+  border: 2px solid var(--bd);
+  border-radius: var(--r);
+  padding: 16px;
+  text-align: center;
+  transition: all var(--t);
+  position: relative;
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+
+.achievement.unlocked {
+  opacity: 1;
+  filter: none;
+  border-color: var(--warn);
+  background: color-mix(in srgb, var(--warn) 8%, var(--s1));
+  box-shadow: 0 0 20px color-mix(in srgb, var(--warn) 20%, transparent);
+}
+
+.achievement.unlocked::before {
+  content: '✓';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--ok);
+  color: white;
+  font-size: 0.7rem;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.achievement .medal {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.achievement .name {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--tx);
+  margin-bottom: 4px;
+}
+
+.achievement .desc {
+  font-size: 0.75rem;
+  color: var(--mut);
+  line-height: 1.4;
+}
+
+/* ================================================================
+   17. TOAST Y NOTIFICACIONES
+   ================================================================ */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--tx);
+  color: var(--bg-paper);
+  padding: 12px 24px;
+  border-radius: var(--r);
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--t);
+  z-index: 300;
+  font-weight: 600;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 90vw;
+}
+
+#toast.on {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+#toast.success { background: var(--ok); color: white; }
+#toast.error { background: var(--b); color: white; }
+#toast.warn { background: var(--warn); color: white; }
+
+/* ================================================================
+   18. UTILIDADES Y ANIMACIONES
+   ================================================================ */
+.hidden { display: none !important; }
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm { gap: 8px; }
+.gap { gap: 16px; }
+.gap-lg { gap: 24px; }
+.mt-sm { margin-top: 8px; }
+.mt { margin-top: 16px; }
+.mt-lg { margin-top: 32px; }
+.mb-sm { margin-bottom: 8px; }
+.mb { margin-bottom: 16px; }
+.mb-lg { margin-bottom: 32px; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: var(--mut); }
+.text-sm { font-size: 0.85rem; }
+.text-xs { font-size: 0.75rem; }
+.fw-bold { font-weight: 700; }
+.w-full { width: 100%; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fadeInUp { animation: fadeInUp 0.5s ease-out; }
+.animate-scaleIn { animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.animate-slideInRight { animation: slideInRight 0.4s ease-out; }
+
+/* ================================================================
+   19. RESPONSIVE
+   ================================================================ */
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+  .top { padding: 10px 16px; gap: 8px; }
+  .brand { font-size: 1.3rem; }
+  .brand .version { display: none; }
+  #app { padding: 20px 16px 120px; }
+  .panel { padding: 18px; }
+  .q-card { padding: 16px; }
+  .q-header { gap: 10px; }
+  .q-num { width: 32px; height: 32px; font-size: 0.85rem; }
+  .result-grade { font-size: 4rem; }
+  .result-grade.big { width: 90px; height: 90px; font-size: 3rem; }
+  .cfg { grid-template-columns: 1fr; }
+  .tabs { gap: 0; }
+  .tab-btn { padding: 10px 14px; font-size: 1.2rem; }
+  #timer { top: 70px; right: 16px; font-size: 1.1rem; padding: 8px 14px; }
+  #correction-status { top: 70px; right: 16px; font-size: 0.8rem; padding: 8px 14px; }
+  #fab-scratch { width: 52px; height: 52px; font-size: 1.4rem; bottom: 16px; right: 16px; }
+  #scratchpad textarea { padding: 16px 16px 16px 40px; font-size: 1.3rem; }
+  .bit { width: 36px; height: 46px; font-size: 1.1rem; }
+  .defs { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
+  .card { padding: 18px; }
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   20. ACCESIBILIDAD Y PREFERENCIAS
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* Focus visible para accesibilidad */
+:focus-visible {
+  outline: 2px solid var(--a);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* Selección de texto */
+::selection {
+  background: color-mix(in srgb, var(--a) 30%, transparent);
+  color: var(--tx);
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--s2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bd-strong);
+  border-radius: 5px;
+  border: 2px solid var(--s2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mut);
+}
+
+/* Print styles */
+@media print {
+  body { background: white; }
+  body::before, body::after { display: none; }
+  .top, #fab-scratch, #scratchpad, #correction-hand, #timer, #toast { display: none !important; }
+  .card, .panel, .q-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     HEADER PRINCIPAL
+     ================================================================ -->
+<header class="top">
+  <button class="brand" onclick="app.go('home')" aria-label="Ir al inicio">
+    <span class="logo-icon">📓</span>
+    <span>Cuaderno Digital</span>
+    <span class="version">PRO v3.0</span>
+  </button>
+  <nav id="cr" aria-label="Ruta de navegación"></nav>
+  <button class="ibtn" id="btn-anim" onclick="app.toggleAnim()" title="Activar/desactivar animaciones" aria-label="Animaciones">✏️</button>
+  <button class="ibtn" onclick="app.toggleTheme()" title="Cambiar tema claro/oscuro" aria-label="Cambiar tema">◐</button>
+</header>
+
+<!-- ================================================================
+     CONTENIDO PRINCIPAL
+     ================================================================ -->
+<main id="app" role="main"></main>
+
+<!-- ================================================================
+     HOJA DE SUCIO (SCRATCHPAD)
+     ================================================================ -->
+<div id="scratchpad-overlay" onclick="app.toggleScratchpad()" aria-hidden="true"></div>
+<aside id="scratchpad" role="dialog" aria-label="Hoja de sucio">
+  <div class="sp-handle" onclick="app.toggleScratchpad()" aria-label="Cerrar hoja de sucio"></div>
+  <div class="sp-header">
+    <h3>📝 Hoja de Sucio</h3>
+    <div class="sp-tools">
+      <span class="sp-counter" id="sp-counter">0 caracteres</span>
+      <button class="btn s" onclick="app.exportScratchpad()" title="Exportar">💾</button>
+      <button class="btn s" onclick="app.clearScratchpad()" title="Borrar todo">🗑️</button>
+      <button class="btn s" onclick="app.toggleScratchpad()" title="Cerrar">✕</button>
+    </div>
+  </div>
+  <textarea id="scratchpad-text" placeholder="Escribe aquí tus cálculos, esquemas, ideas o apuntes rápidos...&#10;&#10;💡 Consejo: Esta hoja se guarda automáticamente. Úsala para:&#10;  • Cálculos binarios y hexadecimales&#10;  • Esquemas de topologías&#10;  • Conversión de bases numéricas&#10;  • Apuntes rápidos durante el examen" spellcheck="false"></textarea>
+</aside>
+<button id="fab-scratch" class="hidden" onclick="app.toggleScratchpad()" title="Abrir hoja de sucio (Ctrl+M)" aria-label="Abrir hoja de sucio">📝</button>
+
+<!-- ================================================================
+     MANO DE CORRECCIÓN ANIMADA
+     ================================================================ -->
+<div id="correction-hand" aria-hidden="true">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffdcc2"/>
+        <stop offset="100%" stop-color="#e8a47a"/>
+      </linearGradient>
+      <linearGradient id="penGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#ef4444"/>
+        <stop offset="50%" stop-color="#dc2626"/>
+        <stop offset="100%" stop-color="#991b1b"/>
+      </linearGradient>
+      <filter id="handShadow">
+        <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+      </filter>
+    </defs>
+    <!-- Mano -->
+    <g filter="url(#handShadow)">
+      <!-- Palma -->
+      <ellipse cx="100" cy="110" rx="35" ry="40" fill="url(#skinGrad)" stroke="#c98a63" stroke-width="2" transform="rotate(-20 100 110)"/>
+      <!-- Dedos -->
+      <path d="M 75 90 Q 60 70 55 50" stroke="#c98a63" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <path d="M 75 90 Q 60 70 55 50" stroke="url(#skinGrad)" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M 90 80 Q 85 55 85 35" stroke="#c98a63" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <path d="M 90 80 Q 85 55 85 35" stroke="url(#skinGrad)" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M 110 78 Q 115 55 120 38" stroke="#c98a63" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <path d="M 110 78 Q 115 55 120 38" stroke="url(#skinGrad)" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M 128 85 Q 140 70 148 55" stroke="#c98a63" stroke-width="13" stroke-linecap="round" fill="none"/>
+      <path d="M 128 85 Q 140 70 148 55" stroke="url(#skinGrad)" stroke-width="10" stroke-linecap="round" fill="none"/>
+      <!-- Pulgar -->
+      <path d="M 70 120 Q 50 130 40 145" stroke="#c98a63" stroke-width="15" stroke-linecap="round" fill="none"/>
+      <path d="M 70 120 Q 50 130 40 145" stroke="url(#skinGrad)" stroke-width="12" stroke-linecap="round" fill="none"/>
+    </g>
+    <!-- Bolígrafo -->
+    <g transform="translate(120, 40) rotate(-45)">
+      <rect x="-6" y="-50" width="12" height="70" rx="3" fill="url(#penGrad)"/>
+      <rect x="-5" y="-48" width="10" height="2" fill="white" opacity="0.5"/>
+      <rect x="-6" y="15" width="12" height="8" rx="1" fill="#fbbf24"/>
+      <path d="M -6 23 L 0 35 L 6 23 Z" fill="#94a3b8"/>
+      <circle cx="0" cy="35" r="1.5" fill="#1e293b"/>
+    </g>
+    <!-- Trazo de corrección -->
+    <path id="mark-path" class="draw-path" d="" stroke="#dc2626"/>
+  </svg>
+</div>
+
+<!-- ================================================================
+     INDICADOR DE CORRECCIÓN EN PROGRESO
+     ================================================================ -->
+<div id="correction-status" aria-live="polite">
+  <div class="spinner"></div>
+  <span id="correction-text">Corrigiendo...</span>
+</div>
+
+<!-- ================================================================
+     TEMPORIZADOR
+     ================================================================ -->
+<div id="timer" aria-live="polite" aria-label="Tiempo restante">
+  <span>⏱</span>
+  <span id="timer-display">00:00</span>
+</div>
+
+<!-- ================================================================
+     TOAST DE NOTIFICACIONES
+     ================================================================ -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- ================================================================
+     BOTÓN SALTAR CORRECCIÓN
+     ================================================================ -->
+<button class="btn s hidden" id="btn-skip" style="position:fixed;right:24px;bottom:100px;z-index:150;" onclick="app.skipCorrection()">
+  ⏭ Saltar corrección
+</button>
+
+<script>
+/* ================================================================
+   CUADERNO DIGITAL PRO v3.0 - MOTOR PRINCIPAL
+   Sistema completo de estudio con corrección animada profesional
+   Autor: AleDev Studios
+   ================================================================ */
+
+'use strict';
+
+/* ================================================================
+   1. UTILIDADES Y HELPERS
+   ================================================================ */
+const $ = (s, p = document) => p.querySelector(s);
+const $$ = (s, p = document) => [...p.querySelectorAll(s)];
+
+// Normalización de texto para comparación de respuestas
+const norm = s => String(s)
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9+#\/. ]/g, '')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+// Generar variantes de una respuesta (sinónimos)
+const vari = t => [...new Set([
+  norm(t),
+  ...t.split(/[();,\/]/).map(norm),
+  ...t.split(/[()]/).map(norm)
+]).filter(Boolean)];
+
+// Esperar promesa
+const wait = ms => new Promise(r => setTimeout(r, ms));
+
+// LocalStorage wrapper
+const ls = {
+  g: k => { try { return localStorage.getItem(k); } catch { return null; } },
+  s: (k, v) => { try { localStorage.setItem(k, v); } catch {} },
+  r: k => { try { localStorage.removeItem(k); } catch {} }
+};
+
+// Generador pseudoaleatorio con semilla (Mulberry32)
+function mulberry32(a) {
+  return function() {
+    let t = a += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+// Barajar array con semilla
+function shuffle(arr, seed) {
+  const rand = mulberry32(seed);
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Formatear tiempo
+function fmtTime(secs) {
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+// Generar semilla aleatoria
+function randomSeed() {
+  return Math.floor(Math.random() * 999999) + 100000;
+}
+
+// Toast de notificaciones
+function toast(msg, type = 'info', duration = 2500) {
+  const t = $('#toast');
+  t.className = 'on ' + type;
+  t.textContent = msg;
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => t.classList.remove('on'), duration);
+}
+
+/* ================================================================
+   2. DATOS DE ESTUDIO - REDES LOCALES (TEMA 1 COMPLETO)
+   ================================================================ */
+const DATA_RL_T1 = {
+  id: 'rl_t1',
+  title: 'Caracterización de las redes locales',
+  subject: 'Redes Locales',
+  sections: [
+    'Comunicación y redes',
+    'Componentes y objetivos',
+    'Redes por extensión',
+    'Tecnología de transmisión',
+    'Titularidad e interredes',
+    'Estándares y organismos',
+    'Sistemas de numeración',
+    'Modelo OSI',
+    'La red LAN y dispositivos',
+    'Topologías y acceso al medio'
+  ],
+  concepts: [
+    // Sección 0: Comunicación y redes
+    {s:0, term:'Fuente', def:'Genera la información o los datos que se quieren transmitir.'},
+    {s:0, term:'Transmisor', def:'Codifica la información y la convierte en señal adecuada.'},
+    {s:0, term:'Canal', def:'Medio físico que transporta la señal del transmisor al receptor.'},
+    {s:0, term:'Receptor', def:'Recibe la señal del canal y la decodifica.'},
+    {s:0, term:'Destino', def:'Dispositivo o sistema al que va dirigida la información.'},
+    {s:0, term:'Red de comunicaciones', def:'Dispositivos interconectados que comparten recursos mediante protocolos.'},
+    // Sección 1: Componentes y objetivos
+    {s:1, term:'Nodo;host', def:'Equipo terminal de la red que recibe y procesa información.'},
+    {s:1, term:'Enlace', def:'Conexión física o por ondas entre dos nodos.'},
+    {s:1, term:'Protocolo', def:'Reglas que deben seguir los dispositivos para comunicarse.'},
+    {s:1, term:'Topología', def:'Forma concreta de organizar y conectar los equipos.'},
+    {s:1, term:'Servidor', def:'Máquina donde se guarda la información importante de la red.'},
+    {s:1, term:'Ahorro económico', def:'Ventaja: no hace falta tener ciertos recursos en cada equipo.'},
+    // Sección 2: Redes por extensión
+    {s:2, term:'BAN', def:'Body Area Network: sensores sobre el cuerpo o muy cerca.'},
+    {s:2, term:'PAN', def:'Personal Area Network: dispositivos cercanos a una persona.'},
+    {s:2, term:'LAN', def:'Local Area Network: equipos en una zona limitada (casa, aula, oficina).'},
+    {s:2, term:'CAN', def:'Campus Area Network: varias LAN de una misma organización.'},
+    {s:2, term:'MAN', def:'Metropolitan Area Network: cubre una ciudad.'},
+    {s:2, term:'WAN', def:'Wide Area Network: conecta redes a grandes distancias.'},
+    // Sección 3: Tecnología de transmisión
+    {s:3, term:'Red de difusión', def:'Varios dispositivos comparten el mismo medio o canal.'},
+    {s:3, term:'Red conmutada', def:'Red punto a punto: la información va de origen a destino.'},
+    {s:3, term:'Unicast', def:'El mensaje va a un solo destinatario.'},
+    {s:3, term:'Multicast', def:'El mensaje va a un grupo de nodos.'},
+    {s:3, term:'Broadcast', def:'El mensaje va a todos los nodos de la red.'},
+    {s:3, term:'Conmutación de paquetes', def:'El mensaje se divide en paquetes que siguen caminos distintos.'},
+    {s:3, term:'Conmutación de circuitos', def:'Se reserva un circuito: establecimiento, transmisión y liberación.'},
+    // Sección 4: Titularidad e interredes
+    {s:4, term:'Red privada', def:'Pertenece a una organización o particular con acceso limitado.'},
+    {s:4, term:'Red pública', def:'Disponible para muchos usuarios; no significa gratuita.'},
+    {s:4, term:'Interred', def:'Conjunto de redes conectadas entre sí.'},
+    {s:4, term:'Router;encaminador', def:'Conecta redes diferentes y decide los caminos.'},
+    {s:4, term:'Gateway;pasarela', def:'Comunica tecnologías o protocolos diferentes.'},
+    {s:4, term:'Switch multicapa', def:'Conmuta y además encamina entre redes como un router.'},
+    {s:4, term:'IP privadas', def:'Rangos 10.0.0.0/8, 172.16.0.0/12 y 192.168.0.0/16.'},
+    // Sección 5: Estándares y organismos
+    {s:5, term:'Estándar de facto', def:'Se impone por su amplio uso, sin aprobación oficial.'},
+    {s:5, term:'Estándar de iure', def:'Aprobado formalmente por un organismo de normalización.'},
+    {s:5, term:'Estándar abierto', def:'Especificación disponible para que cualquier fabricante la implemente.'},
+    {s:5, term:'ISO', def:'Organización internacional que creó el modelo OSI.'},
+    {s:5, term:'IEEE 802.3', def:'Norma de Ethernet (cableada).'},
+    {s:5, term:'IEEE 802.11', def:'Norma de Wi-Fi (inalámbrica).'},
+    {s:5, term:'ETSI', def:'Instituto europeo que normaliza las redes móviles 4G y 5G.'},
+    {s:5, term:'IETF', def:'Comunidad abierta que desarrolla los estándares técnicos de Internet.'},
+    // Sección 6: Sistemas de numeración
+    {s:6, term:'Decimal', def:'Base 10, símbolos del 0 al 9.'},
+    {s:6, term:'Binario', def:'Base 2, símbolos 0 y 1.'},
+    {s:6, term:'Bit', def:'Cada símbolo del sistema binario.'},
+    {s:6, term:'Hexadecimal', def:'Base 16, símbolos 0–9 y A–F.'},
+    {s:6, term:'Octal', def:'Base 8, símbolos del 0 al 7.'},
+    // Sección 7: Modelo OSI
+    {s:7, term:'Capa 7 Aplicación', def:'Da servicio de red a las aplicaciones (HTTP, FTP, DNS).'},
+    {s:7, term:'Capa 6 Presentación', def:'Codificación, conversión de formatos, compresión y cifrado.'},
+    {s:7, term:'Capa 5 Sesión', def:'Establece, mantiene y finaliza la sesión entre aplicaciones.'},
+    {s:7, term:'Capa 4 Transporte', def:'Comunicación extremo a extremo; PDU: segmentos.'},
+    {s:7, term:'Capa 3 Red', def:'Direccionamiento IP y encaminamiento; PDU: paquetes.'},
+    {s:7, term:'Capa 2 Enlace', def:'Direcciones MAC y acceso al medio; PDU: tramas.'},
+    {s:7, term:'Capa 1 Física', def:'Transmisión de bits por el medio físico.'},
+    {s:7, term:'TCP', def:'Protocolo de transporte fiable que retransmite segmentos perdidos.'},
+    {s:7, term:'UDP', def:'Protocolo de transporte sin control: más rápido y ligero.'},
+    // Sección 8: La red LAN y dispositivos
+    {s:8, term:'Interfaz de red;NIC', def:'Conecta el equipo a la red y tiene dirección MAC.'},
+    {s:8, term:'Repetidor', def:'Regenera, amplifica y reenvía la señal.'},
+    {s:8, term:'Hub;concentrador', def:'Reenvía lo que recibe a todos los demás puertos.'},
+    {s:8, term:'Switch;conmutador', def:'Usa las MAC y envía las tramas solo al puerto del destinatario.'},
+    {s:8, term:'Punto de acceso', def:'Puente entre la red Wi-Fi y la red cableada.'},
+    {s:8, term:'Router', def:'Busca la ruta óptima entre redes.'},
+    {s:8, term:'DHCP', def:'Asigna automáticamente los parámetros de red (IP).'},
+    {s:8, term:'Fibra óptica', def:'Medio guiado: la información viaja en pulsos de luz.'},
+    // Sección 9: Topologías y acceso al medio
+    {s:9, term:'Bus', def:'Cable coaxial compartido con terminadores en los extremos.'},
+    {s:9, term:'Anillo', def:'Nodos punto a punto en círculo; transmite quien tiene el token.'},
+    {s:9, term:'Estrella', def:'Nodo central (switch o hub) que enlaza con todos.'},
+    {s:9, term:'Árbol', def:'Topología jerárquica con nodos centrales secundarios.'},
+    {s:9, term:'Malla', def:'Cada nodo se conecta con todos los demás.'},
+    {s:9, term:'Control centralizado', def:'Un controlador central organiza el acceso al medio.'},
+    {s:9, term:'Control distribuido', def:'Sin controlador: lo hacen todos los equipos.'},
+    {s:9, term:'Contención', def:'Los equipos compiten por el acceso al medio.'}
+  ],
+  questions: [
+    {type:'mc', q:'¿Qué dispositivo envía las tramas solo al puerto del destinatario?', opts:['Switch','Hub','Repetidor','Antena'], a:0, exp:'El switch usa las direcciones MAC para enviar solo al destinatario.'},
+    {type:'mc', q:'¿Cuántas capas tiene el modelo OSI?', opts:['7','4','5','6'], a:0, exp:'OSI tiene 7 capas: Física, Enlace, Red, Transporte, Sesión, Presentación, Aplicación.'},
+    {type:'mc', q:'¿Qué protocolo de transporte es fiable y retransmite segmentos perdidos?', opts:['TCP','UDP','IP','ARP'], a:0, exp:'TCP controla el orden y la retransmisión de segmentos.'},
+    {type:'mc', q:'¿Qué estándar IEEE corresponde a Wi-Fi?', opts:['802.11','802.3','802.15','802.1'], a:0, exp:'802.11 = Wi-Fi; 802.3 = Ethernet.'},
+    {type:'mc', q:'¿Qué PDU se utiliza en la capa de enlace de datos?', opts:['Tramas','Paquetes','Segmentos','Bits'], a:0, exp:'Capa 2 (Enlace): tramas. Capa 3: paquetes. Capa 4: segmentos.'},
+    {type:'mc', q:'¿Cuál de estos rangos es de direcciones IP privadas?', opts:['192.168.0.0/16','8.8.8.0/24','200.10.0.0/16','11.0.0.0/8'], a:0, exp:'El bloque 192.168.0.0/16 es privado. Los otros son públicos.'},
+    {type:'mc', q:'¿Qué topología conecta todos los nodos a un nodo central?', opts:['Estrella','Bus','Anillo','Malla'], a:0, exp:'El nodo central es un switch o un hub.'},
+    {type:'mc', q:'¿Qué sistema de numeración tiene base 16?', opts:['Hexadecimal','Octal','Binario','Decimal'], a:0, exp:'Usa los símbolos 0-9 y A-F.'},
+    {type:'vf', q:'Un hub reenvía las tramas a todos los puertos.', a:true, exp:'No distingue destinatarios, reenvía a todos.'},
+    {type:'vf', q:'Un router trabaja en la capa de enlace del modelo OSI.', a:false, exp:'El router trabaja en la capa 3 (red), no en la de enlace.'},
+    {type:'vf', q:'Una red pública siempre es gratuita.', a:false, exp:'Pública no significa gratuita. Es accesible pero puede tener coste.'},
+    {type:'vf', q:'El broadcast envía el mensaje a todos los nodos de la red.', a:true, exp:'Unicast: uno. Multicast: grupo. Broadcast: todos.'},
+    {type:'vf', q:'Las direcciones MAC se usan en la capa de enlace.', a:true, exp:'Capa 2 (Enlace) usa direcciones MAC.'},
+    {type:'fh', q:'El protocolo ___ asigna direcciones IP automáticamente.', a:['DHCP'], exp:'DHCP = Dynamic Host Configuration Protocol.'},
+    {type:'fh', q:'La conmutación de ___ divide el mensaje en partes que pueden seguir caminos distintos.', a:['paquetes'], exp:'Es la base de Internet.'},
+    {type:'fh', q:'Una red de ámbito metropolitano se denomina ___.', a:['MAN'], exp:'Metropolitan Area Network.'},
+    {type:'fh', q:'En la capa de ___ se encuentran los protocolos HTTP, FTP y DNS.', a:['aplicacion','aplicación'], exp:'Es la capa 7 del modelo OSI.'},
+    {type:'fh', q:'Un byte tiene ___ bits.', a:['8','ocho'], exp:'1 byte = 8 bits.'}
+  ],
+  tips: [
+    'Recuerda el orden de las redes por tamaño: BAN < PAN < LAN < CAN < MAN < WAN',
+    'Pesos binarios: 128 · 64 · 32 · 16 · 8 · 4 · 2 · 1',
+    'PDU por capa: Datos → Segmentos → Paquetes → Tramas → Bits',
+    'Hub: a todos · Switch: solo al destinatario (MAC) · Router: ruta óptima (IP)',
+    'IEEE 802.3 = Ethernet (cable) · IEEE 802.11 = Wi-Fi (inalámbrico)',
+    'IPs privadas: 10.x.x.x, 172.16-31.x.x, 192.168.x.x'
+  ]
+};
+
+/* ================================================================
+   3. DATOS DE ESTUDIO - SISTEMAS OPERATIVOS (TEMA 1)
+   ================================================================ */
+const DATA_SOM_T1 = {
+  id: 'som_t1',
+  title: 'Introducción a los Sistemas Operativos',
+  subject: 'Sistemas Operativos Monopuesto',
+  sections: [
+    'Concepto y funciones',
+    'Componentes: kernel y shell',
+    'Tipos de sistemas operativos',
+    'Unidades de información'
+  ],
+  concepts: [
+    {s:0, term:'Sistema operativo;SO', def:'Software que gestiona los recursos del hardware y ofrece servicios a programas y usuarios.'},
+    {s:0, term:'Hardware', def:'Conjunto de componentes físicos del equipo.'},
+    {s:0, term:'Software', def:'Conjunto de programas y datos que hacen funcionar el equipo.'},
+    {s:0, term:'Gestión de procesos', def:'Función del SO que reparte la CPU entre los programas en ejecución.'},
+    {s:0, term:'Gestión de memoria', def:'Función del SO que asigna y libera la memoria RAM de cada proceso.'},
+    {s:0, term:'Gestión de archivos', def:'Función del SO que organiza el almacenamiento en carpetas y ficheros.'},
+    {s:0, term:'Gestión de dispositivos', def:'Función del SO que controla la entrada y salida mediante controladores.'},
+    {s:1, term:'Kernel;nucleo;núcleo', def:'Parte central del SO que se comunica directamente con el hardware.'},
+    {s:1, term:'Shell;intérprete', def:'Intérprete que permite al usuario dar órdenes al SO, en modo texto o gráfico.'},
+    {s:1, term:'Controlador;driver', def:'Programa que permite al SO comunicarse con un dispositivo concreto.'},
+    {s:1, term:'Interfaz gráfica;GUI', def:'Entorno de ventanas, iconos y menús para manejar el equipo.'},
+    {s:1, term:'Línea de comandos;CLI;terminal;consola', def:'Interfaz en la que se escriben órdenes en modo texto.'},
+    {s:2, term:'Monousuario', def:'SO que solo permite trabajar a un usuario a la vez.'},
+    {s:2, term:'Multiusuario', def:'SO que permite varias cuentas de usuario trabajando a la vez.'},
+    {s:2, term:'Multitarea', def:'SO capaz de ejecutar varios programas aparentemente a la vez.'},
+    {s:2, term:'Software libre;free software', def:'Software que se puede usar, estudiar, copiar y modificar, como Linux.'},
+    {s:2, term:'Software propietario;privativo', def:'Software con licencia restrictiva, como Windows.'},
+    {s:3, term:'Bit', def:'Unidad mínima de información: un 0 o un 1.'},
+    {s:3, term:'Byte;octeto', def:'Conjunto de 8 bits.'},
+    {s:3, term:'Kilobyte;KB', def:'1024 bytes.'},
+    {s:3, term:'Megabyte;MB', def:'1024 kilobytes.'},
+    {s:3, term:'Gigabyte;GB', def:'1024 megabytes.'}
+  ],
+  questions: [
+    {type:'mc', q:'¿Qué parte del sistema operativo se comunica directamente con el hardware?', opts:['El kernel','El shell','La interfaz gráfica','El navegador'], a:0, exp:'El kernel o núcleo gestiona el hardware.'},
+    {type:'mc', q:'¿Cuál de estos sistemas operativos es software libre?', opts:['Linux','Windows','macOS','iOS'], a:0, exp:'Linux es libre; los otros son propietarios.'},
+    {type:'mc', q:'¿Qué es un controlador (driver)?', opts:['Un programa que permite al SO usar un dispositivo','Un tipo de virus','Un formato de archivo','Una partición'], a:0, exp:'El driver traduce las órdenes del SO al dispositivo.'},
+    {type:'vf', q:'Un sistema operativo multiusuario permite varias cuentas a la vez.', a:true, exp:'Es la definición de multiusuario.'},
+    {type:'vf', q:'El shell es el encargado de gestionar la memoria RAM.', a:false, exp:'La memoria la gestiona el kernel, no el shell.'},
+    {type:'vf', q:'1 KB equivale a 1024 bytes en el sistema clásico.', a:true, exp:'Se usa la base 1024 (2 elevado a 10).'},
+    {type:'fh', q:'El ___ es el núcleo del sistema operativo.', a:['kernel','nucleo','núcleo'], exp:'Kernel o núcleo son términos sinónimos.'},
+    {type:'fh', q:'Un byte está formado por ___ bits.', a:['8','ocho'], exp:'1 byte = 8 bits.'}
+  ],
+  tips: [
+    'El SO es el intermediario entre hardware y usuario',
+    'Kernel = núcleo = gestor de recursos',
+    'Shell = intérprete de órdenes del usuario',
+    '1 KB = 1024 bytes · 1 MB = 1024 KB · 1 GB = 1024 MB'
+  ]
+};
+
+/* ================================================================
+   4. DATOS DE ESTUDIO - SISTEMAS OPERATIVOS (TEMA 2)
+   ================================================================ */
+const DATA_SOM_T2 = {
+  id: 'som_t2',
+  title: 'Instalación de sistemas operativos',
+  subject: 'Sistemas Operativos Monopuesto',
+  sections: [
+    'Preparación y requisitos',
+    'Particionado y arranque',
+    'Instalación y puesta en marcha',
+    'Virtualización'
+  ],
+  concepts: [
+    {s:0, term:'Requisitos mínimos', def:'CPU, RAM y espacio en disco que necesita un SO para instalarse y funcionar.'},
+    {s:0, term:'Edición', def:'Variante de un SO con distintas funciones y licencia, como Home o Pro.'},
+    {s:0, term:'Licencia', def:'Contrato que fija cómo se puede usar y distribuir un software.'},
+    {s:0, term:'Imagen ISO', def:'Archivo que contiene una copia exacta de un disco de instalación.'},
+    {s:0, term:'Medio de instalación', def:'DVD o USB de arranque que contiene el instalador del SO.'},
+    {s:1, term:'BIOS', def:'Firmware clásico que inicia el hardware y busca el sistema de arranque.'},
+    {s:1, term:'UEFI', def:'Firmware moderno que sustituye a la BIOS y admite discos GPT y arranque seguro.'},
+    {s:1, term:'MBR', def:'Esquema de particiones clásico: hasta 4 primarias y discos de 2 TB.'},
+    {s:1, term:'GPT', def:'Esquema de particiones moderno para discos grandes y muchas particiones.'},
+    {s:1, term:'Partición', def:'División lógica de un disco que se puede formatear por separado.'},
+    {s:1, term:'Gestor de arranque;bootloader', def:'Programa que carga el SO al encender el equipo, como GRUB.'},
+    {s:1, term:'Partición swap;intercambio', def:'Partición de Linux usada como memoria virtual.'},
+    {s:2, term:'Formateo', def:'Preparar una partición con un sistema de archivos.'},
+    {s:2, term:'Arranque dual;dual boot', def:'Tener dos SO instalados en el mismo equipo y elegir al arrancar.'},
+    {s:2, term:'Actualización', def:'Instalación de nuevas versiones y parches de seguridad.'},
+    {s:2, term:'Controladores;drivers', def:'Programas que se instalan tras el SO para que funcione el hardware.'},
+    {s:3, term:'Máquina virtual;VM', def:'Equipo simulado por software que ejecuta su propio SO.'},
+    {s:3, term:'Hipervisor', def:'Software que crea y gestiona máquinas virtuales, como VirtualBox o VMware.'},
+    {s:3, term:'Anfitrión;host', def:'Equipo físico que ejecuta las máquinas virtuales.'},
+    {s:3, term:'Invitado;guest', def:'SO que se ejecuta dentro de la máquina virtual.'},
+    {s:3, term:'Instantánea;snapshot', def:'Copia del estado de una máquina virtual para poder volver atrás.'}
+  ],
+  questions: [
+    {type:'mc', q:'¿Qué esquema de particiones permite discos de más de 2 TB?', opts:['GPT','MBR','FAT32','ext4'], a:0, exp:'GPT admite discos grandes, MBR solo hasta 2 TB.'},
+    {type:'mc', q:'¿Qué es una imagen ISO?', opts:['Una copia exacta de un disco de instalación','Un antivirus','Un tipo de RAM','Un controlador'], a:0, exp:'Se usa para crear medios de instalación.'},
+    {type:'mc', q:'¿Qué programa crea y gestiona máquinas virtuales?', opts:['Hipervisor','Kernel','Shell','Driver'], a:0, exp:'VirtualBox y VMware son hipervisores.'},
+    {type:'vf', q:'UEFI es el firmware moderno que sustituye a la BIOS.', a:true, exp:'Admite GPT y arranque seguro.'},
+    {type:'vf', q:'El SO invitado es el que está instalado en el equipo físico.', a:false, exp:'El invitado corre dentro de la VM; el físico es el anfitrión.'},
+    {type:'vf', q:'La partición swap de Linux se usa como memoria virtual.', a:true, exp:'Es el espacio de intercambio.'},
+    {type:'fh', q:'Una ___ guarda el estado de una máquina virtual para poder volver atrás.', a:['instantanea','instantánea','snapshot'], exp:'Snapshot = instantánea.'},
+    {type:'fh', q:'El gestor de arranque más habitual en Linux es ___.', a:['GRUB','grub'], exp:'GRUB carga el SO al arrancar.'}
+  ],
+  tips: [
+    'MBR + BIOS = clásico (hasta 2 TB) · GPT + UEFI = moderno',
+    'Anfitrión = físico · Invitado = virtual',
+    'Swap = memoria virtual en Linux'
+  ]
+};
+
+/* ================================================================
+   5. CONFIGURACIÓN DE LA APLICACIÓN
+   ================================================================ */
+const CONFIG = {
+  subjects: [
+    {
+      id: 'rl',
+      name: 'Redes Locales',
+      icon: '🌐',
+      color: '#2563eb',
+      description: 'Comunicación de datos, modelo OSI, topologías, dispositivos y numeración binaria.',
+      topics: [DATA_RL_T1]
+    },
+    {
+      id: 'som',
+      name: 'Sistemas Operativos Monopuesto',
+      icon: '🖥️',
+      color: '#7c3aed',
+      description: 'Instalación, usuarios, archivos, procesos, discos, redes básicas y scripts.',
+      topics: [DATA_SOM_T1, DATA_SOM_T2]
+    }
+  ],
+  questionTypes: {
+    vf: {name: 'Verdadero/Falso', pts: 1, weight: 2.2},
+    mc: {name: 'Test', pts: 1.5, weight: 2},
+    fh: {name: 'Rellenar huecos', pts: 1.5, weight: 2.2},
+    mu: {name: 'Varias respuestas', pts: 2, weight: 1},
+    ma: {name: 'Unir', pts: 3, weight: 1}
+  },
+  grades: {
+    A: {min: 9, label: 'Sobresaliente', color: '#16a34a', msg: ['¡Excelente! Dominas el tema.', 'Nivel sobresaliente. ¡Sigue así!']},
+    B: {min: 7, label: 'Notable', color: '#2563eb', msg: ['Muy buen trabajo.', 'Casi perfecto, sigue practicando.']},
+    C: {min: 5, label: 'Aprobado', color: '#d97706', msg: ['Aprobado. Puedes mejorar.', 'Bien, pero repasa los fallos.']},
+    F: {min: 0, label: 'Suspenso', color: '#dc2626', msg: ['Necesitas repasar la teoría.', 'Ánimo, inténtalo de nuevo.']}
+  },
+  achievements: [
+    {id: 'first_exam', name: 'Primer Examen', desc: 'Completa tu primer examen', icon: '🎓', check: s => s.stats.exams >= 1},
+    {id: 'perfect', name: 'Perfeccionista', desc: 'Obtén un 10 en un examen', icon: '💯', check: s => s.stats.perfect >= 1},
+    {id: 'streak_5', name: 'En Racha', desc: '5 aciertos seguidos', icon: '🔥', check: s => s.stats.maxStreak >= 5},
+    {id: 'speed_demon', name: 'Velocista', desc: 'Examen en menos de 5 min', icon: '⚡', check: s => s.stats.fastExam >= 1},
+    {id: 'scholar', name: 'Estudioso', desc: 'Completa 10 prácticas', icon: '📚', check: s => s.stats.practices >= 10},
+    {id: 'master', name: 'Maestro', desc: '5 exámenes con nota ≥ 9', icon: '👑', check: s => s.stats.excellent >= 5}
+  ]
+};
+
+/* ================================================================
+   6. ESTADO GLOBAL
+   ================================================================ */
+const state = {
+  view: 'home',
+  subjectId: null,
+  topicIdx: 0,
+  tab: 'te',
+  examActive: false,
+  studentName: '',
+  seed: 0,
+  questions: [],
+  answers: {},
+  score: 0,
+  timerSecs: 0,
+  timerInterval: null,
+  animEnabled: true,
+  correcting: false,
+  skipCorrection: false,
+  stats: {
+    exams: 0,
+    practices: 0,
+    perfect: 0,
+    excellent: 0,
+    maxStreak: 0,
+    fastExam: 0,
+    totalCorrect: 0,
+    totalQuestions: 0,
+    bestGrades: {}
+  },
+  achievements: []
+};
+
+// Cargar estado guardado
+function loadState() {
+  const saved = ls.g('cd_state_v3');
+  if (saved) {
+    try {
+      const s = JSON.parse(saved);
+      Object.assign(state.stats, s.stats || {});
+      state.achievements = s.achievements || [];
+      state.studentName = s.studentName || '';
+      state.animEnabled = s.animEnabled !== false;
+    } catch (e) {}
+  }
+}
+
+function saveState() {
+  ls.s('cd_state_v3', JSON.stringify({
+    stats: state.stats,
+    achievements: state.achievements,
+    studentName: state.studentName,
+    animEnabled: state.animEnabled
+  }));
+}
+
+/* ================================================================
+   7. GENERADOR DE PREGUNTAS
+   ================================================================ */
+function generateQuestions(topic, count, seed) {
+  const rand = mulberry32(seed);
+  const questions = [];
+  
+  // Barajar preguntas disponibles
+  const pool = shuffle(topic.questions, seed);
+  
+  for (let i = 0; i < Math.min(count, pool.length); i++) {
+    const q = {...pool[i]};
+    q.id = i;
+    q.pts = CONFIG.questionTypes[q.type]?.pts || 1;
+    questions.push(q);
+  }
+  
+  // Si necesitamos más preguntas, generar desde conceptos
+  while (questions.length < count) {
+    const concept = topic.concepts[Math.floor(rand() * topic.concepts.length)];
+    const type = rand() < 0.5 ? 'fh' : 'mc';
+    
+    if (type === 'fh') {
+      questions.push({
+        id: questions.length,
+        type: 'fh',
+        q: `___: ${concept.def}`,
+        a: concept.term.split(';'),
+        exp: concept.def,
+        pts: 1.5
+      });
+    } else {
+      // Generar test con distractores
+      const distractors = shuffle(
+        topic.concepts.filter(c => c.term !== concept.term),
+        seed + questions.length
+      ).slice(0, 3).map(c => c.term.split(';')[0]);
+      
+      const opts = shuffle([concept.term.split(';')[0], ...distractors], seed + questions.length);
+      
+      questions.push({
+        id: questions.length,
+        type: 'mc',
+        q: `¿A qué corresponde? "${concept.def}"`,
+        opts,
+        a: opts.indexOf(concept.term.split(';')[0]),
+        exp: `${concept.term.split(';')[0]}: ${concept.def}`,
+        pts: 1.5
+      });
+    }
+  }
+  
+  return questions.slice(0, count);
+}
+
+/* ================================================================
+   8. MOTOR DE CORRECCIÓN ANIMADA
+   ================================================================ */
+async function animateCorrection(qEl, isCorrect, correctText, explanation) {
+  if (!state.animEnabled) {
+    // Modo sin animación: mostrar resultado directamente
+    showCorrectionResult(qEl, isCorrect, correctText, explanation);
+    return;
+  }
+  
+  const hand = $('#correction-hand');
+  const path = $('#mark-path');
+  const status = $('#correction-status');
+  const statusText = $('#correction-text');
+  
+  // Mostrar indicador de corrección
+  status.classList.add('active');
+  statusText.textContent = 'Corrigiendo...';
+  
+  // Obtener posición de la pregunta
+  const rect = qEl.getBoundingClientRect();
+  const scrollY = window.scrollY || window.pageYOffset;
+  
+  // Posicionar la mano
+  hand.classList.add('active');
+  hand.classList.remove('writing');
+  const targetX = rect.left + rect.width / 2 - 100;
+  const targetY = rect.top + scrollY - 80;
+  hand.style.transform = `translate(${targetX}px, ${targetY}px)`;
+  
+  await wait(500);
+  
+  // Animar el trazo
+  hand.classList.add('writing');
+  statusText.textContent = isCorrect ? '✓ Correcto' : '✗ Revisando...';
+  
+  if (isCorrect) {
+    path.setAttribute('d', 'M140 100 L120 130 L160 170');
+    path.style.stroke = 'var(--ok)';
+  } else {
+    path.setAttribute('d', 'M120 100 L160 140 M160 100 L120 140');
+    path.style.stroke = 'var(--b)';
+  }
+  path.classList.add('animate');
+  
+  await wait(700);
+  
+  // Mostrar resultado
+  showCorrectionResult(qEl, isCorrect, correctText, explanation);
+  
+  // Si es incorrecto, escribir la respuesta correcta
+  if (!isCorrect && correctText) {
+    hand.classList.remove('writing');
+    statusText.textContent = 'Escribiendo corrección...';
+    await typeCorrectAnswer(qEl, correctText, explanation);
+  }
+  
+  await wait(300);
+  
+  // Retirar la mano
+  hand.classList.remove('writing', 'active');
+  path.classList.remove('animate');
+  status.classList.remove('active');
+  
+  await wait(400);
+}
+
+function showCorrectionResult(qEl, isCorrect, correctText, explanation) {
+  qEl.classList.add('done', isCorrect ? 'ok' : 'ko');
+  
+  const fbBox = $('.feedback-box', qEl);
+  if (fbBox) {
+    if (isCorrect) {
+      fbBox.innerHTML = `<span class="handwritten ok">✓ ¡Correcto!</span><br><small style="color:var(--mut);margin-top:6px;display:block;">💡 ${explanation}</small>`;
+    } else {
+      fbBox.innerHTML = `<div id="tw-container-${qEl.dataset.idx}"></div><small style="color:var(--mut);margin-top:6px;display:block;">💡 ${explanation}</small>`;
+    }
+    fbBox.style.display = 'block';
+  }
+}
+
+async function typeCorrectAnswer(qEl, correctText, explanation) {
+  const idx = qEl.dataset.idx;
+  const container = $(`#tw-container-${idx}`, qEl);
+  if (!container) return;
+  
+  container.innerHTML = `<span class="handwritten">Corrección: </span><span id="tw-target-${idx}" class="typewriter-text"></span>`;
+  const twTarget = $(`#tw-target-${idx}`);
+  
+  for (let i = 0; i <= correctText.length; i++) {
+    if (state.skipCorrection) break;
+    twTarget.textContent = correctText.substring(0, i);
+    await wait(30 + Math.random() * 40);
+  }
+}
+
+/* ================================================================
+   9. CONTROLADOR PRINCIPAL DE LA APLICACIÓN
+   ================================================================ */
+const app = {
+  init() {
+    loadState();
+    this.updateAnimButton();
+    this.go('home');
+    
+    // Cargar hoja de sucio
+    const sp = ls.g('cd_scratch');
+    if (sp) {
+      $('#scratchpad-text').value = sp;
+      this.updateScratchpadCounter();
+    }
+    
+    $('#scratchpad-text').addEventListener('input', (e) => {
+      ls.s('cd_scratch', e.target.value);
+      this.updateScratchpadCounter();
+    });
+    
+    // Tema
+    const savedTheme = ls.g('cd_theme');
+    if (savedTheme === 'dark' || (!savedTheme && matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+    
+    // Atajos de teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'm') {
+        e.preventDefault();
+        this.toggleScratchpad();
+      }
+    });
+  },
+  
+  toggleTheme() {
+    const html = document.documentElement;
+    const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    html.dataset.theme = next;
+    ls.s('cd_theme', next);
+    toast(`Tema ${next === 'dark' ? 'oscuro' : 'claro'} activado`, 'success');
+  },
+  
+  toggleAnim() {
+    state.animEnabled = !state.animEnabled;
+    this.updateAnimButton();
+    saveState();
+    toast(state.animEnabled ? 'Animaciones activadas' : 'Animaciones desactivadas', 'info');
+  },
+  
+  updateAnimButton() {
+    const btn = $('#btn-anim');
+    if (btn) {
+      btn.classList.toggle('off', !state.animEnabled);
+    }
+  },
+  
+  toggleScratchpad() {
+    const sp = $('#scratchpad');
+    const overlay = $('#scratchpad-overlay');
+    const isOpen = sp.classList.contains('open');
+    
+    if (isOpen) {
+      sp.classList.remove('open');
+      overlay.classList.remove('open');
+    } else {
+      sp.classList.add('open');
+      overlay.classList.add('open');
+      setTimeout(() => $('#scratchpad-text').focus(), 400);
+    }
+  },
+  
+  updateScratchpadCounter() {
+    const text = $('#scratchpad-text').value;
+    const counter = $('#sp-counter');
+    if (counter) {
+      counter.textContent = `${text.length} caracteres · ${text.split(/\s+/).filter(Boolean).length} palabras`;
+    }
+  },
+  
+  clearScratchpad() {
+    if (confirm('¿Borrar toda la hoja de sucio? Esta acción no se puede deshacer.')) {
+      $('#scratchpad-text').value = '';
+      ls.s('cd_scratch', '');
+      this.updateScratchpadCounter();
+      toast('Hoja de sucio borrada', 'success');
+    }
+  },
+  
+  exportScratchpad() {
+    const text = $('#scratchpad-text').value;
+    if (!text.trim()) {
+      toast('La hoja está vacía', 'warn');
+      return;
+    }
+    
+    const blob = new Blob([text], {type: 'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `hoja_sucio_${Date.now()}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('Hoja exportada correctamente', 'success');
+  },
+  
+  skipCorrection() {
+    state.skipCorrection = true;
+    $('#btn-skip').classList.add('hidden');
+  },
+  
+  go(view, params = {}) {
+    // Limpiar timer si existe
+    if (state.timerInterval) {
+      clearInterval(state.timerInterval);
+      state.timerInterval = null;
+    }
+    $('#timer').classList.remove('visible');
+    
+    state.view = view;
+    Object.assign(state, params);
+    
+    const main = $('#app');
+    const cr = $('#cr');
+    const fab = $('#fab-scratch');
+    
+    // Mostrar FAB solo en práctica/examen
+    const showFab = ['practice', 'exam', 'exam-setup'].includes(view);
+    fab.classList.toggle('hidden', !showFab);
+    
+    if (!showFab) {
+      const sp = $('#scratchpad');
+      if (sp.classList.contains('open')) {
+        this.toggleScratchpad();
+      }
+    }
+    
+    // Renderizar vista
+    switch (view) {
+      case 'home': this.renderHome(main, cr); break;
+      case 'subject': this.renderSubject(main, cr); break;
+      case 'theory': this.renderTheory(main, cr); break;
+      case 'exam-setup': this.renderExamSetup(main, cr); break;
+      case 'practice-setup': this.renderPracticeSetup(main, cr); break;
+      case 'exam': this.renderExam(main, cr, true); break;
+      case 'practice': this.renderExam(main, cr, false); break;
+      case 'lab': this.renderLab(main, cr); break;
+      case 'stats': this.renderStats(main, cr); break;
+      case 'achievements': this.renderAchievements(main, cr); break;
+    }
+    
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  },
+  
+  renderHome(main, cr) {
+    cr.innerHTML = '<span>Inicio</span>';
+    
+    const totalTopics = CONFIG.subjects.reduce((acc, s) => acc + s.topics.length, 0);
+    const totalConcepts = CONFIG.subjects.reduce((acc, s) => 
+      acc + s.topics.reduce((a, t) => a + t.concepts.length, 0), 0);
+    
+    main.innerHTML = `
+      <div class="animate-fadeInUp">
+        <div class="text-center mb-lg">
+          <span class="eyebrow">Centro de estudio profesional · 2026</span>
+          <h1>Tu cuaderno digital.<br><span style="color:var(--a)">Estudia, practica, examínate.</span></h1>
+          <p class="lead" style="margin:16px auto;">
+            Entorno de estudio de alto rendimiento con corrección animada profesional, 
+            exámenes con semilla reproducible y hoja de sucio integrada.
+          </p>
+        </div>
+        
+        <div class="stats-grid mb-lg">
+          <div class="stat-card" style="--c: var(--a)">
+            <span class="icon">📚</span>
+            <span class="value">${CONFIG.subjects.length}</span>
+            <span class="label">Asignaturas</span>
+          </div>
+          <div class="stat-card" style="--c: var(--ink-purple)">
+            <span class="icon">📖</span>
+            <span class="value">${totalTopics}</span>
+            <span class="label">Temas</span>
+          </div>
+          <div class="stat-card" style="--c: var(--ok)">
+            <span class="icon">💡</span>
+            <span class="value">${totalConcepts}</span>
+            <span class="label">Conceptos</span>
+          </div>
+          <div class="stat-card" style="--c: var(--warn)">
+            <span class="icon">🎯</span>
+            <span class="value">${state.stats.exams}</span>
+            <span class="label">Exámenes</span>
+          </div>
+        </div>
+        
+        <div class="pro-tip info mb-lg">
+          <strong>💡 Consejo profesional:</strong> Usa la "Hoja de Sucio" (botón 📝 o <kbd>Ctrl+M</kbd>) durante los exámenes 
+          para cálculos binarios o esquemas rápidos. Se guarda automáticamente y no pierdes el foco de la pantalla.
+        </div>
+        
+        <h2 class="mb">Elige una asignatura</h2>
+        <div class="grid" id="subjects-grid"></div>
+        
+        <div class="grid grid-2 mt-lg">
+          <button class="card" onclick="app.go('stats')" style="--c: var(--ok)">
+            <span class="tag">ESTADÍSTICAS</span>
+            <h3>📊 Mi Progreso</h3>
+            <p>Visualiza tus notas, aciertos y evolución a lo largo del tiempo.</p>
+          </button>
+          <button class="card" onclick="app.go('achievements')" style="--c: var(--warn)">
+            <span class="tag">LOGROS</span>
+            <h3>🏆 Medallas</h3>
+            <p>${state.achievements.length} de ${CONFIG.achievements.length} desbloqueadas. ¡Sigue estudiando!</p>
+          </button>
+        </div>
+      </div>
+    `;
+    
+    const grid = $('#subjects-grid');
+    CONFIG.subjects.forEach(s => {
+      const topicCount = s.topics.length;
+      const conceptCount = s.topics.reduce((a, t) => a + t.concepts.length, 0);
+      
+      const card = document.createElement('button');
+      card.className = 'card';
+      card.style.setProperty('--c', s.color);
+      card.innerHTML = `
+        <span class="tag">${s.id.toUpperCase()}</span>
+        <h3>${s.icon} ${s.name}</h3>
+        <p>${s.description}</p>
+        <div class="stats">
+          <span class="stat"><b>${topicCount}</b> temas</span>
+          <span class="stat"><b>${conceptCount}</b> conceptos</span>
+        </div>
+      `;
+      card.onclick = () => this.go('subject', {subjectId: s.id});
+      grid.appendChild(card);
+    });
+  },
+  
+  renderSubject(main, cr) {
+    const subject = CONFIG.subjects.find(s => s.id === state.subjectId);
+    if (!subject) return this.go('home');
+    
+    cr.innerHTML = `<button onclick="app.go('home')">Inicio</button><span class="sep">›</span><span>${subject.name}</span>`;
+    
+    main.innerHTML = `
+      <div class="animate-fadeInUp">
+        <div class="mb-lg">
+          <span class="eyebrow">Asignatura</span>
+          <h1>${subject.icon} ${subject.name}</h1>
+          <p class="lead">${subject.description}</p>
+        </div>
+        
+        <h2 class="mb">Temas disponibles</h2>
+        <div class="grid" id="topics-grid"></div>
+        
+        <div class="pro-tip mt-lg">
+          <strong>📌 Recuerda:</strong> Cada tema tiene teoría, práctica aleatoria y examen. 
+          La práctica incluye pistas, el examen no. Usa la semilla para repetir el mismo examen.
+        </div>
+      </div>
+    `;
+    
+    const grid = $('#topics-grid');
+    subject.topics.forEach((t, i) => {
+      const card = document.createElement('button');
+      card.className = 'card';
+      card.style.setProperty('--c', subject.color);
+      card.innerHTML = `
+        <span class="tag">TEMA ${i + 1}</span>
+        <h3>${t.title}</h3>
+        <p>${t.concepts.length} conceptos · ${t.sections.length} apartados</p>
+        <div class="stats">
+          <span class="stat"><b>${t.questions.length}</b> preguntas</span>
+          <span class="stat"><b>${t.tips.length}</b> consejos</span>
+        </div>
+      `;
+      card.onclick = () => this.go('theory', {topicIdx: i});
+      grid.appendChild(card);
+    });
+  },
+  
+  renderTheory(main, cr) {
+    const subject = CONFIG.subjects.find(s => s.id === state.subjectId);
+    const topic = subject.topics[state.topicIdx];
+    
+    cr.innerHTML = `
+      <button onclick="app.go('home')">Inicio</button><span class="sep">›</span>
+      <button onclick="app.go('subject')">${subject.name}</button><span class="sep">›</span>
+      <span>Teoría</span>
+    `;
+    
+    const conceptsBySection = {};
+    topic.concepts.forEach(c => {
+      if (!conceptsBySection[c.s]) conceptsBySection[c.s] = [];
+      conceptsBySection[c.s].push(c);
+    });
+    
+    let sectionsHtml = '';
+    topic.sections.forEach((sec, i) => {
+      const concepts = conceptsBySection[i] || [];
+      if (concepts.length === 0) return;
+      
+      sectionsHtml += `
+        <div class="panel accent mb">
+          <h3>${i + 1}. ${sec}</h3>
+          <div class="defs">
+            ${concepts.map(c => `
+              <div class="def">
+                <b>${c.term.split(';')[0].toUpperCase()}</b>
+                <span>${c.def}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    });
+    
+    main.innerHTML = `
+      <div class="animate-fadeInUp">
+        <div class="flex justify-between items-center mb-lg" style="flex-wrap:wrap;gap:12px;">
+          <div>
+            <span class="eyebrow">${subject.name} · Tema ${state.topicIdx + 1}</span>
+            <h1>${topic.title}</h1>
+          </div>
+          <div class="flex gap-sm">
+            <button class="btn s" onclick="app.go('subject')">← Volver</button>
+          </div>
+        </div>
+        
+        ${sectionsHtml}
+        
+        <div class="pro-tip info">
+          <strong>💡 Consejos clave:</strong>
+          <ul style="margin:8px 0 0 20px;">
+            ${topic.tips.map(t => `<li>${t}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <div class="grid grid-2 mt-lg">
+          <button class="btn big" onclick="app.go('practice-setup')">✍️ Practicar</button>
+          <button class="btn big" onclick="app.go('exam-setup')">🎯 Examen</button>
+        </div>
+      </div>
+    `;
+  },
+  
+  renderExamSetup(main, cr) {
+    const subject = CONFIG.subjects.find(s => s.id === state.subjectId);
+    const topic = subject.topics[state.topicIdx];
+    const seed = randomSeed();
+    
+    cr.innerHTML = `
+      <button onclick="app.go('home')">Inicio</button><span class="sep">›</span>
+      <button onclick="app.go('subject')">${subject.name}</button><span class="sep">›</span>
+      <span>Configurar Examen</span>
+    `;
+    
+    main.innerHTML = `
+      <div class="animate-scaleIn">
+        <div class="text-center mb-lg">
+          <span class="eyebrow">Configuración profesional</span>
+          <h1>🎯 Examen: ${topic.title}</h1>
+          <p class="lead" style="margin:0 auto;">Configura los parámetros del examen antes de comenzar.</p>
+        </div>
+        
+        <div class="panel accent" style="max-width:600px;margin:0 auto;">
+          <div class="fld mb">
+            <label>Nombre del alumno</label>
+            <input type="text" id="student-name" class="input-pro" placeholder="Ej: Alejandro Dev" value="${state.studentName}">
+          </div>
+          
+          <div class="cfg">
+            <div class="fld">
+              <label>Número de preguntas</label>
+              <select id="q-count" class="input-pro">
+                <option value="10">10 preguntas</option>
+                <option value="20" selected>20 preguntas</option>
+                <option value="30">30 preguntas</option>
+                <option value="40">40 preguntas</option>
+                <option value="50">50 preguntas</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label>Tiempo límite</label>
+              <select id="time-limit" class="input-pro">
+                <option value="0">Sin límite</option>
+                <option value="15">15 minutos</option>
+                <option value="20">20 minutos</option>
+                <option value="30" selected>30 minutos</option>
+                <option value="45">45 minutos</option>
+                <option value="60">60 minutos</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="fld mb">
+            <label>Semilla (Seed)</label>
+            <div class="flex gap-sm">
+              <input type="number" id="exam-seed" class="input-pro mono" value="${seed}">
+              <button class="btn s" onclick="$('#exam-seed').value = ${randomSeed()}" title="Generar aleatoria">🎲</button>
+            </div>
+            <small class="text-muted text-xs mt-sm">La semilla garantiza que las preguntas sean reproducibles. Comparte la semilla para repetir el mismo examen.</small>
+          </div>
+          
+          <div class="pro-tip warn">
+            <strong>⚠️ Reglas del examen:</strong>
+            <ul style="margin:8px 0 0 20px;">
+              <li>La pestaña de <strong>Teoría estará bloqueada 🔒</strong> durante el examen</li>
+              <li>Usa la <strong>Hoja de Sucio</strong> (📝) para cálculos y esquemas</li>
+              <li>Si se agota el tiempo, el examen se entrega automáticamente con nota 0</li>
+              <li>Las preguntas no respondidas cuentan como fallo</li>
+            </ul>
+          </div>
+          
+          <button class="btn big w-full mt" onclick="app.startExam()">Comenzar Examen →</button>
+        </div>
+      </div>
+    `;
+  },
+  
+  renderPracticeSetup(main, cr) {
+    const subject = CONFIG.subjects.find(s => s.id === state.subjectId);
+    const topic = subject.topics[state.topicIdx];
+    const seed = randomSeed();
+    
+    cr.innerHTML = `
+      <button onclick="app.go('home')">Inicio</button><span class="sep">›</span>
+      <button onclick="app.go('subject')">${subject.name}</button><span class="sep">›</span>
+      <span>Configurar Práctica</span>
+    `;
+    
+    main.innerHTML = `
+      <div class="animate-scaleIn">
+        <div class="text-center mb-lg">
+          <span class="eyebrow">Modo práctica</span>
+          <h1>✍️ Práctica: ${topic.title}</h1>
+          <p class="lead" style="margin:0 auto;">Configura los parámetros de la práctica.</p>
+        </div>
+        
+        <div class="panel accent" style="max-width:600px;margin:0 auto;">
+          <div class="cfg">
+            <div class="fld">
+              <label>Número de preguntas</label>
+              <select id="q-count" class="input-pro">
+                <option value="5">5 preguntas</option>
+                <option value="10" selected>10 preguntas</option>
+                <option value="15">15 preguntas</option>
+                <option value="20">20 preguntas</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label>Semilla (opcional)</label>
+              <div class="flex gap-sm">
+                <input type="number" id="exam-seed" class="input-pro mono" value="${seed}" placeholder="Aleatoria">
+                <button class="btn s" onclick="$('#exam-seed').value = ${randomSeed()}" title="Aleatoria">🎲</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pro-tip info">
+            <strong>💡 Modo práctica:</strong>
+            <ul style="margin:8px 0 0 20px;">
+              <li>Incluye <strong>pistas 💡</strong> para cada pregunta</li>
+              <li>Explicación detallada de cada respuesta</li>
+              <li>Sin límite de tiempo</li>
+              <li>Puedes consultar la teoría en cualquier momento</li>
+            </ul>
+          </div>
+          
+          <button class="btn big w-full mt" onclick="app.startPractice()">Generar Práctica →</button>
+        </div>
+      </div>
+    `;
+  },
+  
+  startExam() {
+    const name = $('#student-name').value.trim();
+    if (!name) {
+      toast('Por favor, introduce tu nombre', 'warn');
+      $('#student-name').focus();
+      return;
+    }
+    
+    state.studentName = name;
+    state.seed = parseInt($('#exam-seed').value) || randomSeed();
+    const count = parseInt($('#q-count').value);
+    const timeLimit = parseInt($('#time-limit').value);
+    
+    const subject = CONFIG.subjects.find(s => s.id === state.subjectId);
+    const topic = subject.topics[state.topicIdx];
+    
+    state.questions = generateQuestions(topic, count, state.seed);
+    state.answers = {};
+    state.score = 0;
+    state.examActive = true;
+    state.timerSecs = timeLimit * 60;
+    state.skipCorrection = false;
+    
+    saveState();
+    
+    if (timeLimit > 0) {
+      this.startTimer();
+    }
+    
+    this.go('exam');
+  },
+  
+  startPractice() {
+    state.seed = parseInt($('#exam-seed').value) || randomSeed();
+    const count = parseInt($('#q-count').value);
+    
+    const subject = CONFIG.subjects.find(s => s.id === state.subjectId);
+    const topic = subject.topics[state.topicIdx];
+    
+    state.questions = generateQuestions(topic, count, state.seed);
+    state.answers = {};
+    state.score = 0;
+    state.examActive = false;
+    state.skipCorrection = false;
+    
+    this.go('practice');
+  },
+  
+  startTimer() {
+    const timerEl = $('#timer');
+    const display = $('#timer-display');
+    timerEl.classList.add('visible');
+    
+    const update = () => {
+      display.textContent = fmtTime(state.timerSecs);
+      
+      if (state.timerSecs <= 60) {
+        timerEl.className = 'visible bad';
+      } else if (state.timerSecs <= 300) {
+        timerEl.className = 'visible warn';
+      } else {
+        timerEl.className = 'visible';
+      }
+      
+      if (state.timerSecs <= 0) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+        timerEl.classList.remove('visible');
+        toast('⏱ Tiempo agotado', 'error');
+        this.gradeExam(true);
+      }
+    };
+    
+    update();
+    state.timerInterval = setInterval(() => {
+      state.timerSecs--;
+      update();
+    }, 1000);
+  },
+  
+  renderExam(main, cr, isExam) {
+    const subject = CONFIG.subjects.find(s => s.id === state.subjectId);
+    const topic = subject.topics[state.topicIdx];
+    
+    cr.innerHTML = `
+      <button onclick="app.go('home')">Inicio</button><span class="sep">›</span>
+      <button onclick="app.go('subject')">${subject.name}</button><span class="sep">›</span>
+      <span>${isExam ? 'Examen' : 'Práctica'}</span>
+    `;
+    
+    const theoryTab = isExam 
+      ? `<button class="tab-btn locked" title="Bloqueado durante el examen">📖 Teoría</button>`
+      : `<button class="tab-btn" onclick="app.go('theory')">📖 Teoría</button>`;
+    
+    const qHtml = state.questions.map((q, i) => {
+      let optsHtml = '';
+      
+      if (q.type === 'mc') {
+        optsHtml = q.opts.map((opt, idx) => `
+          <label>
+            <input type="radio" name="q${i}" value="${idx}">
+            <span>${opt}</span>
+          </label>
+        `).join('');
+      } else if (q.type === 'vf') {
+        optsHtml = `
+          <label><input type="radio" name="q${i}" value="true"><span>Verdadero</span></label>
+          <label><input type="radio" name="q${i}" value="false"><span>Falso</span></label>
+        `;
+      } else if (q.type === 'fh') {
+        optsHtml = `<input type="text" class="input-pro" id="fh-${i}" placeholder="Escribe tu respuesta..." autocomplete="off" autocapitalize="none" spellcheck="false">`;
+      }
+      
+      return `
+        <div class="q-card" id="qcard-${i}" data-idx="${i}">
+          <div class="q-header">
+            <div class="q-num">${i + 1}</div>
+            <div class="q-text">
+              ${q.q}
+              <span class="q-type">${CONFIG.questionTypes[q.type]?.name || q.type}</span>
+            </div>
+            <div class="q-pts">${q.pts} pt${q.pts !== 1 ? 's' : ''}</div>
+          </div>
+          <div class="q-ops">${optsHtml}</div>
+          ${!isExam ? `<button class="btn s text-sm" onclick="app.showHint(${i})" style="margin-top:8px;">💡 Pista</button><div class="hint-box" id="hint-${i}" style="display:none;margin-top:8px;padding:10px;background:var(--s2);border-radius:var(--r);font-size:0.9rem;color:var(--mut);"></div>` : ''}
+          <div class="feedback-box"></div>
+        </div>
+      `;
+    }).join('');
+    
+    const totalPts = state.questions.reduce((a, q) => a + q.pts, 0);
+    
+    main.innerHTML = `
+      <div class="animate-fadeInUp">
+        <div class="tabs">
+          ${theoryTab}
+          <button class="tab-btn on">✍️ ${isExam ? 'Examen' : 'Práctica'}</button>
+        </div>
+        
+        <div class="flex justify-between items-center mb" style="flex-wrap:wrap;gap:12px;">
+          <div class="flex gap-sm items-center" style="flex-wrap:wrap;">
+            <span class="mono text-sm" style="color:var(--mut);">
+              <b>Alumno:</b> ${state.studentName || 'Anónimo'}
+            </span>
+            <span class="mono text-sm" style="color:var(--mut);">
+              <b>Seed:</b> ${state.seed}
+            </span>
+            <span class="mono text-sm" style="color:var(--mut);">
+              <b>Total:</b> ${totalPts} pts
+            </span>
+          </div>
+        </div>
+        
+        ${!isExam ? `
+          <div class="pro-tip info mb">
+            <strong>💡 Modo práctica:</strong> Puedes usar las pistas y consultar la teoría. 
+            Usa la Hoja de Sucio (📝) para cálculos.
+          </div>
+        ` : ''}
+        
+        <div id="questions-container">${qHtml}</div>
+        
+        <div class="text-center mt-lg">
+          <button class="btn big" id="btn-grade" onclick="app.gradeExam(false)">
+            ${isExam ? '📤 Entregar Examen' : '✓ Corregir Práctica'}
+          </button>
+        </div>
+      </div>
+    `;
+  },
+  
+  showHint(idx) {
+    const q = state.questions[idx];
+    const hintBox = $(`#hint-${idx}`);
+    
+    if (!hintBox.style.display || hintBox.style.display === 'none') {
+      let hint = '';
+      if (q.type === 'fh' && q.a && q.a.length > 0) {
+        const answer = q.a[0];
+        hint = `Empieza por "${answer[0]}" · ${answer.length} letras`;
+      } else if (q.type === 'mc' || q.type === 'vf') {
+        hint = 'Piensa en la definición exacta del concepto.';
+      } else {
+        hint = 'Revisa la teoría del tema.';
+      }
+      
+      hintBox.textContent = '💡 ' + hint;
+      hintBox.style.display = 'block';
+    } else {
+      hintBox.style.display = 'none';
+    }
+  },
+  
+  async gradeExam(timeOut) {
+    if (state.correcting) return;
+    state.correcting = true;
+    
+    const btn = $('#btn-grade');
+    btn.disabled = true;
+    btn.textContent = 'Corrigiendo...';
+    
+    $('#btn-skip').classList.remove('hidden');
+    
+    let correctCount = 0;
+    let totalPts = 0;
+    let earnedPts = 0;
+    
+    for (let i = 0; i < state.questions.length; i++) {
+      if (state.skipCorrection) {
+        // Corregir el resto sin animación
+        for (let j = i; j < state.questions.length; j++) {
+          const q = state.questions[j];
+          const card = $(`#qcard-${j}`);
+          const result = this.checkAnswer(q, j);
+          if (result.correct) correctCount++;
+          totalPts += q.pts;
+          earnedPts += result.earned;
+          this.applyVisualCorrection(card, q, j, result);
+        }
+        break;
+      }
+      
+      const q = state.questions[i];
+      const card = $(`#qcard-${i}`);
+      const result = this.checkAnswer(q, i);
+      
+      if (result.correct) correctCount++;
+      totalPts += q.pts;
+      earnedPts += result.earned;
+      
+      // Aplicar corrección visual básica
+      this.applyVisualCorrection(card, q, i, result);
+      
+      // Animación de corrección
+      await animateCorrection(card, result.correct, result.correctText, q.exp);
+      await wait(200);
+    }
+    
+    // Calcular nota final
+    const score = totalPts > 0 ? (earnedPts / totalPts) * 10 : 0;
+    const grade = this.getGrade(score);
+    
+    // Actualizar estadísticas
+    state.stats.exams++;
+    state.stats.totalCorrect += correctCount;
+    state.stats.totalQuestions += state.questions.length;
+    
+    if (score >= 10) state.stats.perfect++;
+    if (score >= 9) state.stats.excellent++;
+    
+    // Guardar mejor nota
+    const key = `${state.subjectId}_${state.topicIdx}`;
+    if (!state.stats.bestGrades[key] || score > state.stats.bestGrades[key]) {
+      state.stats.bestGrades[key] = score;
+    }
+    
+    // Comprobar logros
+    this.checkAchievements();
+    saveState();
+    
+    // Mostrar resultado
+    this.showResult(score, grade, correctCount, totalPts, earnedPts, timeOut);
+    
+    state.correcting = false;
+    $('#btn-skip').classList.add('hidden');
+  },
+  
+  checkAnswer(q, idx) {
+    let correct = false;
+    let userAnswer = '';
+    let correctText = '';
+    let earned = 0;
+    
+    if (q.type === 'mc') {
+      const selected = $(`input[name="q${idx}"]:checked`);
+      if (selected) {
+        const val = parseInt(selected.value);
+        correct = val === q.a;
+        userAnswer = q.opts[val];
+        correctText = q.opts[q.a];
+        if (correct) earned = q.pts;
+      }
+    } else if (q.type === 'vf') {
+      const selected = $(`input[name="q${idx}"]:checked`);
+      if (selected) {
+        const val = selected.value === 'true';
+        correct = val === q.a;
+        userAnswer = val ? 'Verdadero' : 'Falso';
+        correctText = q.a ? 'Verdadero' : 'Falso';
+        if (correct) earned = q.pts;
+      }
+    } else if (q.type === 'fh') {
+      const input = $(`#fh-${idx}`);
+      userAnswer = input.value.trim();
+      const normalizedUser = norm(userAnswer);
+      correct = q.a.some(ans => norm(ans) === normalizedUser);
+      correctText = q.a[0].split(';')[0].toUpperCase();
+      if (correct) earned = q.pts;
+    }
+    
+    return {correct, userAnswer, correctText, earned};
+  },
+  
+  applyVisualCorrection(card, q, idx, result) {
+    card.classList.add('done');
+    
+    if (q.type === 'mc' || q.type === 'vf') {
+      $$(`input[name="q${idx}"]`).forEach(inp => {
+        const val = q.type === 'vf' ? (inp.value === 'true') : parseInt(inp.value);
+        const label = inp.parentElement;
+        if (val === q.a) label.classList.add('right');
+        else if (inp.checked) label.classList.add('wrong');
+        inp.disabled = true;
+      });
+    } else if (q.type === 'fh') {
+      const input = $(`#fh-${idx}`);
+      input.disabled = true;
+      input.classList.add(result.correct ? 'success' : 'error');
+    }
+    
+    card.classList.add(result.correct ? 'ok' : 'ko');
+  },
+  
+  getGrade(score) {
+    if (score >= 9) return CONFIG.grades.A;
+    if (score >= 7) return CONFIG.grades.B;
+    if (score >= 5) return CONFIG.grades.C;
+    return CONFIG.grades.F;
+  },
+  
+  showResult(score, grade, correct, total, earned, timeOut) {
+    const resultHtml = `
+      <div class="result-card" style="--c: ${grade.color}">
+        <span class="eyebrow">${timeOut ? '⏱ Tiempo agotado' : 'Resultado del examen'}</span>
+        <div class="result-grade big">${score.toFixed(1)}</div>
+        <h2 style="color:${grade.color}">${grade.label}</h2>
+        <p class="text-muted">${grade.msg[Math.floor(Math.random() * grade.msg.length)]}</p>
+        
+        <div class="result-details">
+          <div class="result-detail">
+            <span class="val">${correct}/${total}</span>
+            <span class="lbl">Aciertos</span>
+          </div>
+          <div class="result-detail">
+            <span class="val">${earned.toFixed(1)}</span>
+            <span class="lbl">Puntos</span>
+          </div>
+          <div class="result-detail">
+            <span class="val">${state.studentName}</span>
+            <span class="lbl">Alumno</span>
+          </div>
+          <div class="result-detail">
+            <span class="val">${state.seed}</span>
+            <span class="lbl">Seed</span>
+          </div>
+        </div>
+        
+        <div class="flex gap-sm justify-between" style="flex-wrap:wrap;margin-top:24px;">
+          <button class="btn s" onclick="app.go('subject')">← Volver a temas</button>
+          <button class="btn" onclick="app.go('exam-setup')">🔄 Repetir examen</button>
+          <button class="btn success" onclick="app.go('home')">🏠 Inicio</button>
+        </div>
+      </div>
+    `;
+    
+    $('#questions-container').insertAdjacentHTML('afterend', resultHtml);
+    $('#btn-grade').style.display = 'none';
+    
+    setTimeout(() => {
+      $('.result-card').scrollIntoView({behavior: 'smooth', block: 'center'});
+    }, 300);
+  },
+  
+  checkAchievements() {
+    CONFIG.achievements.forEach(ach => {
+      if (!state.achievements.includes(ach.id) && ach.check(state)) {
+        state.achievements.push(ach.id);
+        toast(`🏆 ¡Logro desbloqueado: ${ach.name}!`, 'success', 4000);
+      }
+    });
+  },
+  
+  renderLab(main, cr) {
+    cr.innerHTML = `<button onclick="app.go('home')">Inicio</button><span class="sep">›</span><span>Laboratorio Binario</span>`;
+    
+    main.innerHTML = `
+      <div class="animate-fadeInUp">
+        <div class="mb-lg">
+          <span class="eyebrow">Herramientas de cálculo</span>
+          <h1>🧮 Laboratorio Binario</h1>
+          <p class="lead">Conversor de bases, calculadora binaria y entrenador de cálculo.</p>
+        </div>
+        
+        <div class="panel accent mb">
+          <h3>Conversor de bases</h3>
+          <p class="text-muted text-sm mb">Introduce un valor en cualquier base y se convertirá automáticamente.</p>
+          <div class="lab-grid">
+            <div class="lab-field">
+              <label>Decimal (base 10)</label>
+              <input type="text" id="lab-dec" class="mono" placeholder="255" autocomplete="off">
+            </div>
+            <div class="lab-field">
+              <label>Binario (base 2)</label>
+              <input type="text" id="lab-bin" class="mono" placeholder="11111111" autocomplete="off">
+            </div>
+            <div class="lab-field">
+              <label>Hexadecimal (base 16)</label>
+              <input type="text" id="lab-hex" class="mono" placeholder="FF" autocomplete="off">
+            </div>
+            <div class="lab-field">
+              <label>Octal (base 8)</label>
+              <input type="text" id="lab-oct" class="mono" placeholder="377" autocomplete="off">
+            </div>
+          </div>
+          <div id="lab-steps" class="mt"></div>
+        </div>
+        
+        <div class="panel accent mb">
+          <h3>Visualizador de bits</h3>
+          <p class="text-muted text-sm mb">Haz clic en los bits para activarlos/desactivarlos.</p>
+          <div class="bits-viz" id="bits-viz"></div>
+          <div class="text-center mt">
+            <span class="mono" style="font-size:1.5rem;font-weight:700;color:var(--a);" id="bits-value">0</span>
+          </div>
+        </div>
+        
+        <div class="panel accent">
+          <h3>Calculadora binaria</h3>
+          <div class="flex gap items-center" style="flex-wrap:wrap;">
+            <input type="text" id="calc-a" class="input-pro mono" placeholder="1011" style="max-width:150px;">
+            <select id="calc-op" class="input-pro" style="max-width:100px;">
+              <option value="+">+</option>
+              <option value="-">−</option>
+              <option value="*">×</option>
+              <option value="/">÷</option>
+            </select>
+            <input type="text" id="calc-b" class="input-pro mono" placeholder="0110" style="max-width:150px;">
+            <button class="btn" onclick="app.calculate()">=</button>
+            <span class="mono" id="calc-result" style="font-size:1.2rem;font-weight:700;color:var(--a);"></span>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // Inicializar visualizador de bits
+    this.initBitsViz();
+    
+    // Event listeners para conversor
+    ['dec', 'bin', 'hex', 'oct'].forEach(base => {
+      $(`#lab-${base}`).addEventListener('input', (e) => this.convertBase(base, e.target.value));
+    });
+  },
+  
+  initBitsViz() {
+    const viz = $('#bits-viz');
+    const weights = [128, 64, 32, 16, 8, 4, 2, 1];
+    
+    viz.innerHTML = weights.map((w, i) => `
+      <div class="bit" data-weight="${w}" data-idx="${i}" onclick="app.toggleBit(${i})">
+        0
+        <span class="weight">${w}</span>
+      </div>
+    `).join('');
+  },
+  
+  toggleBit(idx) {
+    const bit = $$('.bit')[idx];
+    const isOn = bit.classList.toggle('on');
+    bit.textContent = isOn ? '1' : '0';
+    
+    // Recalcular valor
+    let value = 0;
+    $$('.bit').forEach(b => {
+      if (b.classList.contains('on')) {
+        value += parseInt(b.dataset.weight);
+      }
+    });
+    
+    $('#bits-value').textContent = value;
+    
+    // Actualizar conversor
+    $('#lab-dec').value = value;
+    this.convertBase('dec', value);
+  },
+  
+  convertBase(fromBase, value) {
+    if (!value) {
+      ['dec', 'bin', 'hex', 'oct'].forEach(b => {
+        if (b !== fromBase) $(`#lab-${b}`).value = '';
+      });
+      $('#lab-steps').innerHTML = '';
+      return;
+    }
+    
+    const bases = {dec: 10, bin: 2, hex: 16, oct: 8};
+    const base = bases[fromBase];
+    
+    let num;
+    try {
+      num = parseInt(value, base);
+      if (isNaN(num)) throw new Error();
+    } catch {
+      $('#lab-steps').innerHTML = '<p class="text-muted">Valor no válido para esta base</p>';
+      return;
+    }
+    
+    if (num > Number.MAX_SAFE_INTEGER) {
+      $('#lab-steps').innerHTML = '<p class="text-muted">Número demasiado grande</p>';
+      return;
+    }
+    
+    // Actualizar otros campos
+    ['dec', 'bin', 'hex', 'oct'].forEach(b => {
+      if (b !== fromBase) {
+        $(`#lab-${b}`).value = num.toString(bases[b]).toUpperCase();
+      }
+    });
+    
+    // Mostrar pasos de conversión decimal → binario
+    if (fromBase === 'dec' && num > 0) {
+      const steps = [];
+      let n = num;
+      while (n > 0) {
+        steps.push(`${n} ÷ 2 = ${Math.floor(n/2)} resto ${n % 2}`);
+        n = Math.floor(n / 2);
+      }
+      
+      $('#lab-steps').innerHTML = `
+        <div class="pro-tip info">
+          <strong>Conversión decimal → binario</strong> (se lee de abajo arriba):
+          <pre class="mono text-sm" style="margin:8px 0 0;line-height:1.8;">${steps.reverse().join('\n')}</pre>
+          <p class="mt-sm"><strong>Resultado:</strong> <span class="mono">${num.toString(2)}</span></p>
+        </div>
+      `;
+    } else {
+      $('#lab-steps').innerHTML = '';
+    }
+  },
+  
+  calculate() {
+    const a = $('#calc-a').value.trim();
+    const b = $('#calc-b').value.trim();
+    const op = $('#calc-op').value;
+    
+    if (!/^[01]+$/.test(a) || !/^[01]+$/.test(b)) {
+      toast('Introduce números binarios válidos', 'warn');
+      return;
+    }
+    
+    const numA = parseInt(a, 2);
+    const numB = parseInt(b, 2);
+    let result;
+    
+    switch (op) {
+      case '+': result = numA + numB; break;
+      case '-': result = numA - numB; break;
+      case '*': result = numA * numB; break;
+      case '/': result = Math.floor(numA / numB); break;
+    }
+    
+    const binResult = result < 0 
+      ? '-' + Math.abs(result).toString(2)
+      : result.toString(2);
+    
+    $('#calc-result').textContent = `${binResult} (${result})`;
+  },
+  
+  renderStats(main, cr) {
+    cr.innerHTML = `<button onclick="app.go('home')">Inicio</button><span class="sep">›</span><span>Mi Progreso</span>`;
+    
+    const accuracy = state.stats.totalQuestions > 0 
+      ? ((state.stats.totalCorrect / state.stats.totalQuestions) * 100).toFixed(1)
+      : 0;
+    
+    main.innerHTML = `
+      <div class="animate-fadeInUp">
+        <div class="mb-lg">
+          <span class="eyebrow">Estadísticas personales</span>
+          <h1>📊 Mi Progreso</h1>
+          <p class="lead">Visualiza tu evolución y rendimiento a lo largo del tiempo.</p>
+        </div>
+        
+        <div class="stats-grid mb-lg">
+          <div class="stat-card" style="--c: var(--a)">
+            <span class="icon">🎯</span>
+            <span class="value">${state.stats.exams}</span>
+            <span class="label">Exámenes</span>
+          </div>
+          <div class="stat-card" style="--c: var(--ok)">
+            <span class="icon">✓</span>
+            <span class="value">${accuracy}%</span>
+            <span class="label">Precisión</span>
+          </div>
+          <div class="stat-card" style="--c: var(--warn)">
+            <span class="icon">💯</span>
+            <span class="value">${state.stats.perfect}</span>
+            <span class="label">Perfectos</span>
+          </div>
+          <div class="stat-card" style="--c: var(--ink-purple)">
+            <span class="icon">🔥</span>
+            <span class="value">${state.stats.maxStreak}</span>
+            <span class="label">Mejor racha</span>
+          </div>
+        </div>
+        
+        <div class="panel accent mb">
+          <h3>Mejores notas por tema</h3>
+          ${Object.keys(state.stats.bestGrades).length === 0 
+            ? '<p class="text-muted">Aún no has completado ningún examen.</p>'
+            : Object.entries(state.stats.bestGrades).map(([key, grade]) => {
+                const [subjId, topicIdx] = key.split('_');
+                const subject = CONFIG.subjects.find(s => s.id === subjId);
+                const topic = subject?.topics[topicIdx];
+                const g = this.getGrade(grade);
+                return `
+                  <div class="flex justify-between items-center" style="padding:12px 0;border-bottom:1px solid var(--bd-soft);">
+                    <div>
+                      <strong>${subject?.icon} ${topic?.title || 'Tema desconocido'}</strong>
+                      <div class="text-sm text-muted">${subject?.name}</div>
+                    </div>
+                    <div style="text-align:right;">
+                      <div class="mono" style="font-size:1.5rem;font-weight:700;color:${g.color};">${grade.toFixed(1)}</div>
+                      <div class="text-xs text-muted">${g.label}</div>
+                    </div>
+                  </div>
+                `;
+              }).join('')
+          }
+        </div>
+        
+        <div class="text-center mt-lg">
+          <button class="btn s" onclick="app.go('home')">← Volver al inicio</button>
+        </div>
+      </div>
+    `;
+  },
+  
+  renderAchievements(main, cr) {
+    cr.innerHTML = `<button onclick="app.go('home')">Inicio</button><span class="sep">›</span><span>Logros</span>`;
+    
+    const unlocked = state.achievements.length;
+    const total = CONFIG.achievements.length;
+    const progress = (unlocked / total) * 100;
+    
+    main.innerHTML = `
+      <div class="animate-fadeInUp">
+        <div class="mb-lg">
+          <span class="eyebrow">Colección de medallas</span>
+          <h1>🏆 Mis Logros</h1>
+          <p class="lead">${unlocked} de ${total} desbloqueados. ¡Sigue estudiando para desbloquear más!</p>
+          <div class="progress mt">
+            <div class="progress-bar" style="width:${progress}%;"></div>
+          </div>
+        </div>
+        
+        <div class="achievements">
+          ${CONFIG.achievements.map(ach => `
+            <div class="achievement ${state.achievements.includes(ach.id) ? 'unlocked' : ''}">
+              <span class="medal">${ach.icon}</span>
+              <div class="name">${ach.name}</div>
+              <div class="desc">${ach.desc}</div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div class="pro-tip info mt-lg">
+          <strong>💡 Consejo:</strong> Los logros se desbloquean automáticamente al cumplir los requisitos. 
+          ¡No necesitas hacer nada especial, solo seguir estudiando!
+        </div>
+        
+        <div class="text-center mt-lg">
+          <button class="btn s" onclick="app.go('home')">← Volver al inicio</button>
+        </div>
+      </div>
+    `;
+  }
+};
+
+/* ================================================================
+   10. INICIALIZACIÓN
+   ================================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  app.init();
+});
+
+// Prevenir pérdida de datos accidental
+window.addEventListener('beforeunload', (e) => {
+  if (state.examActive && state.questions.length > 0) {
+      const unanswered = state.questions.filter((q, i) => {
+        if (q.type === 'fh') return !$(
