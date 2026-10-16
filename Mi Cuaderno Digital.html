@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Mi Cuaderno Digital</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+:root{--desk:#d7c8ad;--paper:#fffdf5;--grid:#cde4f2;--ink:#1f3a5f;--mut:#5b6b82;--line:#e8a0a0;--ok:#1b8f4c;--bad:#d1384f;--hb:#fff0b8;--c:#e0a100}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--desk:#15181d;--paper:#262b33;--grid:#333c48;--ink:#e6edf8;--mut:#9fb0c8;--line:#8a4a56;--hb:#4a4326}}
+:root[data-theme=dark]{--desk:#15181d;--paper:#262b33;--grid:#333c48;--ink:#e6edf8;--mut:#9fb0c8;--line:#8a4a56;--hb:#4a4326}
+html{box-sizing:border-box;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);background:var(--desk)}
+body{margin:0;color:var(--ink);font:20px/1.45 'Patrick Hand','Segoe Print','Bradley Hand',cursive}
+button{font-family:inherit;color:inherit}
+#st{max-width:1320px;margin:14px auto;padding:0 12px;position:relative}
+.pgf{transform-origin:left center;transition:transform .33s ease-in,opacity .33s}
+.out{transform:perspective(1400px) rotateY(-80deg);opacity:.15}
+.in{animation:inn .42s ease-out}@keyframes inn{from{transform:perspective(1400px) rotateY(75deg);opacity:.15}}
+.cv{margin:6vh auto;max-width:560px;min-height:420px;border-radius:8px 22px 22px 8px;background:linear-gradient(135deg,#27427a,#16264a);box-shadow:0 20px 50px rgba(0,0,0,.55),inset -8px 0 14px rgba(0,0,0,.35);padding:50px 30px 40px 80px;position:relative;text-align:center;color:#fff}
+.cv:before{content:'';position:absolute;left:-10px;top:20px;bottom:20px;width:46px;background:repeating-linear-gradient(180deg,transparent 0 14px,#b9bec8 14px 24px,transparent 24px 44px);border-radius:6px}
+.cv .lb{background:#fff8dc;color:#1f3a5f;margin:30px auto;padding:18px 10px;border-radius:6px;transform:rotate(-2deg);box-shadow:0 4px 10px rgba(0,0,0,.4);font:700 48px/1 Caveat,cursive}
+.cv:after{content:'';position:absolute;right:46px;top:0;bottom:0;width:12px;background:#e0475b;box-shadow:0 0 6px rgba(0,0,0,.4)}
+#hdr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--hb);border:2px solid #f0c94a;border-radius:16px;padding:8px 16px;box-shadow:0 6px 16px rgba(0,0,0,.3);margin-bottom:10px}
+#hdr h1{font:700 32px Caveat,cursive;margin:0}
+.zm{display:flex;gap:6px;align-items:center;font-size:17px}.zm button{width:30px;height:30px;border-radius:50%;border:1px solid var(--mut);background:var(--paper);cursor:pointer;font-weight:700}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding:0 0 0 50px}
+.tab{border:0;padding:9px 16px 7px;border-radius:12px 12px 0 0;background:var(--c);color:#fff;font:700 22px Caveat,cursive;cursor:pointer;transform:translateY(6px);opacity:.75;white-space:nowrap;box-shadow:0 -2px 6px rgba(0,0,0,.2)}
+.tab.on{transform:none;opacity:1;padding-bottom:12px}
+.page{position:relative;font-size:calc(23px*var(--z,1));background:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:1.3em 1.3em;border-top:6px solid var(--c);border-radius:0 10px 10px 10px;padding:24px 20px 36px 76px;box-shadow:inset 30px 0 28px -22px rgba(0,0,0,.4),inset -6px 0 10px -6px rgba(0,0,0,.18),0 5px 0 -1px rgba(150,140,115,.55),0 8px 0 -2px rgba(110,100,80,.6),0 11px 0 -3px rgba(150,140,115,.45),0 34px 55px -12px rgba(0,0,0,.6),0 14px 20px rgba(0,0,0,.3);min-height:78vh}
+.page:before{content:'';position:absolute;left:60px;top:0;bottom:0;width:2px;background:var(--line)}
+.page:after{content:'';position:absolute;left:-12px;top:0;bottom:0;width:60px;background:repeating-linear-gradient(180deg,transparent 0 16px,#7d848f 16px 18px,#eef1f5 18px 21px,#7d848f 21px 25px,transparent 25px 40px),radial-gradient(circle at 36px 21px,#0c0d10 8px,transparent 9px) 0 0/60px 40px repeat-y;pointer-events:none;filter:drop-shadow(3px 4px 3px rgba(0,0,0,.6))}
+section[hidden],[hidden]{display:none!important}
+h2{font:700 1.9em Caveat,cursive;margin:0 0 4px;color:var(--c)}h3{font:700 1.5em Caveat,cursive;margin:22px 0 2px;text-decoration:underline wavy var(--c)}
+.btn{background:var(--c);color:#fff;border:0;border-radius:10px;padding:6px 16px;font:700 1.15em Caveat,cursive;cursor:pointer;margin:4px 6px 4px 0;box-shadow:0 3px 0 rgba(0,0,0,.3),0 5px 8px rgba(0,0,0,.2)}.btn:active{transform:translateY(2px)}.btn.s{background:var(--mut)}
+.pil{display:inline-block;width:2em;height:2em;border-radius:50%;border:2px solid var(--c);background:var(--paper);cursor:pointer;margin:2px;font-weight:700}.pil.on{background:var(--c);color:#fff}
+.df{margin:.5em 0}mark{background:linear-gradient(transparent 40%,#ffe066 40%);color:var(--ink);font-weight:700;padding:0 3px}
+.nt{border-left:4px solid var(--c);padding-left:10px;margin-top:16px;color:var(--mut)}
+#bk{position:relative}
+.tw{overflow-x:auto;margin:14px 0;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.28)}
+table{border-collapse:collapse;width:100%;font-size:.78em;background:var(--paper)}
+th{background:var(--c);color:#fff;text-align:left;padding:5px 10px;font:700 1.3em Caveat,cursive}
+td{padding:5px 10px;border-bottom:1px dashed var(--mut);vertical-align:top}
+.fl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0}
+.fl span{background:var(--c);color:#fff;padding:3px 12px;border-radius:8px;box-shadow:0 3px 0 rgba(0,0,0,.28),0 6px 10px rgba(0,0,0,.2);font-weight:700}
+.fl i{font-style:normal;color:var(--c);font-size:1.5em;font-weight:700}
+#hdr{position:relative;overflow:hidden}#hdr:after{content:'';position:absolute;left:0;right:0;bottom:0;height:5px;background:linear-gradient(90deg,#e0475b,#e0a100,#2e9e5b,#2f7de1,#8b5fd0)}
+.vb{display:inline-block;background:linear-gradient(90deg,#e0475b,#e0a100,#2e9e5b,#2f7de1,#8b5fd0);color:#fff;font:700 14px system-ui,sans-serif;padding:2px 10px;border-radius:20px;letter-spacing:1px;vertical-align:middle;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+mark{background:linear-gradient(transparent 40%,color-mix(in srgb,var(--c) 38%,transparent) 40%)}
+.sec:nth-of-type(5n+1){--c:#e0475b}.sec:nth-of-type(5n+2){--c:#2f7de1}.sec:nth-of-type(5n+3){--c:#2e9e5b}.sec:nth-of-type(5n+4){--c:#e07b1a}.sec:nth-of-type(5n+5){--c:#8b5fd0}
+.mk.g,.mk.r{animation:none}.mk svg{width:1.5em;height:1.5em;overflow:visible}
+.mk path{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:5;stroke-dasharray:1;stroke-dashoffset:1;animation:dr .45s ease-out forwards}.mk.g path{stroke:var(--ok)}.mk.r path{stroke:var(--bad)}.mk path+path{animation-delay:.22s}
+@keyframes dr{to{stroke-dashoffset:0}}
+.mp{color:var(--mut);font-size:.75em}.pt{font:700 1.5em Caveat,cursive;color:var(--bad);display:inline-block;transform:rotate(-5deg);margin-left:8px;animation:fi .5s}@keyframes fi{from{opacity:0;transform:scale(1.8) rotate(-15deg)}}
+.qq.ko .right{text-decoration:underline wavy var(--bad)}.gr{font:700 1.8em Caveat,cursive;color:var(--c)}
+#tmr{position:fixed;top:12px;right:14px;z-index:30;color:#fff;font:700 30px Caveat,cursive;padding:2px 18px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.45)}
+.cv:after{background:linear-gradient(180deg,#e0475b,#e0a100,#2e9e5b,#2f7de1,#8b5fd0)}
+#sp{position:absolute;right:12px;top:66px;z-index:20;background:var(--paper);border:1px solid var(--mut);border-radius:12px;padding:12px 16px;box-shadow:0 14px 34px rgba(0,0,0,.5);line-height:2}
+#rt{text-align:center;font-size:15px;color:var(--mut);margin:26px 10px 14px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+select,input[type=number]{font:inherit;background:var(--paper);color:var(--ink);border:0;border-bottom:2px dashed var(--mut);padding:0 4px;width:auto}input[type=number]{width:7em}
+.sec{margin-top:26px}.qq{display:flex;gap:4px;margin:14px 0}.mk{flex:0 0 1.3em;font:700 2em/1 Caveat,cursive}.mk.g{color:var(--ok);animation:dw .4s}.mk.r{color:var(--bad);animation:dw .4s}
+@keyframes dw{from{transform:scale(2.4) rotate(-25deg);opacity:0}}
+.qb{flex:1}.ops label{display:block;padding:1px 6px;cursor:pointer;border-bottom:1px dashed var(--grid)}.ops input{accent-color:var(--c);transform:scale(1.2)}
+.qq.ok .qb>b{color:var(--ok)}.qq.ko .qb>b{color:var(--bad)}.right{background:rgba(27,143,76,.25)}.wrong{background:rgba(209,56,79,.25);text-decoration:line-through}
+.ex{display:none;font-size:.85em;color:var(--mut)}.qq.done .ex{display:block}.hb{border:0;background:none;cursor:pointer;font-size:1em}.hn{font-size:.85em;color:#b47b00}
+.mt{display:grid;grid-template-columns:1fr 1.4fr;gap:6px 14px;margin-top:4px}.mt button{display:block;width:100%;text-align:left;margin:3px 0;padding:3px 8px;border:2px solid var(--mut);border-radius:8px;background:transparent;cursor:pointer;font-size:.85em}
+.bar{height:10px;background:var(--grid);border-radius:6px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;width:0;background:var(--c)}
+#pen{position:fixed;left:0;top:0;margin:-32px 0 0 -4px;font-size:34px;display:none;pointer-events:none;z-index:9;transition:transform .25s;filter:drop-shadow(2px 4px 3px rgba(0,0,0,.4))}
+#skip{position:fixed;right:14px;bottom:14px;z-index:9}
+#stamp{position:fixed;inset:0;display:none;place-items:center;pointer-events:none;z-index:9}
+#stamp b{font:700 clamp(40px,11vw,100px) Caveat,cursive;color:#fff;padding:0 .4em;border:6px double #fff;border-radius:14px;transform:rotate(-8deg);animation:pop .5s;box-shadow:0 6px 30px rgba(0,0,0,.4)}
+@keyframes pop{from{transform:scale(.2) rotate(-30deg);opacity:0}}
+.note{display:inline-block;width:220px;min-height:140px;margin:12px 18px 12px 0;padding:14px;vertical-align:top;background:#fff2a8;color:#3b3200;box-shadow:0 8px 14px rgba(0,0,0,.35);transform:rotate(-2deg);cursor:pointer;border:0;text-align:left;font-size:1em}.note:nth-child(2){background:#d4ecff;transform:rotate(2deg);cursor:default;opacity:.7}.note:nth-child(3){background:#ffd6e0;transform:rotate(-1deg);cursor:default;opacity:.7}.note b{font:700 1.5em Caveat,cursive}
+textarea{width:100%;min-height:380px;box-sizing:border-box;font:inherit;color:var(--ink);background:transparent;border:0;line-height:1.3em;outline:0}
+@media(max-width:600px){.page{padding:18px 10px 28px 58px}.page:before{left:46px}.mt{grid-template-columns:1fr}.cv{padding-left:60px}}
+</style></head><body>
+<div id="st">
+<div id="cv" class="cv"><div style="font-size:20px;opacity:.8">Redes · Apuntes · Práctica</div><span class="vb">v1.0 PRO</span><div class="lb">MI CUADERNO<br>DIGITAL</div><button class="btn" id="go" style="font-size:1.6em">ELEGIR TEMA ▶</button><p style="margin:26px 0 0;font-size:18px;opacity:.9">✦ Creado por AleDev Studios ✦</p></div>
+<div id="bk" hidden>
+<div id="hdr"><h1>📘 Mi cuaderno digital <small class="vb">v1.0 PRO</small></h1><div class="row"><button class="btn s" id="bak">← Atrás</button><button class="btn s" id="sb2">🔊 Sonido</button><span class="zm">Tamaño <button id="zm">−</button><b id="zp" style="cursor:pointer" title="Restablecer">100%</b><button id="zM">+</button></span></div></div>
+<div id="sp" hidden><label><input type="checkbox" id="son" checked> Sonido de hojas</label><br>Volumen <input type="range" id="svo" min="0" max="100" value="60"><br>Tipo <select id="sty"><option value="hoja">Hoja suave</option><option value="rapida">Rápida</option><option value="cuaderno">Cuaderno con golpe</option></select> <button class="btn" id="spb">▶ Probar</button></div><div class="tabs" id="tabs" hidden>
+<button class="tab" data-s="sTe" style="--c:#2f7de1">📖 Teoría</button><button class="tab" data-s="sFo" style="--c:#e0475b">📝 Formulario</button><button class="tab" data-s="sEx" style="--c:#8b5fd0">🎓 Examen</button><button class="tab" data-s="sSu" style="--c:#2e9e5b">🗒️ Sucio</button></div>
+<div class="page pgf" id="pg">
+<section id="sTh"><h2>Índice · Elegir tema</h2><p>Toca una nota para abrir el tema.</p>
+<button class="note" id="t1"><b>Tema 1</b><br>Caracterización de las redes locales<br><small>10 apartados · 50+ preguntas</small></button><div class="note"><b>Tema 2</b><br>🔒 Próximamente</div><div class="note"><b>Tema 3</b><br>🔒 Próximamente</div></section>
+<section id="sLd" hidden><h2>Cargando Tema 1…</h2><p>Abriendo el cuaderno ✎</p><div class="bar"><i id="lb"></i></div></section>
+<section id="sTe" hidden><div id="ix"></div><div id="thc"></div><div class="row" style="margin-top:20px"><button class="btn s" id="pv">◀ Anterior</button><button class="btn" id="nx">Siguiente ▶</button></div></section>
+<section id="sFo" hidden></section><section id="sEx" hidden></section>
+<section id="sSu" hidden><h2>Hoja de sucio</h2><p>Pesos: <b>128 · 64 · 32 · 16 · 8 · 4 · 2 · 1</b></p><textarea id="ta" placeholder="Escribe aquí tus cuentas..."></textarea><button class="btn s" id="tc">Borrar</button></section>
+</div></div></div>
+<p id="rt">© 2026 AleDev Studios · Mi Cuaderno Digital v1.0 PRO · Creado por AleDev Studios<br>Todos los derechos reservados. Prohibida la copia, reproducción o distribución total o parcial sin autorización.</p><div id="tmr" hidden></div><div id="pen">🖊️</div><button class="btn" id="skip" hidden>⏭ Saltar animación</button><div id="stamp"><b id="sb"></b></div>
+<script>
+const $=(s,e=document)=>e.querySelector(s),$$=(s,e=document)=>[...e.querySelectorAll(s)],sl=m=>new Promise(r=>setTimeout(r,m));
+const S=["Comunicación y redes","Componentes y objetivos","Redes por extensión","Tecnología de transmisión","Titularidad e interredes","Estándares y organismos","Sistemas de numeración","Modelo OSI","La red LAN y dispositivos","Topologías y acceso al medio"];
+const F=`0|Fuente|Genera la información o los datos que se quieren transmitir
+0|Transmisor|Codifica la información y la convierte en señal adecuada
+0|Canal|Medio físico que transporta la señal del transmisor al receptor
+0|Receptor|Recibe la señal del canal y la decodifica
+0|Destino|Dispositivo o sistema al que va dirigida la información
+0|Red de comunicaciones|Dispositivos interconectados que comparten recursos con protocolos
+1|Nodo (host)|Equipo terminal de la red que recibe y procesa información
+1|Enlace|Conexión física o por ondas entre dos nodos
+1|Protocolo|Reglas que deben seguir los dispositivos para comunicarse
+1|Topología|Forma concreta de organizar y conectar los equipos
+1|Servidor|Máquina donde se guarda la información importante de la red
+1|Ahorro económico|Ventaja: no hace falta tener ciertos recursos en cada equipo
+2|BAN|Body Area Network: sensores sobre el cuerpo o muy cerca
+2|PAN|Personal Area Network: dispositivos cercanos a una persona
+2|LAN|Local Area Network: equipos en una zona limitada (casa, aula, oficina)
+2|CAN|Campus Area Network: varias LAN de una misma organización
+2|MAN|Metropolitan Area Network: cubre una ciudad
+2|WAN|Wide Area Network: conecta redes a grandes distancias
+3|Red de difusión|Varios dispositivos comparten el mismo medio o canal
+3|Red conmutada|Red punto a punto: la información va de origen a destino
+3|Unicast|El mensaje va a un solo destinatario
+3|Multicast|El mensaje va a un grupo de nodos
+3|Broadcast|El mensaje va a todos los nodos de la red
+3|Conmutación de paquetes|El mensaje se divide en paquetes que siguen caminos distintos
+3|Conmutación de circuitos|Se reserva un circuito: establecimiento, transmisión y liberación
+4|Red privada|Pertenece a una organización o particular con acceso limitado
+4|Red pública|Disponible para muchos usuarios; no significa gratuita
+4|Uso restringido|Para un grupo determinado de usuarios, como RedIRIS
+4|Interred|Conjunto de redes conectadas entre sí
+4|Router o encaminador|Conecta redes diferentes y decide los caminos
+4|Gateway|Comunica tecnologías o protocolos diferentes
+4|Switch multicapa|Conmuta y además encamina entre redes como un router
+4|IP privadas|Rangos 10.0.0.0/8, 172.16.0.0/12 y 192.168.0.0/16
+5|Estándar de facto|Se impone por su amplio uso, sin aprobación oficial
+5|Estándar de iure|Aprobado formalmente por un organismo de normalización
+5|Estándar abierto|Especificación disponible para que cualquier fabricante la implemente
+5|ISO|Organización internacional que creó el modelo OSI
+5|IEEE 802.3|Norma de Ethernet (cableada)
+5|IEEE 802.11|Norma de Wi-Fi (inalámbrica)
+5|ETSI|Instituto europeo que normaliza las redes móviles 4G y 5G
+5|IETF|Comunidad abierta que desarrolla los estándares técnicos de Internet
+6|Decimal|Base 10, símbolos del 0 al 9
+6|Binario|Base 2, símbolos 0 y 1
+6|Bit|Cada símbolo del sistema binario
+6|Hexadecimal|Base 16, símbolos 0–9 y A–F
+6|Octal|Base 8, símbolos del 0 al 7
+7|Capa 7 Aplicación|Da servicio de red a las aplicaciones (HTTP, FTP, DNS)
+7|Capa 6 Presentación|Codificación, conversión de formatos, compresión y cifrado
+7|Capa 5 Sesión|Establece, mantiene y finaliza la sesión entre aplicaciones
+7|Capa 4 Transporte|Comunicación extremo a extremo; PDU: segmentos
+7|Capa 3 Red|Direccionamiento IP y encaminamiento; PDU: paquetes
+7|Capa 2 Enlace|Direcciones MAC y acceso al medio; PDU: tramas
+7|Capa 1 Física|Transmisión de bits por el medio físico
+7|TCP|Protocolo de transporte fiable que retransmite segmentos perdidos
+7|UDP|Protocolo de transporte sin control: más rápido y ligero
+8|Interfaz de red (NIC)|Conecta el equipo a la red y tiene dirección MAC
+8|Repetidor|Regenera, amplifica y reenvía la señal
+8|Hub|Reenvía lo que recibe a todos los demás puertos
+8|Switch|Usa las MAC y envía las tramas solo al puerto del destinatario
+8|Punto de acceso|Puente entre la red Wi-Fi y la red cableada
+8|Router|Busca la ruta óptima entre redes
+8|DHCP|Asigna automáticamente los parámetros de red (IP)
+8|Fibra óptica|Medio guiado: la información viaja en pulsos de luz
+9|Bus|Cable coaxial compartido con terminadores en los extremos
+9|Anillo|Nodos punto a punto en círculo; transmite quien tiene el token
+9|Estrella|Nodo central (switch o hub) que enlaza con todos
+9|Árbol|Topología jerárquica con nodos centrales secundarios
+9|Malla|Cada nodo se conecta con todos los demás
+9|Control centralizado|Un controlador central organiza el acceso al medio
+9|Control distribuido|Sin controlador: lo hacen todos los equipos
+9|Contención|Los equipos compiten por el acceso al medio`.split('\n').map(l=>{const a=l.split('|');a[0]=+a[0];return a});
+const X={0:"Esquema: Fuente → Transmisor → Canal → Receptor → Destino. Red = nodos + enlaces + protocolos.",2:"De menor a mayor: BAN → PAN → LAN → CAN → MAN → WAN.",4:"Switch normal: dentro de una LAN · Switch multicapa: también entre redes.",5:"Recuerda: 802.3 = Ethernet · 802.11 = Wi-Fi.",6:"Pesos: 128·64·32·16·8·4·2·1. Ej.: 00001101 = 8+4+1 = 13 · 11001000 = 128+64+8 = 200.",7:"PDU: datos → segmentos → paquetes → tramas → bits. Encapsulación ▼ (emisor) y desencapsulación ▲ (receptor). ¡Capas y niveles entran en el examen!",8:"Hub: a todos · Switch: solo al destinatario (MAC) · Router: ruta óptima (IP).",9:"Acceso al medio — ¿dónde?: centralizado o distribuido · ¿cómo?: rotación circular, reserva o contención."};
+const tb=(h,r)=>`<div class="tw"><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${r.map(a=>`<tr>${a.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</table></div>`,fl=a=>`<div class="fl">${a.map(x=>`<span>${x}</span>`).join('<i>➜</i>')}</div>`;
+const TX={
+0:fl(["1 Fuente","2 Transmisor","3 Canal","4 Receptor","5 Destino"])+"<p class=nt>Funcionamiento de una red:</p>"+fl(["Conectar dispositivos","Medio de transmisión","Protocolos comunes","Topología","Transmitir y recibir"])+"<p class=nt>La red no solo debe mandar la señal: también debe asegurar que el receptor la recibe. Las redes nacieron por la necesidad de compartir recursos entre equipos.</p>",
+1:fl(["Nodo","Enlace","Protocolo de comunicación"])+tb(["Objetivos","Ventajas y características"],[["Intercambio de información entre dispositivos","Compartición de recursos"],["Compartir recursos: impresoras, almacenamiento, aplicaciones","Compartición de información"],["Compartir datos y ficheros","Ahorro económico"],["Facilitar la comunicación entre usuarios y equipos","Facilita el trabajo en grupo"],["Acceso a recursos y servicios de otros dispositivos","Administración más sencilla (centralizada)"],["Trabajo conjunto entre usuarios","Comunicación rápida"]])+"<p class=nt>Beneficios: variedad estructural (topologías y tamaños), medios cableados o inalámbricos, intercambio de información entre nodos y protocolos para que se entiendan. Nodo = localización física y también lógica de un proceso.</p>",
+2:fl(["BAN cuerpo","PAN persona","LAN casa/oficina","CAN campus","MAN ciudad","WAN países"])+tb(["Siglas","Nombre","Descripción","Ejemplos"],[["BAN","Body Area Network","Sensores sobre el cuerpo que envían datos de forma inalámbrica","Sensor de ritmo cardíaco"],["PAN","Personal Area Network","Red de pequeño tamaño con dispositivos cercanos a una persona","Móvil + auriculares Bluetooth o reloj"],["LAN","Local Area Network","Zona limitada: los equipos se comunican y comparten recursos","Vivienda, aula, oficina, edificio"],["CAN","Campus Area Network","Varias LAN de la misma organización","Campus, hospital, base militar"],["MAN","Metropolitan Area Network","Mayor que una LAN o una CAN","Una ciudad"],["WAN","Wide Area Network","Grandes distancias","Varias ciudades, países o continentes"]])+"<p class=nt>Finalidad de la LAN: que los equipos se comuniquen y compartan información y recursos. Criterio de clasificación: área o extensión geográfica.</p>",
+3:tb(["","Redes de DIFUSIÓN","Redes CONMUTADAS"],[["Idea","Varios dispositivos comparten el mismo medio o canal","Punto a punto: conexiones entre nodos"],["Funcionamiento","El mensaje puede llegar a varios; cada nodo comprueba si va dirigido a él y, si no, lo descarta","Va directo si están conectados; con nodos intermedios pasa a través; puede haber varios caminos"],["Ejemplo","Antiguas redes Ethernet con HUB","Internet (los routers reciben los paquetes)"],["Hoy en día","LAN Ethernet con switches (solo por el puerto del destinatario); siguen BROADCAST y MULTICAST","Las LAN funcionan con comunicación de paquetes"]])+tb(["Tipo","Destinatarios"],[["UNICAST","Un solo destinatario"],["MULTICAST","Un grupo de nodos de la red"],["BROADCAST","Todos los nodos de la red"]])+tb(["","Conmutación de PAQUETES","Conmutación de CIRCUITOS"],[["Cómo funciona","El mensaje se divide en paquetes que no siguen el mismo camino; al llegar se reconstruye","Se reserva un camino (circuito) entre origen y destino; al terminar se libera"],["Ejemplo","Internet (redes de datos IP)","Redes telefónicas tradicionales"]])+"<p class=nt>Fases de la conmutación de circuitos:</p>"+fl(["1 Establecimiento","2 Transmisión","3 Liberación"]),
+4:tb(["Bloque IP privado","Desde","Hasta"],[["10.0.0.0/8","10.0.0.0","10.255.255.255"],["172.16.0.0/12","172.16.0.0","172.31.255.255"],["192.168.0.0/16","192.168.0.0","192.168.255.255"]])+tb(["Dispositivo","Función"],[["Router o encaminador","Conecta redes diferentes y decide por dónde van los caminos"],["Gateway o pasarela","Comunica tecnologías o protocolos diferentes"],["Switch normal","Conecta equipos o nodos dentro de la misma LAN"],["Switch multicapa","Conecta equipos y además comunica redes distintas (encaminamiento)"]])+fl(["LAN","WAN","LAN"])+"<p class=nt>Interred: lo habitual es LAN conectadas mediante una WAN, pero puede ser solo dos LAN sin WAN. Internet = red de redes. Pública no significa gratuita. Acceso fijo: fibra óptica; móvil: 4G y 5G.</p>",
+5:fl(["Problema: equipos incompatibles","Solución: estándares","Resultado: interoperabilidad"])+tb(["Tipo","Qué es","Ejemplo"],[["De facto","Amplio uso sin aprobación oficial","PDF"],["De iure","Aprobado por un organismo reconocido","ISO, IEEE, ITU, ETSI, UNE"],["Abiertos","Especificación disponible para cualquier fabricante","Ethernet (IEEE 802.3)"],["Cerrados","Controlados por una empresa; licencia o pago","FaceTime (Apple)"]])+tb(["Organismo","Datos clave","Aportación en redes"],[["ISO","1946 · 177 países · +26.000 normas","Modelo OSI, seguridad, interoperabilidad"],["IEEE","Familia 802","802.3 Ethernet · 802.11 Wi-Fi"],["ITU (UIT)","ONU · 194 Estados","ITU-T normalización · ITU-D desarrollo · ITU-R radio"],["ETSI","+950 organizaciones, +60 países","4G y 5G, IoT, ciberseguridad, satélite"],["IETF","Comunidad abierta","Estándares técnicos de Internet"]])+"<p class=nt>Ventajas: compatibilidad, interoperabilidad, sin dependencia de un fabricante, fácil sustituir o ampliar equipos, más variedad, más competencia y menores costes.</p>",
+6:tb(["Sistema","Base","Símbolos"],[["Decimal (S.D.)","10","0 al 9"],["Binario (S.B.)","2","0 y 1 (cada símbolo = BIT)"],["Hexadecimal (S.H.)","16","0–9 y A–F"],["Octal (S.O.)","8","0 al 7"]])+tb(["2⁷","2⁶","2⁵","2⁴","2³","2²","2¹","2⁰"],[["128","64","32","16","8","4","2","1"],["0","0","0","0","1","1","0","1"]])+tb(["Valor","Lógico","Significa"],[["0","Falso","Apagado · abierto · sin señal"],["1","Verdadero","Encendido · cerrado · con señal"]])+"<p class=nt>Binario ➜ decimal: suma los pesos de las posiciones con un 1. 00001101 = 8+4+1 = 13 · 11001000 = 128+64+8 = 200.</p>",
+7:tb(["Nº","Capa","PDU","Función","Protocolos / equipos"],[["7","Aplicación","Datos","Servicio de red a las aplicaciones: web, correo, ficheros, dominios","HTTP · HTTPS · FTP · SMTP · DNS"],["6","Presentación","Datos","Codificación, conversión de formatos, compresión y cifrado","—"],["5","Sesión","Datos","Establece, mantiene y finaliza la sesión; puntos de sincronización","—"],["4","Transporte","Segmentos","Extremo a extremo y fiable; segmenta y controla errores","TCP · UDP"],["3","Red","Paquetes","Direccionamiento lógico IP, encaminamiento (mejor ruta) y NAT","IP · Router"],["2","Enlace de datos","Tramas","Direcciones MAC, acceso al medio y detección de errores","MAC · Switch · Ethernet"],["1","Física","Bits","Transmisión de bits: señales eléctricas u ópticas, conectores, voltajes","Cables · conectores"]])+fl(["Datos (capas 7·6·5)","Segmentos (4)","Paquetes (3)","Tramas (2)","Bits (1)"])+"<p class=nt>Encapsulación ▼ en el emisor: cada capa añade su encabezado. Desencapsulación ▲ en el receptor: cada capa lo retira. Segmentación: dividir mensajes en unidades pequeñas. Multiplexación: intercalar comunicaciones en el mismo enlace.</p>"+tb(["Protocolo","Características"],[["TCP","Fiable: controla el orden y puede pedir retransmisión de segmentos perdidos"],["UDP","Sin control ni retransmisión: mucho más rápido y ligero"]])+"<p class=nt>Arquitectura = capas + protocolos. Servicio: lo que una capa ofrece a la superior. Interfaz: cómo accede una capa a los servicios de otra. Protocolo: reglas con su capa homóloga en el otro equipo. OSI: modelo teórico de la ISO (7 capas). TCP/IP: arquitectura real de Internet. ¡Capas y niveles entran en el examen!</p>",
+8:fl(["Dispositivos finales (IPv4/IPv6)","Interfaz de red NIC (MAC)","Medios de transmisión","Dispositivos intermedios"])+tb(["Dispositivo","Qué hace","Clave"],[["Repetidor","Recibe la señal debilitada, la regenera, amplifica y reenvía","Regenera la señal"],["Hub (concentrador)","Reenvía por un puerto a todos los demás sin saber el destinatario; hoy lo sustituye el switch","A TODOS los puertos"],["Switch (conmutador)","Usa las MAC y envía las tramas solo al puerto del destinatario","SOLO al destinatario"],["Punto de acceso","Puente entre la red Wi-Fi y la red cableada","Wi-Fi ↔ cable"],["Router","Divide la red (subnetting) y busca la ruta más óptima","Ruta óptima"]])+tb(["Protocolo","Servicio"],[["DNS","Nombres de dominio"],["DHCP","Asigna IP y parámetros automáticamente"],["FTP","Transferencia de archivos"],["HTTP","Web"],["SMTP","Correo electrónico"]])+"<p class=nt>Características de una LAN: extensión limitada, uso privado, capacidad de transmisión muy elevada, tasa de errores baja (alta fiabilidad), difusión (broadcast), cambios fáciles y conectable con otras LAN. Medios guiados: par trenzado (RJ45), coaxial (primeras redes) y fibra óptica; alternativa: inalámbricos. Servicio = funcionalidad; proceso = programa en ejecución.</p>",
+9:tb(["Topología","Elemento clave","Idea para recordar"],[["Bus","Coaxial + terminadores","Todos en el mismo canal; en desuso; la más sencilla"],["Anillo","Fibra + testigo (token)","Un solo sentido; habla quien tiene el token"],["Anillo doble","Dos anillos","Mayor seguridad"],["Intersección de anillos","Dispositivo común","Dos anillos que lo comparten"],["Estrella","Nodo central (switch/hub)","Switch: al destinatario · Hub: a todos · activo o pasivo"],["Árbol","Nodos centrales secundarios","Jerárquica"],["Malla","Todos con todos","Varias rutas posibles"],["Mixta / híbrida","Combinación","Mezcla de topologías"]])+tb(["¿Dónde?","Descripción"],[["Centralizado","Un controlador central organiza el acceso"],["Distribuido","Sin controlador: lo hacen todos los equipos"]])+tb(["¿Cómo?","Descripción"],[["Rotación circular","Cada equipo tiene su turno (sondeo si es centralizado; orden fijo si es distribuido)"],["Reserva","La red se divide en sesiones de tiempo y los equipos la usan de forma organizada"],["Contención","Los equipos compiten por el acceso; útil para transmisiones cortas"]])+"<p class=nt>Topología física: cómo se distribuyen los dispositivos. Topología lógica: cómo se transportan los datos (circular o bus). Las LAN se clasifican por topología, medio (cableado/inalámbrico) y control de acceso al medio.</p>"};
+const M=[["Redes por extensión geográfica","BAN,PAN,LAN,CAN,MAN,WAN","VPN,SSID,NAT,DNS"],["Elementos de un sistema de comunicación","Fuente,Transmisor,Canal,Receptor,Destino","Router,Switch,Servidor"],["Dispositivos intermedios de una LAN","Repetidor,Hub,Switch,Punto de acceso,Router","Impresora,Teclado,Monitor"],["Medios guiados (cableados)","Par trenzado,Cable coaxial,Fibra óptica","Wi-Fi,Bluetooth,Ondas de radio"],["Direcciones IP privadas","10.1.2.3,172.16.5.9,192.168.1.1,172.31.0.7","8.8.8.8,172.32.1.1,192.169.0.1,11.0.0.1"],["Topologías físicas","Bus,Anillo,Estrella,Árbol,Malla","Unicast,TCP,Broadcast"],["Capas del modelo OSI","Aplicación,Transporte,Red,Enlace","Internet,Acceso,Sistema"]];
+/* util */
+function stamp(t,c){$('#sb').textContent=t;$('#sb').style.background=c;$('#stamp').style.display='grid';clearTimeout(stamp.t);stamp.t=setTimeout(()=>$('#stamp').style.display='none',2300)}
+const SD={on:1,vol:60,st:'hoja'};try{Object.assign(SD,JSON.parse(localStorage.getItem('rlsnd')||'{}'))}catch(e){}
+const PR={hoja:[.8,900,3800,1,0],rapida:[.4,2200,6500,1.2,0],cuaderno:[.9,700,3000,1,1]};
+function snd(){if(!SD.on)return;try{const A=snd.c=snd.c||new(window.AudioContext||window.webkitAudioContext)(),t=A.currentTime,p=PR[SD.st]||PR.hoja,n=Math.floor(A.sampleRate*p[0]),b=A.createBuffer(1,n,A.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);const s=A.createBufferSource();s.buffer=b;const f=A.createBiquadFilter();f.type='bandpass';f.Q.value=.8;f.frequency.setValueAtTime(p[1],t);f.frequency.exponentialRampToValueAtTime(p[2],t+p[0]);const g=A.createGain(),v=SD.vol/100;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v*p[3],t+.06);g.gain.exponentialRampToValueAtTime(.001,t+p[0]);s.connect(f);f.connect(g);g.connect(A.destination);s.start(t);
+if(p[4]){const o=A.createOscillator(),h=A.createGain();o.frequency.setValueAtTime(130,t+.5);o.frequency.exponentialRampToValueAtTime(45,t+.7);h.gain.setValueAtTime(0,t);h.gain.setValueAtTime(v*.6,t+.5);h.gain.exponentialRampToValueAtTime(.001,t+.7);o.connect(h);h.connect(A.destination);o.start(t+.5);o.stop(t+.75)}}catch(e){}}
+$('#son').checked=!!SD.on;$('#svo').value=SD.vol;$('#sty').value=SD.st;const sv=()=>{try{localStorage.setItem('rlsnd',JSON.stringify(SD))}catch(e){}};
+$('#sb2').onclick=()=>$('#sp').hidden=!$('#sp').hidden;$('#son').onchange=()=>{SD.on=$('#son').checked?1:0;sv()};$('#svo').oninput=()=>{SD.vol=+$('#svo').value;sv()};$('#sty').onchange=()=>{SD.st=$('#sty').value;sv()};$('#spb').onclick=snd;
+function flipOld(fn,host){host=host||$('#pg');const par=host.parentElement,w=host.offsetWidth,h=host.offsetHeight,L=host.offsetLeft,T=host.offsetTop,cl=host.cloneNode(true);
+cl.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));cl.removeAttribute('id');cl.hidden=false;
+Object.assign(cl.style,{position:'absolute',left:L+'px',top:T+'px',width:w+'px',height:h+'px',margin:0,transformOrigin:'left center',pointerEvents:'none',zIndex:5,backfaceVisibility:'hidden'});
+const sh=document.createElement('div');sh.style.cssText='position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.05),rgba(0,0,0,.5));opacity:0;pointer-events:none;border-radius:inherit';cl.appendChild(sh);
+const cs=document.createElement('div');cs.style.cssText=`position:absolute;left:${L}px;top:${T}px;width:${w}px;height:${h}px;background:linear-gradient(90deg,rgba(0,0,0,.55),transparent 75%);pointer-events:none;z-index:4;border-radius:0 10px 10px 0`;
+par.append(cs,cl);par.style.perspective='2600px';snd();fn();scrollTo(0,0);const D=950;
+sh.animate([{opacity:0},{opacity:1}],{duration:D,easing:'ease-in',fill:'forwards'});cs.animate([{opacity:.9},{opacity:0}],{duration:D,fill:'forwards'});
+cl.animate([{transform:'rotateY(0)'},{transform:'rotateY(-30deg) skewY(2.5deg)',offset:.3},{transform:'rotateY(-75deg) skewY(-4deg)',offset:.7},{transform:'rotateY(-120deg) skewY(0)'}],{duration:D,easing:'cubic-bezier(.55,.05,.35,1)',fill:'forwards'}).onfinish=()=>{cl.remove();cs.remove();par.style.perspective=''}}
+const COL={sTh:'#e0a100',sLd:'#e0a100',sTe:'#2f7de1',sFo:'#e0475b',sEx:'#8b5fd0',sSu:'#2e9e5b'},SC=['#2f7de1','#e0475b','#e0a100','#2e9e5b','#8b5fd0','#e07b1a','#0e9aa7','#d6439b','#5a6fe0','#7aa300'];let cur='sTh';
+function show(id){cur=id;$$('#pg>section').forEach(s=>s.hidden=s.id!=id);$('#tabs').hidden=!/sTe|sFo|sEx|sSu/.test(id);$('#pg').style.setProperty('--c',id=='sTe'?SC[ti]:COL[id]);$$('.tab').forEach(t=>t.classList.toggle('on',t.dataset.s==id))}
+$('#go').onclick=()=>flip(()=>{$('#cv').hidden=1;$('#bk').hidden=0;show('sTh')},$('#cv'));
+$('#bak').onclick=()=>{if(cur=='sTh')flip(()=>{$('#bk').hidden=1;$('#cv').hidden=0},$('#bk'),-1,$('#cv'));else flip(()=>show('sTh'),0,-1)};
+$('#t1').onclick=()=>{flip(()=>{show('sLd');let w=0;const iv=setInterval(()=>{w+=8;$('#lb').style.width=w+'%';if(w>=100){clearInterval(iv);flip(()=>show('sTe'))}},90)})};
+$$('.tab').forEach(t=>t.onclick=()=>flip(()=>show(t.dataset.s),0,['sTe','sFo','sEx','sSu'].indexOf(t.dataset.s)<['sTe','sFo','sEx','sSu'].indexOf(cur)?-1:1));
+let z=1;const zs=()=>{$('#bk').style.setProperty('--z',z);$('#zp').textContent=Math.round(z*100)+'%'};$('#zm').onclick=()=>{z=Math.max(.7,+(z-.1).toFixed(1));zs()};$('#zM').onclick=()=>{z=Math.min(2,+(z+.1).toFixed(1));zs()};$('#zp').onclick=()=>{z=1;zs()};
+/* teoría */
+let ti=0;
+function th(){$('#ix').innerHTML=S.map((s,i)=>`<button class="pil${i==ti?' on':''}" title="${s}" data-i="${i}">${i+1}</button>`).join('');
+$('#thc').innerHTML=`<h2>${ti+1}. ${S[ti]}</h2>`+F.filter(f=>f[0]==ti).map(f=>`<p class="df"><mark>${f[1]}</mark> — ${f[2]}.</p>`).join('')+(X[ti]?`<p class="nt">✎ ${X[ti]}</p>`:'')+(TX[ti]||'');
+$('#pg').style.setProperty('--c',SC[ti]);$$('#ix .pil').forEach(b=>b.onclick=()=>flip(()=>{ti=+b.dataset.i;th()},0,+b.dataset.i<ti?-1:1))}
+$('#pv').onclick=()=>flip(()=>{ti=(ti+9)%10;th()},0,-1);$('#nx').onclick=()=>flip(()=>{ti=(ti+1)%10;th()});th();
+/* generador */
+const mul=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+function gen(n,seed){const R=mul(seed),ri=k=>Math.floor(R()*k),sh=a=>{a=[...a];for(let i=a.length;i>1;i--){const j=ri(i);[a[i-1],a[j]]=[a[j],a[i-1]]}return a};
+const c={vf:Math.round(n*.25),mu:Math.min(7,Math.round(n*.1)),ma:Math.round(n*.1),bi:Math.round(n*.12)};c.mc=n-c.vf-c.mu-c.ma-c.bi;
+const pool=sh(F);let pi=0;const nx=()=>pool[pi++%pool.length],same=f=>sh(F.filter(x=>x[0]==f[0]&&x!=f)),o={vf:[],mc:[],mu:[],ma:[],bi:[]};
+for(let i=0;i<c.vf;i++){const f=nx(),t=R()<.5,g=t?f:same(f)[0];o.vf.push({k:'vf',q:`${f[1]}: ${g[2]}.`,a:t,h:'Repasa: '+S[f[0]],x:`${f[1]}: ${f[2]}.`})}
+for(let i=0;i<c.mc;i++){const f=nx(),p=sh([f[1],...same(f).slice(0,3).map(x=>x[1])]);o.mc.push({k:'mc',q:`¿A qué corresponde? «${f[2]}»`,o:p,a:p.indexOf(f[1]),h:'Repasa: '+S[f[0]],x:`${f[1]}: ${f[2]}.`})}
+sh(M).slice(0,c.mu).forEach(g=>{const gd=sh(g[1].split(',')).slice(0,2+ri(2)),bd=sh(g[2].split(',')).slice(0,2),p=sh([...gd,...bd]);o.mu.push({k:'mu',q:g[0]+' (marca todas):',o:p,a:p.map((t,i)=>gd.includes(t)?i:-1).filter(i=>i>=0),h:'Pueden ser 2 o 3 correctas',x:'Correctas: '+gd.join(', ')})});
+sh([0,1,2,3,4,5,6,7,8,9]).slice(0,c.ma).forEach(s=>{const fs=sh(F.filter(x=>x[0]==s)).slice(0,4),r=sh(fs.map(x=>x[2]));o.ma.push({k:'ma',q:`Une cada concepto con su definición (${S[s]}):`,l:fs.map(x=>x[1]),r,a:fs.map(x=>r.indexOf(x[2])),p:[],s:null,h:'Repasa: '+S[s],x:fs.map(x=>x[1]+' → '+x[2]).join(' · ')})});
+for(let i=0;i<c.bi;i++){const v=10+ri(246),b=v.toString(2).padStart(8,'0'),d=ri(2),ds=new Set([d?String(v):b]);
+while(ds.size<4){if(d)ds.add(String(Math.max(1,v+ri(21)-10)));else{const k=ri(8);ds.add(b.slice(0,k)+(b[k]=='1'?0:1)+b.slice(k+1))}}
+const p=sh([...ds]);o.bi.push({k:'mc',q:d?`¿Cuánto vale ${b} en decimal?`:`Pasa a binario el número ${v}:`,o:p,a:p.indexOf(d?String(v):b),h:'Pesos: 128·64·32·16·8·4·2·1',x:`${b} = ${v}`})}
+return[['Verdadero o falso',o.vf],['Elige una respuesta',o.mc],['Varias respuestas',o.mu],['Unir con colores',o.ma],['Cálculo binario',o.bi]].filter(s=>s[1].length).map(s=>{s[1].forEach(q=>q.pt=PTS[s[0]]);return s})}
+/* formulario */
+const col=i=>`hsl(${i*90+10} 70% 45%)`,L4='ABCD';
+function mr(e,q){const w=$('.ops',e);w.innerHTML=`<div class="mt"><div>${q.l.map((t,i)=>`<button data-i="${i}" style="${q.p[i]!=null||q.s==i?`border-color:${col(i)};background:${col(i)}33`:''}">${t}${q.p[i]!=null?' → '+L4[q.p[i]]:q.s==i?' …':''}</button>`).join('')}</div><div>${q.r.map((t,j)=>{const i=q.p.indexOf(j);return`<button data-j="${j}" style="${i>=0?`border-color:${col(i)};background:${col(i)}33`:''}"><b>${L4[j]}</b> ${t}</button>`}).join('')}</div></div>`;
+if(q.done)return;$$('[data-i]',w).forEach(b=>b.onclick=()=>{q.s=+b.dataset.i;q.p[q.s]=null;mr(e,q)});$$('[data-j]',w).forEach(b=>b.onclick=()=>{if(q.s==null)return;const j=+b.dataset.j;q.p=q.p.map(v=>v===j?null:v);q.p[q.s]=j;q.s=null;mr(e,q)})}
+const ans=(q,e)=>q.k=='ma'?q.l.every((_,i)=>q.p[i]!=null):!!$('input:checked',e);
+const okq=(q,e)=>q.k=='ma'?q.l.every((_,i)=>q.p[i]===q.a[i]):q.k=='mu'?$$('input:checked',e).map(x=>+x.value).sort().join()==q.a.join():(c=>!!c&&c.value==String(q.a))($('input:checked',e));
+const MS=[["Sigue practicando: cada fallo enseña. Repasa la teoría y vuelve a intentarlo 💪","Aún no, pero has dado el primer paso. Lee los apartados de las tachas rojas.","Ánimo: con otra ronda subirás la nota seguro."],["Vas por buen camino. Pule los fallos y estarás listo.","Aprobado raspado: repasa lo que tachó el boli rojo.","Buen intento, te falta poco para dominarlo."],["Dominas casi todo el tema. Solo unos detalles por pulir.","¡Muy bien! Tu cuaderno tiene más ticks que tachas.","¡Gran trabajo! Ya casi lo tienes perfecto."],["Nivel matrícula de honor. ¡Increíble!","¡Perfecto! El Tema 1 no tiene secretos para ti.","¡Examen bordado! Puedes presumir de cuaderno."]];
+const TT=['¡Ánimo!','¡Bien!','¡Estupendo!','¡IMPRESIONANTE!'],TC=['#d1384f','#e0a100','#2f7de1','#1b8f4c'];let skip=0;
+function init(m,el){const ex=m=='e';el.innerHTML=`<h2>${ex?'🎓 Examen':'📝 Formulario de práctica'}</h2><p>${ex?'Sin pistas, con cronómetro y puntos por ejercicio (V/F 1 · Test 1,5 · Varias 2 · Unir 3 · Binario 2). Si se acaba el tiempo sin entregar, la nota es 0. Preguntas al azar según la semilla.':'Con pistas 💡 y puntos por ejercicio (V/F 1 · Test 1,5 · Varias 2 · Unir 3 · Binario 2). Preguntas al azar según la semilla.'}</p><div class="row">Preguntas: <select class="n">${[10,20,30,40,50].map(v=>`<option${v==(ex?50:20)?' selected':''}>${v}</option>`).join('')}</select> ${ex?'Tiempo: <select class="tm"><option value="15">15 min</option><option value="20" selected>20 min</option></select> ':''}Semilla: <input type="number" class="sd"> <button class="btn s nw">🎲 Nueva</button> <button class="btn go">${ex?'Empezar ⏱':'Generar ✎'}</button></div><div class="fm"></div>`;
+const sd=$('.sd',el),nw=()=>sd.value=100000+Math.floor(Math.random()*900000);nw();$('.nw',el).onclick=nw;
+$('.go',el).onclick=()=>{const secs=gen(+$('.n',el).value,+sd.value||1),Q=secs.flatMap(s=>s[1]);let k=0,armed=0,done=0;
+$('.fm',el).innerHTML=`<p>Nombre: ________ · Semilla ${sd.value} · ${Q.length} preguntas</p>`+secs.map(s=>`<div class="sec"><h3>Sección · ${s[0]}</h3>`+s[1].map(q=>{const i=k++,b=q.k=='vf'?['Verdadero','Falso'].map((t,j)=>`<label><input type="radio" name="${m}${i}" value="${j==0}"> ${t}</label>`).join(''):q.k=='mc'?q.o.map((t,j)=>`<label><input type="radio" name="${m}${i}" value="${j}"> ${t}</label>`).join(''):q.k=='mu'?q.o.map((t,j)=>`<label><input type="checkbox" value="${j}"> ${t}</label>`).join(''):'';
+return`<div class="qq"><span class="mk"></span><div class="qb"><b>${i+1}. ${q.q}</b> <small class="mp">(${q.pt} pt)</small>${ex?'':' <button class="hb">💡</button><i class="hn"></i>'}<div class="ops">${b}</div><div class="ex">✎ ${q.x}</div></div></div>`}).join('')+'</div>').join('')+`<button class="btn sub">${ex?'Entregar ✔':'Corregir ✔'}</button><button class="btn s clr">Reiniciar ↺</button><div class="rs"></div>`;
+const E=$$('.qq',el);Q.forEach((q,i)=>{if(q.k=='ma'){q.p=[];q.s=null;q.done=0;mr(E[i],q)}if(!ex)$('.hb',E[i]).onclick=()=>$('.hn',E[i]).textContent=' '+q.h});
+$('.clr',el).onclick=()=>$('.go',el).onclick();
+if(ex){clearInterval(el._t);const T=$('#tmr');let left=(+$('.tm',el).value)*60;const tk=()=>{T.textContent='⏱ '+Math.floor(left/60)+':'+String(left%60).padStart(2,'0');T.style.background=left<60?'var(--bad)':left<300?'#e0a100':'#2e9e5b'};T.hidden=0;tk();
+el._t=setInterval(()=>{if(done){clearInterval(el._t);T.hidden=1;return}left--;tk();if(left<=0){clearInterval(el._t);T.hidden=1;done=1;$$('.qb input,.qb [data-i],.qb [data-j]',el).forEach(x=>x.disabled=1);E.forEach((e,i)=>{const mk=$('.mk',e);mk.innerHTML=MK(0);mk.className='mk r';e.classList.add('done','ko');const pm=$('.mp',e);if(pm)pm.outerHTML=`<span class="pt">0 / ${Q[i].pt}</span>`});$('.rs',el).innerHTML=`<h2 style="color:var(--bad)">⏰ ¡Tiempo agotado!</h2><b>Examen no entregado a tiempo → Nota 0.00 / 10 · F</b><p>Gestiona mejor el tiempo la próxima vez. Repasa la teoría y vuelve a intentarlo.</p>`;$('.rs',el).scrollIntoView({behavior:'smooth'});stamp('NOTA 0 · F','#d1384f')}},1000)}
+$('.sub',el).onclick=async()=>{if(done)return;const un=Q.filter((q,i)=>!ans(q,E[i])).length;if(un&&!armed){armed=1;$('.rs',el).innerHTML=`<p style="color:var(--bad)">Te faltan ${un} sin responder (contarán como fallo). Pulsa otra vez para ${ex?'entregar':'corregir'}.</p>`;return}
+done=1;skip=0;$('#skip').hidden=0;$('#pen').style.display='block';const tl={};let okc=0,earned=0;const total=Q.reduce((a,q)=>a+q.pt,0);$$('.qb input,.qb [data-i],.qb [data-j]',el).forEach(x=>x.disabled=1);
+for(let i=0;i<Q.length;i++){const q=Q[i],e=E[i],pe=pts(q,e),g=pe>=q.pt-1e-9,mk=$('.mk',e);q.done=1;
+if(!skip){e.scrollIntoView({block:'center'});const r=mk.getBoundingClientRect();$('#pen').style.transform=`translate(${r.left+8}px,${r.top+22}px)`;await sl(240)}
+mk.innerHTML=MK(g);mk.className='mk '+(g?'g':'r');const pm=$('.mp',e);if(pm)pm.outerHTML=`<span class="pt">${+pe.toFixed(2)} / ${q.pt}</span>`;e.classList.add('done',g?'ok':'ko');if(g)okc++;earned+=pe;
+$$('label',e).forEach((l,j)=>{const v=$('input',l).value,c=l.querySelector('input').checked,r=q.k=='vf'?v==String(q.a):q.k=='mu'?q.a.includes(+v):+v==q.a;if(r)l.classList.add('right');else if(c)l.classList.add('wrong')});
+if(q.k=='ma')mr(e,q);const t=tl[q.k]=tl[q.k]||[0,0];t[1]+=q.pt;t[0]+=pe;if(!skip)await sl(110)}
+$('#pen').style.display='none';$('#skip').hidden=1;const p=earned/total*100,ti=p>=90?3:p>=70?2:p>=50?1:0,nm={vf:'Verdadero/falso',mc:'Test y binario',mu:'Varias respuestas',ma:'Unir'};
+let best='';try{const kk='rl1'+m,b=+localStorage.getItem(kk)||0;if(p>b)localStorage.setItem(kk,p);best=b?` · Mejor marca: ${Math.max(b,Math.round(p))}%`:''}catch(e){}
+$('.rs',el).innerHTML=`<h2 style="color:${TC[ti]}">${TT[ti]}</h2><b>${okc} / ${Q.length} correctas · ${earned.toFixed(2)} / ${total} puntos</b><br><span class="gr">Nota ${(earned/total*10).toFixed(2)} / 10 · ${LG(earned/total*10)}</span>${best}<br><small>Escala: A+ ≥9.7 · A ≥9.3 · A- ≥9.0 · B+ ≥8.7 · B ≥8.3 · B- ≥8.0 · C+ ≥7.7 · C ≥7.3 · C- ≥7.0 · D ≥6.0 · F &lt;6.0</small><p>${MS[ti][Math.floor(Math.random()*3)]}</p><p>${Object.keys(tl).map(k=>nm[k]+': '+tl[k][0].toFixed(1)+'/'+tl[k][1]).join(' · ')}</p>`;$('.rs',el).scrollIntoView({behavior:'smooth'});stamp(TT[ti]+' '+LG(earned/total*10),TC[ti])}}}
+const PTS={'Verdadero o falso':1,'Elige una respuesta':1.5,'Varias respuestas':2,'Unir con colores':3,'Cálculo binario':2};
+const pts=(q,e)=>{if(q.k=='ma')return q.pt*q.l.filter((_,i)=>q.p[i]===q.a[i]).length/q.l.length;if(q.k=='mu'){const c=$$('input:checked',e).map(x=>+x.value),h=c.filter(v=>q.a.includes(v)).length;return q.pt*Math.max(0,h-(c.length-h))/q.a.length}return okq(q,e)?q.pt:0};
+const MK=g=>g?'<svg viewBox="0 0 48 48"><path pathLength="1" d="M5 26 Q11 31 16 40 Q26 17 43 6"/></svg>':'<svg viewBox="0 0 48 48"><path pathLength="1" d="M7 8 Q22 21 41 41"/><path pathLength="1" d="M41 7 Q24 24 6 40"/></svg>';
+const LG=n=>(n=>n>=97?'A+':n>=93?'A':n>=90?'A-':n>=87?'B+':n>=83?'B':n>=80?'B-':n>=77?'C+':n>=73?'C':n>=70?'C-':n>=60?'D':'F')(n*10);
+const K=[{transform:'rotateY(0)'},{transform:'rotateX(2deg) rotateY(-28deg) skewY(2.5deg)',offset:.3},{transform:'rotateX(-1deg) rotateY(-72deg) skewY(-4deg)',offset:.68},{transform:'rotateY(-118deg)'}],KB=[{transform:'rotateY(-118deg)'},{transform:'rotateX(-1deg) rotateY(-72deg) skewY(-4deg)',offset:.32},{transform:'rotateX(2deg) rotateY(-28deg) skewY(2.5deg)',offset:.7},{transform:'rotateY(0)'}];
+function flip(fn,host,dir,tgt){host=host||$('#pg');dir=dir||1;const par=host.parentElement,D=1000,hp=host.id=='pg',EA='cubic-bezier(.55,.05,.35,1)';
+const mk=s=>{const c=s.cloneNode(true);c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));c.removeAttribute('id');c.hidden=false;Object.assign(c.style,{position:'absolute',left:s.offsetLeft+'px',top:s.offsetTop+'px',width:s.offsetWidth+'px',height:s.offsetHeight+'px',margin:0,transformOrigin:'left center',pointerEvents:'none',backfaceVisibility:'hidden',zIndex:5});return c};
+const ov=c=>{const d=document.createElement('div');d.style.cssText='position:absolute;pointer-events:none;'+c;return d};
+const old=mk(host),sh=ov('inset:0;background:linear-gradient(90deg,rgba(0,0,0,.05),rgba(0,0,0,.28) 45%,rgba(255,255,255,.22) 58%,rgba(0,0,0,.6));opacity:0;border-radius:0 10px 10px 0'),cs=ov(`left:${host.offsetLeft}px;top:${host.offsetTop}px;width:${host.offsetWidth}px;height:${host.offsetHeight}px;z-index:4;background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,.15) 55%,transparent);border-radius:0 10px 10px 0`);let nw;
+host.style.minHeight=host.offsetHeight+'px';par.style.perspective='2600px';par.append(old);snd();
+const end=()=>{host.style.minHeight='';par.style.perspective='';[old,cs,nw].forEach(x=>x&&x.remove())};
+if(dir>0){old.append(sh);if(hp)par.append(cs);fn();scrollTo(0,0);sh.animate([{opacity:0},{opacity:1}],{duration:D,easing:'ease-in',fill:'forwards'});cs.animate([{opacity:.95},{opacity:0}],{duration:D,fill:'forwards'});old.animate(K,{duration:D,easing:EA,fill:'forwards'}).onfinish=end}
+else{old.style.zIndex=3;fn();scrollTo(0,0);nw=mk(tgt||host);nw.append(sh);par.append(nw);sh.animate([{opacity:1},{opacity:0}],{duration:D,easing:'ease-out',fill:'forwards'});nw.animate(KB,{duration:D,easing:EA,fill:'forwards'}).onfinish=end}}
+$('#skip').onclick=()=>skip=1;
+init('p',$('#sFo'));init('e',$('#sEx'));
+try{$('#ta').value=localStorage.getItem('sucioRL')||''}catch(e){}
+$('#ta').oninput=()=>{try{localStorage.setItem('sucioRL',$('#ta').value)}catch(e){}};$('#tc').onclick=()=>{$('#ta').value='';$('#ta').oninput()};
+</script></body></html>
