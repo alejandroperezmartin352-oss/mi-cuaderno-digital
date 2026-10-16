@@ -1,92 +1,86 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Mi Cuaderno Digital</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="es" data-theme="dark"><head><meta charset="utf-8"><title>Mi Cuaderno Digital · AleDev Studios</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Cuaderno digital de estudio: teoría, práctica aleatoria y exámenes por asignaturas">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--desk:#d7c8ad;--paper:#fffdf5;--grid:#cde4f2;--ink:#1f3a5f;--mut:#5b6b82;--line:#e8a0a0;--ok:#1b8f4c;--bad:#d1384f;--hb:#fff0b8;--c:#e0a100}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--desk:#15181d;--paper:#262b33;--grid:#333c48;--ink:#e6edf8;--mut:#9fb0c8;--line:#8a4a56;--hb:#4a4326}}
-:root[data-theme=dark]{--desk:#15181d;--paper:#262b33;--grid:#333c48;--ink:#e6edf8;--mut:#9fb0c8;--line:#8a4a56;--hb:#4a4326}
-html{box-sizing:border-box;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);background:var(--desk)}
-body{margin:0;color:var(--ink);font:20px/1.45 'Patrick Hand','Segoe Print','Bradley Hand',cursive}
-button{font-family:inherit;color:inherit}
-#st{max-width:1320px;margin:14px auto;padding:0 12px;position:relative}
-.pgf{transform-origin:left center;transition:transform .33s ease-in,opacity .33s}
-.out{transform:perspective(1400px) rotateY(-80deg);opacity:.15}
-.in{animation:inn .42s ease-out}@keyframes inn{from{transform:perspective(1400px) rotateY(75deg);opacity:.15}}
-.cv{margin:6vh auto;max-width:560px;min-height:420px;border-radius:8px 22px 22px 8px;background:linear-gradient(135deg,#27427a,#16264a);box-shadow:0 20px 50px rgba(0,0,0,.55),inset -8px 0 14px rgba(0,0,0,.35);padding:50px 30px 40px 80px;position:relative;text-align:center;color:#fff}
-.cv:before{content:'';position:absolute;left:-10px;top:20px;bottom:20px;width:46px;background:repeating-linear-gradient(180deg,transparent 0 14px,#b9bec8 14px 24px,transparent 24px 44px);border-radius:6px}
-.cv .lb{background:#fff8dc;color:#1f3a5f;margin:30px auto;padding:18px 10px;border-radius:6px;transform:rotate(-2deg);box-shadow:0 4px 10px rgba(0,0,0,.4);font:700 48px/1 Caveat,cursive}
-.cv:after{content:'';position:absolute;right:46px;top:0;bottom:0;width:12px;background:#e0475b;box-shadow:0 0 6px rgba(0,0,0,.4)}
-#hdr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--hb);border:2px solid #f0c94a;border-radius:16px;padding:8px 16px;box-shadow:0 6px 16px rgba(0,0,0,.3);margin-bottom:10px}
-#hdr h1{font:700 32px Caveat,cursive;margin:0}
-.zm{display:flex;gap:6px;align-items:center;font-size:17px}.zm button{width:30px;height:30px;border-radius:50%;border:1px solid var(--mut);background:var(--paper);cursor:pointer;font-weight:700}
-.tabs{display:flex;gap:4px;overflow-x:auto;padding:0 0 0 50px}
-.tab{border:0;padding:9px 16px 7px;border-radius:12px 12px 0 0;background:var(--c);color:#fff;font:700 22px Caveat,cursive;cursor:pointer;transform:translateY(6px);opacity:.75;white-space:nowrap;box-shadow:0 -2px 6px rgba(0,0,0,.2)}
-.tab.on{transform:none;opacity:1;padding-bottom:12px}
-.page{position:relative;font-size:calc(23px*var(--z,1));background:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:1.3em 1.3em;border-top:6px solid var(--c);border-radius:0 10px 10px 10px;padding:24px 20px 36px 76px;box-shadow:inset 30px 0 28px -22px rgba(0,0,0,.4),inset -6px 0 10px -6px rgba(0,0,0,.18),0 5px 0 -1px rgba(150,140,115,.55),0 8px 0 -2px rgba(110,100,80,.6),0 11px 0 -3px rgba(150,140,115,.45),0 34px 55px -12px rgba(0,0,0,.6),0 14px 20px rgba(0,0,0,.3);min-height:78vh}
-.page:before{content:'';position:absolute;left:60px;top:0;bottom:0;width:2px;background:var(--line)}
-.page:after{content:'';position:absolute;left:-12px;top:0;bottom:0;width:60px;background:repeating-linear-gradient(180deg,transparent 0 16px,#7d848f 16px 18px,#eef1f5 18px 21px,#7d848f 21px 25px,transparent 25px 40px),radial-gradient(circle at 36px 21px,#0c0d10 8px,transparent 9px) 0 0/60px 40px repeat-y;pointer-events:none;filter:drop-shadow(3px 4px 3px rgba(0,0,0,.6))}
-section[hidden],[hidden]{display:none!important}
-h2{font:700 1.9em Caveat,cursive;margin:0 0 4px;color:var(--c)}h3{font:700 1.5em Caveat,cursive;margin:22px 0 2px;text-decoration:underline wavy var(--c)}
-.btn{background:var(--c);color:#fff;border:0;border-radius:10px;padding:6px 16px;font:700 1.15em Caveat,cursive;cursor:pointer;margin:4px 6px 4px 0;box-shadow:0 3px 0 rgba(0,0,0,.3),0 5px 8px rgba(0,0,0,.2)}.btn:active{transform:translateY(2px)}.btn.s{background:var(--mut)}
-.pil{display:inline-block;width:2em;height:2em;border-radius:50%;border:2px solid var(--c);background:var(--paper);cursor:pointer;margin:2px;font-weight:700}.pil.on{background:var(--c);color:#fff}
-.df{margin:.5em 0}mark{background:linear-gradient(transparent 40%,#ffe066 40%);color:var(--ink);font-weight:700;padding:0 3px}
-.nt{border-left:4px solid var(--c);padding-left:10px;margin-top:16px;color:var(--mut)}
-#bk{position:relative}
-.tw{overflow-x:auto;margin:14px 0;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.28)}
-table{border-collapse:collapse;width:100%;font-size:.78em;background:var(--paper)}
-th{background:var(--c);color:#fff;text-align:left;padding:5px 10px;font:700 1.3em Caveat,cursive}
-td{padding:5px 10px;border-bottom:1px dashed var(--mut);vertical-align:top}
-.fl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0}
-.fl span{background:var(--c);color:#fff;padding:3px 12px;border-radius:8px;box-shadow:0 3px 0 rgba(0,0,0,.28),0 6px 10px rgba(0,0,0,.2);font-weight:700}
-.fl i{font-style:normal;color:var(--c);font-size:1.5em;font-weight:700}
-#hdr{position:relative;overflow:hidden}#hdr:after{content:'';position:absolute;left:0;right:0;bottom:0;height:5px;background:linear-gradient(90deg,#e0475b,#e0a100,#2e9e5b,#2f7de1,#8b5fd0)}
-.vb{display:inline-block;background:linear-gradient(90deg,#e0475b,#e0a100,#2e9e5b,#2f7de1,#8b5fd0);color:#fff;font:700 14px system-ui,sans-serif;padding:2px 10px;border-radius:20px;letter-spacing:1px;vertical-align:middle;box-shadow:0 2px 6px rgba(0,0,0,.35)}
-mark{background:linear-gradient(transparent 40%,color-mix(in srgb,var(--c) 38%,transparent) 40%)}
-.sec:nth-of-type(5n+1){--c:#e0475b}.sec:nth-of-type(5n+2){--c:#2f7de1}.sec:nth-of-type(5n+3){--c:#2e9e5b}.sec:nth-of-type(5n+4){--c:#e07b1a}.sec:nth-of-type(5n+5){--c:#8b5fd0}
-.mk.g,.mk.r{animation:none}.mk svg{width:1.5em;height:1.5em;overflow:visible}
-.mk path{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:5;stroke-dasharray:1;stroke-dashoffset:1;animation:dr .45s ease-out forwards}.mk.g path{stroke:var(--ok)}.mk.r path{stroke:var(--bad)}.mk path+path{animation-delay:.22s}
-@keyframes dr{to{stroke-dashoffset:0}}
-.mp{color:var(--mut);font-size:.75em}.pt{font:700 1.5em Caveat,cursive;color:var(--bad);display:inline-block;transform:rotate(-5deg);margin-left:8px;animation:fi .5s}@keyframes fi{from{opacity:0;transform:scale(1.8) rotate(-15deg)}}
-.qq.ko .right{text-decoration:underline wavy var(--bad)}.gr{font:700 1.8em Caveat,cursive;color:var(--c)}
-#tmr{position:fixed;top:12px;right:14px;z-index:30;color:#fff;font:700 30px Caveat,cursive;padding:2px 18px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.45)}
-.cv:after{background:linear-gradient(180deg,#e0475b,#e0a100,#2e9e5b,#2f7de1,#8b5fd0)}
-#sp{position:absolute;right:12px;top:66px;z-index:20;background:var(--paper);border:1px solid var(--mut);border-radius:12px;padding:12px 16px;box-shadow:0 14px 34px rgba(0,0,0,.5);line-height:2}
-#rt{text-align:center;font-size:15px;color:var(--mut);margin:26px 10px 14px}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-select,input[type=number]{font:inherit;background:var(--paper);color:var(--ink);border:0;border-bottom:2px dashed var(--mut);padding:0 4px;width:auto}input[type=number]{width:7em}
-.sec{margin-top:26px}.qq{display:flex;gap:4px;margin:14px 0}.mk{flex:0 0 1.3em;font:700 2em/1 Caveat,cursive}.mk.g{color:var(--ok);animation:dw .4s}.mk.r{color:var(--bad);animation:dw .4s}
-@keyframes dw{from{transform:scale(2.4) rotate(-25deg);opacity:0}}
-.qb{flex:1}.ops label{display:block;padding:1px 6px;cursor:pointer;border-bottom:1px dashed var(--grid)}.ops input{accent-color:var(--c);transform:scale(1.2)}
-.qq.ok .qb>b{color:var(--ok)}.qq.ko .qb>b{color:var(--bad)}.right{background:rgba(27,143,76,.25)}.wrong{background:rgba(209,56,79,.25);text-decoration:line-through}
-.ex{display:none;font-size:.85em;color:var(--mut)}.qq.done .ex{display:block}.hb{border:0;background:none;cursor:pointer;font-size:1em}.hn{font-size:.85em;color:#b47b00}
-.mt{display:grid;grid-template-columns:1fr 1.4fr;gap:6px 14px;margin-top:4px}.mt button{display:block;width:100%;text-align:left;margin:3px 0;padding:3px 8px;border:2px solid var(--mut);border-radius:8px;background:transparent;cursor:pointer;font-size:.85em}
-.bar{height:10px;background:var(--grid);border-radius:6px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;width:0;background:var(--c)}
-#pen{position:fixed;left:0;top:0;margin:-32px 0 0 -4px;font-size:34px;display:none;pointer-events:none;z-index:9;transition:transform .25s;filter:drop-shadow(2px 4px 3px rgba(0,0,0,.4))}
-#skip{position:fixed;right:14px;bottom:14px;z-index:9}
-#stamp{position:fixed;inset:0;display:none;place-items:center;pointer-events:none;z-index:9}
-#stamp b{font:700 clamp(40px,11vw,100px) Caveat,cursive;color:#fff;padding:0 .4em;border:6px double #fff;border-radius:14px;transform:rotate(-8deg);animation:pop .5s;box-shadow:0 6px 30px rgba(0,0,0,.4)}
-@keyframes pop{from{transform:scale(.2) rotate(-30deg);opacity:0}}
-.note{display:inline-block;width:220px;min-height:140px;margin:12px 18px 12px 0;padding:14px;vertical-align:top;background:#fff2a8;color:#3b3200;box-shadow:0 8px 14px rgba(0,0,0,.35);transform:rotate(-2deg);cursor:pointer;border:0;text-align:left;font-size:1em}.note:nth-child(2){background:#d4ecff;transform:rotate(2deg);cursor:default;opacity:.7}.note:nth-child(3){background:#ffd6e0;transform:rotate(-1deg);cursor:default;opacity:.7}.note b{font:700 1.5em Caveat,cursive}
-textarea{width:100%;min-height:380px;box-sizing:border-box;font:inherit;color:var(--ink);background:transparent;border:0;line-height:1.3em;outline:0}
-@media(max-width:600px){.page{padding:18px 10px 28px 58px}.page:before{left:46px}.mt{grid-template-columns:1fr}.cv{padding-left:60px}}
+:root{--bg:#070b14;--s1:rgba(255,255,255,.05);--s2:rgba(255,255,255,.09);--bd:rgba(255,255,255,.11);--gl:rgba(255,255,255,.035);--tx:#e6ecf8;--mut:#93a3bd;--a:#22d3ee;--b:#a78bfa;--ok:#34d399;--bad:#f87171;--warn:#fbbf24;--c:var(--a);color-scheme:dark}
+[data-theme=light]{--bg:#f3f6fc;--s1:rgba(255,255,255,.85);--s2:rgba(15,23,42,.06);--bd:rgba(15,23,42,.13);--gl:rgba(15,23,42,.045);--tx:#0f172a;--mut:#4d5c75;--a:#0891b2;--b:#7c3aed;--ok:#059669;--bad:#dc2626;--warn:#b45309;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(60vw 50vh at 10% -8%,color-mix(in srgb,var(--b) 30%,transparent),transparent),radial-gradient(50vw 45vh at 98% 0,color-mix(in srgb,var(--a) 26%,transparent),transparent),linear-gradient(var(--gl) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,var(--gl) 1px,transparent 1px) 0 0/44px 44px}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:10px max(16px,env(safe-area-inset-left));background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
+.brand{display:flex;align-items:center;gap:8px;background:none;border:0;padding:0}.brand .logo{font-size:22px;background:linear-gradient(135deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}.brand b{font-weight:800;letter-spacing:-.02em}.brand em{font:600 11px 'JetBrains Mono',monospace;color:var(--mut);border:1px solid var(--bd);border-radius:20px;padding:1px 8px;font-style:normal}
+#cr{flex:1;font-size:14px;color:var(--mut);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}#cr button{background:none;border:0;color:var(--a);padding:0;font-size:14px}
+.ibtn{width:38px;height:38px;border-radius:12px;border:1px solid var(--bd);background:var(--s1);font-size:18px}
+#app{max-width:1100px;margin:0 auto;padding:28px 16px 40px}
+.hero{padding:34px 0 22px}.eyebrow{font:600 12px 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin:0 0 8px}
+h1{font-size:clamp(30px,5.4vw,54px);line-height:1.08;letter-spacing:-.035em;margin:0 0 12px;font-weight:800}.grad{background:linear-gradient(100deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mut);max-width:60ch;margin:0 0 6px}h2{font-size:26px;letter-spacing:-.02em;margin:6px 0 12px}h3{font-size:18px;margin:26px 0 8px;color:var(--c)}
+.head{margin-bottom:16px}.head h1{font-size:clamp(26px,4.2vw,40px)}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.card{position:relative;text-align:left;padding:22px;border-radius:20px;background:var(--s1);border:1px solid var(--bd);backdrop-filter:blur(10px);transition:transform .2s,border-color .2s,box-shadow .2s;overflow:hidden}
+.card:before{content:'';position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--c),transparent)}
+.card:hover:not(:disabled){transform:translateY(-3px);border-color:var(--c);box-shadow:0 14px 40px -14px var(--c)}
+.card h3{margin:10px 0 6px;color:var(--tx);font-size:20px;letter-spacing:-.01em}.card p{margin:0;color:var(--mut);font-size:14px}.card.dis{opacity:.5;cursor:not-allowed}
+.ic{font-size:30px}.num{font:700 13px 'JetBrains Mono',monospace;color:var(--c);border:1px solid var(--c);border-radius:8px;padding:1px 9px}.mut{color:var(--mut);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chips span,.chip span{font:600 12px 'JetBrains Mono',monospace;border:1px solid var(--bd);background:var(--s2);border-radius:20px;padding:3px 11px}
+.chip{cursor:pointer}.chip input{position:absolute;opacity:0}.chip input:checked+span{background:color-mix(in srgb,var(--a) 22%,transparent);border-color:var(--a);color:var(--a)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px;border:1px solid var(--bd);border-radius:16px;background:var(--s1);margin-bottom:16px}.tabs button{flex:1;white-space:nowrap;border:0;background:none;border-radius:12px;padding:9px 14px;color:var(--mut);font-weight:600}.tabs button.on{background:linear-gradient(135deg,var(--a),var(--b));color:#06101c}
+.panel{background:var(--s1);border:1px solid var(--bd);border-radius:22px;padding:clamp(16px,3vw,30px);backdrop-filter:blur(10px)}
+.pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:10px}.pill{white-space:nowrap;border:1px solid var(--bd);background:var(--s2);border-radius:20px;padding:6px 14px;font-size:14px}.pill.on{background:var(--c);border-color:var(--c);color:#06101c;font-weight:700}
+.defs{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));margin:12px 0}.def{padding:12px 14px;border-radius:14px;background:var(--s2);border:1px solid var(--bd);display:flex;flex-direction:column;gap:2px}.def b{color:var(--a)}.def span{color:var(--tx);font-size:15px}
+.nt{border-left:3px solid var(--b);padding:8px 14px;background:var(--s2);border-radius:0 12px 12px 0;color:var(--mut);margin:16px 0}
+.tw{overflow-x:auto;margin:14px 0;border:1px solid var(--bd);border-radius:14px}table{border-collapse:collapse;width:100%;font-size:14px}th{background:var(--s2);text-align:left;padding:9px 12px;color:var(--a)}td{padding:9px 12px;border-top:1px solid var(--bd);vertical-align:top}
+.fl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}.fl span{background:var(--s2);border:1px solid var(--bd);padding:5px 13px;border-radius:10px;font-weight:600}.fl i{font-style:normal;color:var(--a)}
+pre,.mono{font-family:'JetBrains Mono',monospace}pre{background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:12px;overflow-x:auto;font-size:14px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}
+.btn{border:0;border-radius:12px;padding:10px 20px;font-weight:700;color:#06101c;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 8px 24px -10px var(--a)}.btn:hover{filter:brightness(1.1)}.btn:active{transform:translateY(1px)}.btn.s{background:var(--s2);color:var(--tx);box-shadow:none;border:1px solid var(--bd)}.btn.big{padding:13px 28px;font-size:16px}.btn:disabled{opacity:.5;cursor:not-allowed}
+.cfg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:14px}.fld label{display:block;font-size:12px;color:var(--mut);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+select,.fi,textarea,input[type=number]{background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:8px 12px;color:var(--tx);width:100%}.fi{width:auto;min-width:9ch;max-width:100%;display:inline-block;margin:0 4px}.fld .fi{width:100%;margin:0}
+.qhead{margin:24px 0 4px;color:var(--mut);font:600 13px 'JetBrains Mono',monospace}.sec h3{border-bottom:1px solid var(--bd);padding-bottom:6px}
+.q{border:1px solid var(--bd);background:var(--s2);border-radius:16px;padding:14px 16px;margin:12px 0}.q.ok{border-color:var(--ok)}.q.ko{border-color:var(--bad)}.qt{display:flex;gap:12px}.qn{flex:0 0 32px;height:32px;border-radius:10px;background:var(--s1);border:1px solid var(--bd);display:grid;place-items:center;font:700 13px 'JetBrains Mono',monospace;color:var(--a)}
+.qb{flex:1;min-width:0}.qq{font-weight:600}.pt{color:var(--mut);font:500 12px 'JetBrains Mono',monospace;margin-left:8px;white-space:nowrap}.hb{border:0;background:none;font-size:16px}.hn{display:block;color:var(--warn);font-size:14px}
+.ops label{display:block;padding:7px 10px;margin:4px 0;border-radius:10px;border:1px solid transparent;cursor:pointer}.ops label:hover{background:var(--s1)}.ops input{accent-color:var(--a);margin-right:8px}
+.right{background:color-mix(in srgb,var(--ok) 20%,transparent)!important;border-color:var(--ok)!important}.wrong{background:color-mix(in srgb,var(--bad) 18%,transparent)!important;border-color:var(--bad)!important;text-decoration:line-through}.ans{color:var(--ok)}
+.ex{display:none;margin-top:8px;color:var(--mut);font-size:14px}.q.done .ex{display:block}.mk{font:800 22px/1 system-ui;align-self:flex-start}.q.ok .mk{color:var(--ok)}.q.ko .mk{color:var(--bad)}
+.mrow{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:6px 10px;border:1px solid var(--bd);border-radius:10px;margin:5px 0}.mrow select{width:auto}.rl{margin:8px 0;color:var(--mut);font-size:14px}
+.warn{color:var(--warn)}.res{display:flex;gap:20px;align-items:center;flex-wrap:wrap;border:1px solid var(--g);border-radius:20px;padding:20px;margin:22px 0;background:color-mix(in srgb,var(--g) 10%,transparent)}.res .big{font:800 64px/1 Inter;color:var(--g);width:90px;text-align:center}.res h2{margin:0}
+.steps{margin:14px 0}.steps pre{margin:6px 0}textarea{min-height:340px;font-family:'JetBrains Mono',monospace;resize:vertical}
+#tmr{position:fixed;top:64px;right:14px;z-index:30;padding:6px 16px;border-radius:14px;font:700 22px 'JetBrains Mono',monospace;color:#06101c;background:var(--ok);box-shadow:0 8px 24px rgba(0,0,0,.4)}#tmr.warn{background:var(--warn)}#tmr.bad{background:var(--bad)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:8px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}#toast.on{opacity:1}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:20px 16px 30px}
+@media(max-width:600px){#app{padding:18px 12px 30px}.res .big{font-size:48px;width:64px}.qt{gap:8px}}
+
+@keyframes pin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes shim{to{background-position:200% 0}}
+.panel{animation:pin .4s ease-out}.card{animation:pin .5s both}.card:nth-child(2){animation-delay:.07s}.card:nth-child(3){animation-delay:.14s}.card:nth-child(4){animation-delay:.21s}.card:nth-child(n+5){animation-delay:.28s}
+.grad{background-size:200% 100%;animation:shim 7s linear infinite}.sec,.q{animation:pin .35s ease-out}
+.mk{flex:0 0 28px}.mk svg{width:28px;height:28px;overflow:visible}.mk path{fill:none;stroke:currentColor;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:dr .45s ease-out forwards}.mk path+path{animation-delay:.18s}@keyframes dr{to{stroke-dashoffset:0}}
+#hand{position:fixed;left:0;top:0;width:150px;height:170px;z-index:50;pointer-events:none;opacity:0;transform:translate(-300px,-300px);transition:transform .34s cubic-bezier(.4,.1,.2,1),opacity .3s;filter:drop-shadow(0 16px 12px rgba(0,0,0,.45))}#hand.on{opacity:1}
+#hand svg{display:block;transform:perspective(520px) rotateX(14deg) rotateY(-10deg);transform-origin:14px 158px}
+#hand.wr svg{animation:wr .24s ease-in-out}@keyframes wr{50%{transform:perspective(520px) rotateX(20deg) rotateY(-14deg) rotate(-4deg) translate(5px,3px)}}
+#skipb{position:fixed;right:14px;bottom:14px;z-index:60}#an.off{opacity:.45}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style></head><body>
-<div id="st">
-<div id="cv" class="cv"><div style="font-size:20px;opacity:.8">Redes · Apuntes · Práctica</div><span class="vb">v1.0 PRO</span><div class="lb">MI CUADERNO<br>DIGITAL</div><button class="btn" id="go" style="font-size:1.6em">ELEGIR TEMA ▶</button><p style="margin:26px 0 0;font-size:18px;opacity:.9">✦ Creado por AleDev Studios ✦</p></div>
-<div id="bk" hidden>
-<div id="hdr"><h1>📘 Mi cuaderno digital <small class="vb">v1.0 PRO</small></h1><div class="row"><button class="btn s" id="bak">← Atrás</button><button class="btn s" id="sb2">🔊 Sonido</button><span class="zm">Tamaño <button id="zm">−</button><b id="zp" style="cursor:pointer" title="Restablecer">100%</b><button id="zM">+</button></span></div></div>
-<div id="sp" hidden><label><input type="checkbox" id="son" checked> Sonido de hojas</label><br>Volumen <input type="range" id="svo" min="0" max="100" value="60"><br>Tipo <select id="sty"><option value="hoja">Hoja suave</option><option value="rapida">Rápida</option><option value="cuaderno">Cuaderno con golpe</option></select> <button class="btn" id="spb">▶ Probar</button></div><div class="tabs" id="tabs" hidden>
-<button class="tab" data-s="sTe" style="--c:#2f7de1">📖 Teoría</button><button class="tab" data-s="sFo" style="--c:#e0475b">📝 Formulario</button><button class="tab" data-s="sEx" style="--c:#8b5fd0">🎓 Examen</button><button class="tab" data-s="sSu" style="--c:#2e9e5b">🗒️ Sucio</button></div>
-<div class="page pgf" id="pg">
-<section id="sTh"><h2>Índice · Elegir tema</h2><p>Toca una nota para abrir el tema.</p>
-<button class="note" id="t1"><b>Tema 1</b><br>Caracterización de las redes locales<br><small>10 apartados · 50+ preguntas</small></button><div class="note"><b>Tema 2</b><br>🔒 Próximamente</div><div class="note"><b>Tema 3</b><br>🔒 Próximamente</div></section>
-<section id="sLd" hidden><h2>Cargando Tema 1…</h2><p>Abriendo el cuaderno ✎</p><div class="bar"><i id="lb"></i></div></section>
-<section id="sTe" hidden><div id="ix"></div><div id="thc"></div><div class="row" style="margin-top:20px"><button class="btn s" id="pv">◀ Anterior</button><button class="btn" id="nx">Siguiente ▶</button></div></section>
-<section id="sFo" hidden></section><section id="sEx" hidden></section>
-<section id="sSu" hidden><h2>Hoja de sucio</h2><p>Pesos: <b>128 · 64 · 32 · 16 · 8 · 4 · 2 · 1</b></p><textarea id="ta" placeholder="Escribe aquí tus cuentas..."></textarea><button class="btn s" id="tc">Borrar</button></section>
-</div></div></div>
-<p id="rt">© 2026 AleDev Studios · Mi Cuaderno Digital v1.0 PRO · Creado por AleDev Studios<br>Todos los derechos reservados. Prohibida la copia, reproducción o distribución total o parcial sin autorización.</p><div id="tmr" hidden></div><div id="pen">🖊️</div><button class="btn" id="skip" hidden>⏭ Saltar animación</button><div id="stamp"><b id="sb"></b></div>
-<script>
-const $=(s,e=document)=>e.querySelector(s),$$=(s,e=document)=>[...e.querySelectorAll(s)],sl=m=>new Promise(r=>setTimeout(r,m));
+<div class="bg" aria-hidden="true"></div>
+<header class="top"><button class="brand" id="hm"><span class="logo">◈</span><b>Cuaderno Digital</b><em>v2.0</em></button><nav id="cr" aria-label="Ruta"></nav><button class="ibtn" id="an" title="Activar o desactivar animaciones" aria-label="Animaciones">✨</button><button class="ibtn" id="th" title="Cambiar entre tema claro y oscuro" aria-label="Cambiar tema claro u oscuro">◐</button></header>
+<main id="app"></main>
+<footer>© 2026 AleDev Studios · Mi Cuaderno Digital v2.0 · Creado por AleDev Studios<br>Todos los derechos reservados. Prohibida la copia, reproducción o distribución total o parcial sin autorización.</footer>
+<div id="tmr" hidden></div><div id="toast" role="status"></div>
+<div id="hand" aria-hidden="true"><svg viewBox="0 0 150 170" width="150" height="170"><defs><linearGradient id="pb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8db3ff"/><stop offset=".45" stop-color="#2f5fd0"/><stop offset="1" stop-color="#16327a"/></linearGradient><linearGradient id="sk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffdcc2"/><stop offset="1" stop-color="#e8a47a"/></linearGradient></defs>
+<g transform="translate(14 158) rotate(-52)"><path d="M0 0 L20 -5.5 L20 5.5Z" fill="#2b2b33"/><rect x="18" y="-6" width="10" height="12" fill="#c9ccd6"/><rect x="26" y="-6.5" width="84" height="13" rx="3" fill="url(#pb)"/><rect x="28" y="-4.8" width="80" height="2.6" rx="1.3" fill="#fff" opacity=".4"/><rect x="104" y="-7" width="22" height="14" rx="3" fill="#e0475b"/><rect x="60" y="-9.5" width="46" height="3" rx="1.5" fill="#d8dbe6"/></g>
+<g stroke-linecap="round" fill="none"><path d="M96 108 L50 128" stroke="#c98a63" stroke-width="19"/><path d="M96 108 L50 128" stroke="url(#sk)" stroke-width="15"/>
+<path d="M118 70 L132 100" stroke="#c98a63" stroke-width="17"/><path d="M118 70 L132 100" stroke="url(#sk)" stroke-width="13"/><path d="M126 62 L142 90" stroke="#c98a63" stroke-width="16"/><path d="M126 62 L142 90" stroke="url(#sk)" stroke-width="12"/>
+<ellipse cx="112" cy="84" rx="30" ry="34" fill="url(#sk)" stroke="#c98a63" stroke-width="3" transform="rotate(30 112 84)"/>
+<path d="M100 66 L56 104" stroke="#c98a63" stroke-width="19"/><path d="M100 66 L56 104" stroke="url(#sk)" stroke-width="15"/></g><path d="M122 20 L150 48 L150 78 L108 40Z" fill="#3b4a7a"/></svg></div>
+<button class="btn" id="skipb" hidden>⏭ Saltar corrección</button>
+<script>'use strict';
+const $=(s,e=document)=>e.querySelector(s),$$=(s,e=document)=>[...e.querySelectorAll(s)];
+const mul=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9+#\/. ]/g,'').replace(/\s+/g,' ').trim();
+const vari=t=>[...new Set([norm(t),...t.split(/[()]/).map(norm)].filter(Boolean))];
+const P=t=>t.trim().split('\n').map(l=>{const a=l.trim().split('|');a[0]=+a[0];return a});
+const QL=t=>t.trim().split('\n').map(l=>l.trim().split('|'));
+/* ===== Contenido original: Redes Locales · Tema 1 ===== */
 const S=["Comunicación y redes","Componentes y objetivos","Redes por extensión","Tecnología de transmisión","Titularidad e interredes","Estándares y organismos","Sistemas de numeración","Modelo OSI","La red LAN y dispositivos","Topologías y acceso al medio"];
 const F=`0|Fuente|Genera la información o los datos que se quieren transmitir
 0|Transmisor|Codifica la información y la convierte en señal adecuada
@@ -173,90 +167,417 @@ const TX={
 8:fl(["Dispositivos finales (IPv4/IPv6)","Interfaz de red NIC (MAC)","Medios de transmisión","Dispositivos intermedios"])+tb(["Dispositivo","Qué hace","Clave"],[["Repetidor","Recibe la señal debilitada, la regenera, amplifica y reenvía","Regenera la señal"],["Hub (concentrador)","Reenvía por un puerto a todos los demás sin saber el destinatario; hoy lo sustituye el switch","A TODOS los puertos"],["Switch (conmutador)","Usa las MAC y envía las tramas solo al puerto del destinatario","SOLO al destinatario"],["Punto de acceso","Puente entre la red Wi-Fi y la red cableada","Wi-Fi ↔ cable"],["Router","Divide la red (subnetting) y busca la ruta más óptima","Ruta óptima"]])+tb(["Protocolo","Servicio"],[["DNS","Nombres de dominio"],["DHCP","Asigna IP y parámetros automáticamente"],["FTP","Transferencia de archivos"],["HTTP","Web"],["SMTP","Correo electrónico"]])+"<p class=nt>Características de una LAN: extensión limitada, uso privado, capacidad de transmisión muy elevada, tasa de errores baja (alta fiabilidad), difusión (broadcast), cambios fáciles y conectable con otras LAN. Medios guiados: par trenzado (RJ45), coaxial (primeras redes) y fibra óptica; alternativa: inalámbricos. Servicio = funcionalidad; proceso = programa en ejecución.</p>",
 9:tb(["Topología","Elemento clave","Idea para recordar"],[["Bus","Coaxial + terminadores","Todos en el mismo canal; en desuso; la más sencilla"],["Anillo","Fibra + testigo (token)","Un solo sentido; habla quien tiene el token"],["Anillo doble","Dos anillos","Mayor seguridad"],["Intersección de anillos","Dispositivo común","Dos anillos que lo comparten"],["Estrella","Nodo central (switch/hub)","Switch: al destinatario · Hub: a todos · activo o pasivo"],["Árbol","Nodos centrales secundarios","Jerárquica"],["Malla","Todos con todos","Varias rutas posibles"],["Mixta / híbrida","Combinación","Mezcla de topologías"]])+tb(["¿Dónde?","Descripción"],[["Centralizado","Un controlador central organiza el acceso"],["Distribuido","Sin controlador: lo hacen todos los equipos"]])+tb(["¿Cómo?","Descripción"],[["Rotación circular","Cada equipo tiene su turno (sondeo si es centralizado; orden fijo si es distribuido)"],["Reserva","La red se divide en sesiones de tiempo y los equipos la usan de forma organizada"],["Contención","Los equipos compiten por el acceso; útil para transmisiones cortas"]])+"<p class=nt>Topología física: cómo se distribuyen los dispositivos. Topología lógica: cómo se transportan los datos (circular o bus). Las LAN se clasifican por topología, medio (cableado/inalámbrico) y control de acceso al medio.</p>"};
 const M=[["Redes por extensión geográfica","BAN,PAN,LAN,CAN,MAN,WAN","VPN,SSID,NAT,DNS"],["Elementos de un sistema de comunicación","Fuente,Transmisor,Canal,Receptor,Destino","Router,Switch,Servidor"],["Dispositivos intermedios de una LAN","Repetidor,Hub,Switch,Punto de acceso,Router","Impresora,Teclado,Monitor"],["Medios guiados (cableados)","Par trenzado,Cable coaxial,Fibra óptica","Wi-Fi,Bluetooth,Ondas de radio"],["Direcciones IP privadas","10.1.2.3,172.16.5.9,192.168.1.1,172.31.0.7","8.8.8.8,172.32.1.1,192.169.0.1,11.0.0.1"],["Topologías físicas","Bus,Anillo,Estrella,Árbol,Malla","Unicast,TCP,Broadcast"],["Capas del modelo OSI","Aplicación,Transporte,Red,Enlace","Internet,Acceso,Sistema"]];
-/* util */
-function stamp(t,c){$('#sb').textContent=t;$('#sb').style.background=c;$('#stamp').style.display='grid';clearTimeout(stamp.t);stamp.t=setTimeout(()=>$('#stamp').style.display='none',2300)}
-const SD={on:1,vol:60,st:'hoja'};try{Object.assign(SD,JSON.parse(localStorage.getItem('rlsnd')||'{}'))}catch(e){}
-const PR={hoja:[.8,900,3800,1,0],rapida:[.4,2200,6500,1.2,0],cuaderno:[.9,700,3000,1,1]};
-function snd(){if(!SD.on)return;try{const A=snd.c=snd.c||new(window.AudioContext||window.webkitAudioContext)(),t=A.currentTime,p=PR[SD.st]||PR.hoja,n=Math.floor(A.sampleRate*p[0]),b=A.createBuffer(1,n,A.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);const s=A.createBufferSource();s.buffer=b;const f=A.createBiquadFilter();f.type='bandpass';f.Q.value=.8;f.frequency.setValueAtTime(p[1],t);f.frequency.exponentialRampToValueAtTime(p[2],t+p[0]);const g=A.createGain(),v=SD.vol/100;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v*p[3],t+.06);g.gain.exponentialRampToValueAtTime(.001,t+p[0]);s.connect(f);f.connect(g);g.connect(A.destination);s.start(t);
-if(p[4]){const o=A.createOscillator(),h=A.createGain();o.frequency.setValueAtTime(130,t+.5);o.frequency.exponentialRampToValueAtTime(45,t+.7);h.gain.setValueAtTime(0,t);h.gain.setValueAtTime(v*.6,t+.5);h.gain.exponentialRampToValueAtTime(.001,t+.7);o.connect(h);h.connect(A.destination);o.start(t+.5);o.stop(t+.75)}}catch(e){}}
-$('#son').checked=!!SD.on;$('#svo').value=SD.vol;$('#sty').value=SD.st;const sv=()=>{try{localStorage.setItem('rlsnd',JSON.stringify(SD))}catch(e){}};
-$('#sb2').onclick=()=>$('#sp').hidden=!$('#sp').hidden;$('#son').onchange=()=>{SD.on=$('#son').checked?1:0;sv()};$('#svo').oninput=()=>{SD.vol=+$('#svo').value;sv()};$('#sty').onchange=()=>{SD.st=$('#sty').value;sv()};$('#spb').onclick=snd;
-function flipOld(fn,host){host=host||$('#pg');const par=host.parentElement,w=host.offsetWidth,h=host.offsetHeight,L=host.offsetLeft,T=host.offsetTop,cl=host.cloneNode(true);
-cl.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));cl.removeAttribute('id');cl.hidden=false;
-Object.assign(cl.style,{position:'absolute',left:L+'px',top:T+'px',width:w+'px',height:h+'px',margin:0,transformOrigin:'left center',pointerEvents:'none',zIndex:5,backfaceVisibility:'hidden'});
-const sh=document.createElement('div');sh.style.cssText='position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.05),rgba(0,0,0,.5));opacity:0;pointer-events:none;border-radius:inherit';cl.appendChild(sh);
-const cs=document.createElement('div');cs.style.cssText=`position:absolute;left:${L}px;top:${T}px;width:${w}px;height:${h}px;background:linear-gradient(90deg,rgba(0,0,0,.55),transparent 75%);pointer-events:none;z-index:4;border-radius:0 10px 10px 0`;
-par.append(cs,cl);par.style.perspective='2600px';snd();fn();scrollTo(0,0);const D=950;
-sh.animate([{opacity:0},{opacity:1}],{duration:D,easing:'ease-in',fill:'forwards'});cs.animate([{opacity:.9},{opacity:0}],{duration:D,fill:'forwards'});
-cl.animate([{transform:'rotateY(0)'},{transform:'rotateY(-30deg) skewY(2.5deg)',offset:.3},{transform:'rotateY(-75deg) skewY(-4deg)',offset:.7},{transform:'rotateY(-120deg) skewY(0)'}],{duration:D,easing:'cubic-bezier(.55,.05,.35,1)',fill:'forwards'}).onfinish=()=>{cl.remove();cs.remove();par.style.perspective=''}}
-const COL={sTh:'#e0a100',sLd:'#e0a100',sTe:'#2f7de1',sFo:'#e0475b',sEx:'#8b5fd0',sSu:'#2e9e5b'},SC=['#2f7de1','#e0475b','#e0a100','#2e9e5b','#8b5fd0','#e07b1a','#0e9aa7','#d6439b','#5a6fe0','#7aa300'];let cur='sTh';
-function show(id){cur=id;$$('#pg>section').forEach(s=>s.hidden=s.id!=id);$('#tabs').hidden=!/sTe|sFo|sEx|sSu/.test(id);$('#pg').style.setProperty('--c',id=='sTe'?SC[ti]:COL[id]);$$('.tab').forEach(t=>t.classList.toggle('on',t.dataset.s==id))}
-$('#go').onclick=()=>flip(()=>{$('#cv').hidden=1;$('#bk').hidden=0;show('sTh')},$('#cv'));
-$('#bak').onclick=()=>{if(cur=='sTh')flip(()=>{$('#bk').hidden=1;$('#cv').hidden=0},$('#bk'),-1,$('#cv'));else flip(()=>show('sTh'),0,-1)};
-$('#t1').onclick=()=>{flip(()=>{show('sLd');let w=0;const iv=setInterval(()=>{w+=8;$('#lb').style.width=w+'%';if(w>=100){clearInterval(iv);flip(()=>show('sTe'))}},90)})};
-$$('.tab').forEach(t=>t.onclick=()=>flip(()=>show(t.dataset.s),0,['sTe','sFo','sEx','sSu'].indexOf(t.dataset.s)<['sTe','sFo','sEx','sSu'].indexOf(cur)?-1:1));
-let z=1;const zs=()=>{$('#bk').style.setProperty('--z',z);$('#zp').textContent=Math.round(z*100)+'%'};$('#zm').onclick=()=>{z=Math.max(.7,+(z-.1).toFixed(1));zs()};$('#zM').onclick=()=>{z=Math.min(2,+(z+.1).toFixed(1));zs()};$('#zp').onclick=()=>{z=1;zs()};
-/* teoría */
-let ti=0;
-function th(){$('#ix').innerHTML=S.map((s,i)=>`<button class="pil${i==ti?' on':''}" title="${s}" data-i="${i}">${i+1}</button>`).join('');
-$('#thc').innerHTML=`<h2>${ti+1}. ${S[ti]}</h2>`+F.filter(f=>f[0]==ti).map(f=>`<p class="df"><mark>${f[1]}</mark> — ${f[2]}.</p>`).join('')+(X[ti]?`<p class="nt">✎ ${X[ti]}</p>`:'')+(TX[ti]||'');
-$('#pg').style.setProperty('--c',SC[ti]);$$('#ix .pil').forEach(b=>b.onclick=()=>flip(()=>{ti=+b.dataset.i;th()},0,+b.dataset.i<ti?-1:1))}
-$('#pv').onclick=()=>flip(()=>{ti=(ti+9)%10;th()},0,-1);$('#nx').onclick=()=>flip(()=>{ti=(ti+1)%10;th()});th();
-/* generador */
-const mul=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
-function gen(n,seed){const R=mul(seed),ri=k=>Math.floor(R()*k),sh=a=>{a=[...a];for(let i=a.length;i>1;i--){const j=ri(i);[a[i-1],a[j]]=[a[j],a[i-1]]}return a};
-const c={vf:Math.round(n*.25),mu:Math.min(7,Math.round(n*.1)),ma:Math.round(n*.1),bi:Math.round(n*.12)};c.mc=n-c.vf-c.mu-c.ma-c.bi;
-const pool=sh(F);let pi=0;const nx=()=>pool[pi++%pool.length],same=f=>sh(F.filter(x=>x[0]==f[0]&&x!=f)),o={vf:[],mc:[],mu:[],ma:[],bi:[]};
-for(let i=0;i<c.vf;i++){const f=nx(),t=R()<.5,g=t?f:same(f)[0];o.vf.push({k:'vf',q:`${f[1]}: ${g[2]}.`,a:t,h:'Repasa: '+S[f[0]],x:`${f[1]}: ${f[2]}.`})}
-for(let i=0;i<c.mc;i++){const f=nx(),p=sh([f[1],...same(f).slice(0,3).map(x=>x[1])]);o.mc.push({k:'mc',q:`¿A qué corresponde? «${f[2]}»`,o:p,a:p.indexOf(f[1]),h:'Repasa: '+S[f[0]],x:`${f[1]}: ${f[2]}.`})}
-sh(M).slice(0,c.mu).forEach(g=>{const gd=sh(g[1].split(',')).slice(0,2+ri(2)),bd=sh(g[2].split(',')).slice(0,2),p=sh([...gd,...bd]);o.mu.push({k:'mu',q:g[0]+' (marca todas):',o:p,a:p.map((t,i)=>gd.includes(t)?i:-1).filter(i=>i>=0),h:'Pueden ser 2 o 3 correctas',x:'Correctas: '+gd.join(', ')})});
-sh([0,1,2,3,4,5,6,7,8,9]).slice(0,c.ma).forEach(s=>{const fs=sh(F.filter(x=>x[0]==s)).slice(0,4),r=sh(fs.map(x=>x[2]));o.ma.push({k:'ma',q:`Une cada concepto con su definición (${S[s]}):`,l:fs.map(x=>x[1]),r,a:fs.map(x=>r.indexOf(x[2])),p:[],s:null,h:'Repasa: '+S[s],x:fs.map(x=>x[1]+' → '+x[2]).join(' · ')})});
-for(let i=0;i<c.bi;i++){const v=10+ri(246),b=v.toString(2).padStart(8,'0'),d=ri(2),ds=new Set([d?String(v):b]);
-while(ds.size<4){if(d)ds.add(String(Math.max(1,v+ri(21)-10)));else{const k=ri(8);ds.add(b.slice(0,k)+(b[k]=='1'?0:1)+b.slice(k+1))}}
-const p=sh([...ds]);o.bi.push({k:'mc',q:d?`¿Cuánto vale ${b} en decimal?`:`Pasa a binario el número ${v}:`,o:p,a:p.indexOf(d?String(v):b),h:'Pesos: 128·64·32·16·8·4·2·1',x:`${b} = ${v}`})}
-return[['Verdadero o falso',o.vf],['Elige una respuesta',o.mc],['Varias respuestas',o.mu],['Unir con colores',o.ma],['Cálculo binario',o.bi]].filter(s=>s[1].length).map(s=>{s[1].forEach(q=>q.pt=PTS[s[0]]);return s})}
-/* formulario */
-const col=i=>`hsl(${i*90+10} 70% 45%)`,L4='ABCD';
-function mr(e,q){const w=$('.ops',e);w.innerHTML=`<div class="mt"><div>${q.l.map((t,i)=>`<button data-i="${i}" style="${q.p[i]!=null||q.s==i?`border-color:${col(i)};background:${col(i)}33`:''}">${t}${q.p[i]!=null?' → '+L4[q.p[i]]:q.s==i?' …':''}</button>`).join('')}</div><div>${q.r.map((t,j)=>{const i=q.p.indexOf(j);return`<button data-j="${j}" style="${i>=0?`border-color:${col(i)};background:${col(i)}33`:''}"><b>${L4[j]}</b> ${t}</button>`}).join('')}</div></div>`;
-if(q.done)return;$$('[data-i]',w).forEach(b=>b.onclick=()=>{q.s=+b.dataset.i;q.p[q.s]=null;mr(e,q)});$$('[data-j]',w).forEach(b=>b.onclick=()=>{if(q.s==null)return;const j=+b.dataset.j;q.p=q.p.map(v=>v===j?null:v);q.p[q.s]=j;q.s=null;mr(e,q)})}
-const ans=(q,e)=>q.k=='ma'?q.l.every((_,i)=>q.p[i]!=null):!!$('input:checked',e);
-const okq=(q,e)=>q.k=='ma'?q.l.every((_,i)=>q.p[i]===q.a[i]):q.k=='mu'?$$('input:checked',e).map(x=>+x.value).sort().join()==q.a.join():(c=>!!c&&c.value==String(q.a))($('input:checked',e));
-const MS=[["Sigue practicando: cada fallo enseña. Repasa la teoría y vuelve a intentarlo 💪","Aún no, pero has dado el primer paso. Lee los apartados de las tachas rojas.","Ánimo: con otra ronda subirás la nota seguro."],["Vas por buen camino. Pule los fallos y estarás listo.","Aprobado raspado: repasa lo que tachó el boli rojo.","Buen intento, te falta poco para dominarlo."],["Dominas casi todo el tema. Solo unos detalles por pulir.","¡Muy bien! Tu cuaderno tiene más ticks que tachas.","¡Gran trabajo! Ya casi lo tienes perfecto."],["Nivel matrícula de honor. ¡Increíble!","¡Perfecto! El Tema 1 no tiene secretos para ti.","¡Examen bordado! Puedes presumir de cuaderno."]];
-const TT=['¡Ánimo!','¡Bien!','¡Estupendo!','¡IMPRESIONANTE!'],TC=['#d1384f','#e0a100','#2f7de1','#1b8f4c'];let skip=0;
-function init(m,el){const ex=m=='e';el.innerHTML=`<h2>${ex?'🎓 Examen':'📝 Formulario de práctica'}</h2><p>${ex?'Sin pistas, con cronómetro y puntos por ejercicio (V/F 1 · Test 1,5 · Varias 2 · Unir 3 · Binario 2). Si se acaba el tiempo sin entregar, la nota es 0. Preguntas al azar según la semilla.':'Con pistas 💡 y puntos por ejercicio (V/F 1 · Test 1,5 · Varias 2 · Unir 3 · Binario 2). Preguntas al azar según la semilla.'}</p><div class="row">Preguntas: <select class="n">${[10,20,30,40,50].map(v=>`<option${v==(ex?50:20)?' selected':''}>${v}</option>`).join('')}</select> ${ex?'Tiempo: <select class="tm"><option value="15">15 min</option><option value="20" selected>20 min</option></select> ':''}Semilla: <input type="number" class="sd"> <button class="btn s nw">🎲 Nueva</button> <button class="btn go">${ex?'Empezar ⏱':'Generar ✎'}</button></div><div class="fm"></div>`;
-const sd=$('.sd',el),nw=()=>sd.value=100000+Math.floor(Math.random()*900000);nw();$('.nw',el).onclick=nw;
-$('.go',el).onclick=()=>{const secs=gen(+$('.n',el).value,+sd.value||1),Q=secs.flatMap(s=>s[1]);let k=0,armed=0,done=0;
-$('.fm',el).innerHTML=`<p>Nombre: ________ · Semilla ${sd.value} · ${Q.length} preguntas</p>`+secs.map(s=>`<div class="sec"><h3>Sección · ${s[0]}</h3>`+s[1].map(q=>{const i=k++,b=q.k=='vf'?['Verdadero','Falso'].map((t,j)=>`<label><input type="radio" name="${m}${i}" value="${j==0}"> ${t}</label>`).join(''):q.k=='mc'?q.o.map((t,j)=>`<label><input type="radio" name="${m}${i}" value="${j}"> ${t}</label>`).join(''):q.k=='mu'?q.o.map((t,j)=>`<label><input type="checkbox" value="${j}"> ${t}</label>`).join(''):'';
-return`<div class="qq"><span class="mk"></span><div class="qb"><b>${i+1}. ${q.q}</b> <small class="mp">(${q.pt} pt)</small>${ex?'':' <button class="hb">💡</button><i class="hn"></i>'}<div class="ops">${b}</div><div class="ex">✎ ${q.x}</div></div></div>`}).join('')+'</div>').join('')+`<button class="btn sub">${ex?'Entregar ✔':'Corregir ✔'}</button><button class="btn s clr">Reiniciar ↺</button><div class="rs"></div>`;
-const E=$$('.qq',el);Q.forEach((q,i)=>{if(q.k=='ma'){q.p=[];q.s=null;q.done=0;mr(E[i],q)}if(!ex)$('.hb',E[i]).onclick=()=>$('.hn',E[i]).textContent=' '+q.h});
-$('.clr',el).onclick=()=>$('.go',el).onclick();
-if(ex){clearInterval(el._t);const T=$('#tmr');let left=(+$('.tm',el).value)*60;const tk=()=>{T.textContent='⏱ '+Math.floor(left/60)+':'+String(left%60).padStart(2,'0');T.style.background=left<60?'var(--bad)':left<300?'#e0a100':'#2e9e5b'};T.hidden=0;tk();
-el._t=setInterval(()=>{if(done){clearInterval(el._t);T.hidden=1;return}left--;tk();if(left<=0){clearInterval(el._t);T.hidden=1;done=1;$$('.qb input,.qb [data-i],.qb [data-j]',el).forEach(x=>x.disabled=1);E.forEach((e,i)=>{const mk=$('.mk',e);mk.innerHTML=MK(0);mk.className='mk r';e.classList.add('done','ko');const pm=$('.mp',e);if(pm)pm.outerHTML=`<span class="pt">0 / ${Q[i].pt}</span>`});$('.rs',el).innerHTML=`<h2 style="color:var(--bad)">⏰ ¡Tiempo agotado!</h2><b>Examen no entregado a tiempo → Nota 0.00 / 10 · F</b><p>Gestiona mejor el tiempo la próxima vez. Repasa la teoría y vuelve a intentarlo.</p>`;$('.rs',el).scrollIntoView({behavior:'smooth'});stamp('NOTA 0 · F','#d1384f')}},1000)}
-$('.sub',el).onclick=async()=>{if(done)return;const un=Q.filter((q,i)=>!ans(q,E[i])).length;if(un&&!armed){armed=1;$('.rs',el).innerHTML=`<p style="color:var(--bad)">Te faltan ${un} sin responder (contarán como fallo). Pulsa otra vez para ${ex?'entregar':'corregir'}.</p>`;return}
-done=1;skip=0;$('#skip').hidden=0;$('#pen').style.display='block';const tl={};let okc=0,earned=0;const total=Q.reduce((a,q)=>a+q.pt,0);$$('.qb input,.qb [data-i],.qb [data-j]',el).forEach(x=>x.disabled=1);
-for(let i=0;i<Q.length;i++){const q=Q[i],e=E[i],pe=pts(q,e),g=pe>=q.pt-1e-9,mk=$('.mk',e);q.done=1;
-if(!skip){e.scrollIntoView({block:'center'});const r=mk.getBoundingClientRect();$('#pen').style.transform=`translate(${r.left+8}px,${r.top+22}px)`;await sl(240)}
-mk.innerHTML=MK(g);mk.className='mk '+(g?'g':'r');const pm=$('.mp',e);if(pm)pm.outerHTML=`<span class="pt">${+pe.toFixed(2)} / ${q.pt}</span>`;e.classList.add('done',g?'ok':'ko');if(g)okc++;earned+=pe;
-$$('label',e).forEach((l,j)=>{const v=$('input',l).value,c=l.querySelector('input').checked,r=q.k=='vf'?v==String(q.a):q.k=='mu'?q.a.includes(+v):+v==q.a;if(r)l.classList.add('right');else if(c)l.classList.add('wrong')});
-if(q.k=='ma')mr(e,q);const t=tl[q.k]=tl[q.k]||[0,0];t[1]+=q.pt;t[0]+=pe;if(!skip)await sl(110)}
-$('#pen').style.display='none';$('#skip').hidden=1;const p=earned/total*100,ti=p>=90?3:p>=70?2:p>=50?1:0,nm={vf:'Verdadero/falso',mc:'Test y binario',mu:'Varias respuestas',ma:'Unir'};
-let best='';try{const kk='rl1'+m,b=+localStorage.getItem(kk)||0;if(p>b)localStorage.setItem(kk,p);best=b?` · Mejor marca: ${Math.max(b,Math.round(p))}%`:''}catch(e){}
-$('.rs',el).innerHTML=`<h2 style="color:${TC[ti]}">${TT[ti]}</h2><b>${okc} / ${Q.length} correctas · ${earned.toFixed(2)} / ${total} puntos</b><br><span class="gr">Nota ${(earned/total*10).toFixed(2)} / 10 · ${LG(earned/total*10)}</span>${best}<br><small>Escala: A+ ≥9.7 · A ≥9.3 · A- ≥9.0 · B+ ≥8.7 · B ≥8.3 · B- ≥8.0 · C+ ≥7.7 · C ≥7.3 · C- ≥7.0 · D ≥6.0 · F &lt;6.0</small><p>${MS[ti][Math.floor(Math.random()*3)]}</p><p>${Object.keys(tl).map(k=>nm[k]+': '+tl[k][0].toFixed(1)+'/'+tl[k][1]).join(' · ')}</p>`;$('.rs',el).scrollIntoView({behavior:'smooth'});stamp(TT[ti]+' '+LG(earned/total*10),TC[ti])}}}
-const PTS={'Verdadero o falso':1,'Elige una respuesta':1.5,'Varias respuestas':2,'Unir con colores':3,'Cálculo binario':2};
-const pts=(q,e)=>{if(q.k=='ma')return q.pt*q.l.filter((_,i)=>q.p[i]===q.a[i]).length/q.l.length;if(q.k=='mu'){const c=$$('input:checked',e).map(x=>+x.value),h=c.filter(v=>q.a.includes(v)).length;return q.pt*Math.max(0,h-(c.length-h))/q.a.length}return okq(q,e)?q.pt:0};
+
+
+const RL1={t:'Caracterización de las redes locales',S,F,X,TXa:TX,M,bw:1.6,Q:QL(`t|¿Qué dispositivo envía las tramas solo al puerto del destinatario?|Switch|Hub|Repetidor|Antena|El switch usa las direcciones MAC.
+t|¿Cuántas capas tiene el modelo OSI?|7|4|5|6|OSI tiene 7 capas.
+t|¿Qué protocolo de transporte es fiable y retransmite segmentos perdidos?|TCP|UDP|IP|ARP|TCP controla el orden y la retransmisión.
+t|¿Qué estándar IEEE corresponde a Wi-Fi?|802.11|802.3|802.15|802.1|802.11 = Wi-Fi; 802.3 = Ethernet.
+t|¿Qué PDU se utiliza en la capa de enlace de datos?|Tramas|Paquetes|Segmentos|Bits|Capa 2: tramas.
+t|¿Cuál de estos rangos es de direcciones IP privadas?|192.168.0.0/16|8.8.8.0/24|200.10.0.0/16|11.0.0.0/8|El bloque 192.168.0.0/16 es privado.
+t|¿Qué topología conecta todos los nodos a un nodo central?|Estrella|Bus|Anillo|Malla|El nodo central es un switch o un hub.
+t|¿Qué sistema de numeración tiene base 16?|Hexadecimal|Octal|Binario|Decimal|Usa los símbolos 0-9 y A-F.
+v|Un hub reenvía las tramas a todos los puertos.|1|No distingue destinatarios.
+v|Un router trabaja en la capa de enlace del modelo OSI.|0|El router trabaja en la capa 3 (red).
+v|Una red pública siempre es gratuita.|0|Pública no significa gratuita.
+v|El broadcast envía el mensaje a todos los nodos de la red.|1|Unicast: uno. Multicast: un grupo.
+v|Las direcciones MAC se usan en la capa de enlace.|1|Capa 2.
+h|El protocolo ___ asigna direcciones IP automáticamente.|DHCP|DHCP asigna la configuración de red.
+h|La conmutación de ___ divide el mensaje en partes que pueden seguir caminos distintos.|paquetes|Es la base de Internet.
+h|Una red de ámbito metropolitano se denomina ___.|MAN|Metropolitan Area Network.
+h|En la capa de ___ se encuentran los protocolos HTTP, FTP y DNS.|aplicacion|Es la capa 7.
+h|Un byte tiene ___ bits.|8;ocho|1 byte = 8 bits.`)};
+
+const SO=[
+{t:'Introducción a los sistemas operativos',S:['Concepto y funciones','Componentes: kernel y shell','Tipos de sistemas operativos','Unidades de información'],
+F:P(`0|Sistema operativo|Software que gestiona los recursos del hardware y ofrece servicios a programas y usuarios
+0|Hardware|Conjunto de componentes físicos del equipo
+0|Software|Conjunto de programas y datos que hacen funcionar el equipo
+0|Gestión de procesos|Función del SO que reparte la CPU entre los programas en ejecución
+0|Gestión de memoria|Función del SO que asigna y libera la memoria RAM de cada proceso
+0|Gestión de archivos|Función del SO que organiza el almacenamiento en carpetas y ficheros
+0|Gestión de dispositivos|Función del SO que controla la entrada y salida mediante controladores
+1|Kernel (núcleo)|Parte central del SO que se comunica directamente con el hardware
+1|Shell|Intérprete que permite al usuario dar órdenes al SO, en modo texto o gráfico
+1|Controlador (driver)|Programa que permite al SO comunicarse con un dispositivo concreto
+1|Interfaz gráfica (GUI)|Entorno de ventanas, iconos y menús para manejar el equipo
+1|Línea de comandos (CLI)|Interfaz en la que se escriben órdenes en modo texto
+2|Monousuario|SO que solo permite trabajar a un usuario a la vez
+2|Multiusuario|SO que permite varias cuentas de usuario trabajando a la vez
+2|Multitarea|SO capaz de ejecutar varios programas aparentemente a la vez
+2|Software libre|Software que se puede usar, estudiar, copiar y modificar, como Linux
+2|Software propietario|Software con licencia restrictiva, como Windows
+3|Bit|Unidad mínima de información: un 0 o un 1
+3|Byte|Conjunto de 8 bits
+3|Kilobyte (KB)|1024 bytes
+3|Megabyte (MB)|1024 kilobytes
+3|Gigabyte (GB)|1024 megabytes`),
+X:{3:'Cada salto de unidad (KB, MB, GB, TB) multiplica por 1024 en el sistema clásico.'},
+R:fl(['Usuario','Aplicaciones','Shell','Kernel','Hardware'])+'<p class="nt">El sistema operativo es el intermediario entre el hardware y los programas. El kernel gestiona los recursos y el shell recibe las órdenes del usuario.</p>',
+M:[['Funciones de un sistema operativo','Gestión de procesos,Gestión de memoria,Gestión de archivos,Gestión de dispositivos','Diseño gráfico,Edición de vídeo,Hojas de cálculo'],['Sistemas operativos','Windows,Linux,macOS,Android','Excel,Chrome,Photoshop,VirtualBox']],
+Q:QL(`t|¿Qué parte del sistema operativo se comunica directamente con el hardware?|El kernel|El shell|La interfaz gráfica|El navegador|El kernel o núcleo gestiona el hardware.
+t|¿Cuál de estos sistemas operativos es software libre?|Linux|Windows|macOS|iOS|Linux es libre; los otros son propietarios.
+t|¿Qué es un controlador (driver)?|Un programa que permite al SO usar un dispositivo|Un tipo de virus|Un formato de archivo|Una partición|El driver traduce las órdenes del SO al dispositivo.
+v|Un sistema operativo multiusuario permite varias cuentas a la vez.|1|Es la definición de multiusuario.
+v|El shell es el encargado de gestionar la memoria RAM.|0|La memoria la gestiona el kernel.
+v|1 KB equivale a 1024 bytes en el sistema clásico.|1|Se usa la base 1024 (2 elevado a 10).
+h|El ___ es el núcleo del sistema operativo.|kernel;nucleo|El kernel es el núcleo.
+h|Un byte está formado por ___ bits.|8;ocho|1 byte = 8 bits.`)},
+{t:'Instalación de sistemas operativos',S:['Preparación y requisitos','Particionado y arranque','Instalación y puesta en marcha','Virtualización'],
+F:P(`0|Requisitos mínimos|CPU, RAM y espacio en disco que necesita un SO para instalarse y funcionar
+0|Edición|Variante de un SO con distintas funciones y licencia, como Home o Pro
+0|Licencia|Contrato que fija cómo se puede usar y distribuir un software
+0|Imagen ISO|Archivo que contiene una copia exacta de un disco de instalación
+0|Medio de instalación|DVD o USB de arranque que contiene el instalador del SO
+1|BIOS|Firmware clásico que inicia el hardware y busca el sistema de arranque
+1|UEFI|Firmware moderno que sustituye a la BIOS y admite discos GPT y arranque seguro
+1|MBR|Esquema de particiones clásico: hasta 4 primarias y discos de 2 TB
+1|GPT|Esquema de particiones moderno para discos grandes y muchas particiones
+1|Partición|División lógica de un disco que se puede formatear por separado
+1|Gestor de arranque|Programa que carga el SO al encender el equipo, como GRUB
+1|Partición swap|Partición de Linux usada como memoria virtual
+2|Formateo|Preparar una partición con un sistema de archivos
+2|Arranque dual|Tener dos SO instalados en el mismo equipo y elegir al arrancar
+2|Actualización|Instalación de nuevas versiones y parches de seguridad
+2|Controladores|Programas que se instalan tras el SO para que funcione el hardware
+3|Máquina virtual|Equipo simulado por software que ejecuta su propio SO
+3|Hipervisor|Software que crea y gestiona máquinas virtuales, como VirtualBox o VMware
+3|Anfitrión (host)|Equipo físico que ejecuta las máquinas virtuales
+3|Invitado (guest)|SO que se ejecuta dentro de la máquina virtual
+3|Instantánea (snapshot)|Copia del estado de una máquina virtual para poder volver atrás`),
+X:{1:'MBR + BIOS (clásico) frente a GPT + UEFI (moderno).'},
+R:tb(['Esquema','Particiones','Disco','Firmware'],[['MBR','4 primarias (o 3 + 1 extendida)','Hasta 2 TB','BIOS'],['GPT','Hasta 128 en Windows','Más de 2 TB','UEFI']])+fl(['Preparar medio','Arrancar','Particionar','Formatear','Instalar','Configurar']),
+M:[['Esquemas de particiones','MBR,GPT','NTFS,ext4,FAT32'],['Software de virtualización','VirtualBox,VMware,Hyper-V','Photoshop,GRUB,Excel']],
+Q:QL(`t|¿Qué esquema de particiones permite discos de más de 2 TB?|GPT|MBR|FAT32|ext4|GPT admite discos grandes.
+t|¿Qué es una imagen ISO?|Una copia exacta de un disco de instalación|Un antivirus|Un tipo de RAM|Un controlador|Se usa para crear medios de instalación.
+t|¿Qué programa crea y gestiona máquinas virtuales?|Hipervisor|Kernel|Shell|Driver|VirtualBox y VMware son hipervisores.
+v|UEFI es el firmware moderno que sustituye a la BIOS.|1|Admite GPT y arranque seguro.
+v|El SO invitado es el que está instalado en el equipo físico.|0|El invitado corre dentro de la máquina virtual; el físico es el anfitrión.
+v|La partición swap de Linux se usa como memoria virtual.|1|Es el espacio de intercambio.
+h|Una ___ guarda el estado de una máquina virtual para poder volver atrás.|instantanea;snapshot|Snapshot = instantánea.
+h|El gestor de arranque más habitual en Linux es ___.|GRUB|GRUB carga el SO al arrancar.`)},
+{t:'Usuarios, grupos y permisos',S:['Cuentas de usuario','Grupos','Permisos y privilegios','Seguridad de las cuentas'],
+F:P(`0|Cuenta de usuario|Identidad con nombre y contraseña que permite iniciar sesión
+0|Perfil de usuario|Conjunto de datos y configuración personal de cada usuario
+0|Administrador|Usuario con permisos para cambiar la configuración del sistema
+0|root|Superusuario de Linux con control total del sistema
+0|Usuario estándar|Cuenta con permisos limitados que no puede cambiar el sistema
+1|Grupo|Conjunto de usuarios al que se asignan permisos de forma conjunta
+1|UID|Identificador numérico de usuario en Linux
+1|GID|Identificador numérico de grupo en Linux
+1|/etc/passwd|Fichero de Linux con la lista de cuentas de usuario
+1|/etc/group|Fichero de Linux con la lista de grupos
+2|Permiso de lectura (r)|Permite ver el contenido de un archivo o listar una carpeta
+2|Permiso de escritura (w)|Permite modificar un archivo o crear y borrar dentro de una carpeta
+2|Permiso de ejecución (x)|Permite ejecutar un archivo o entrar en una carpeta
+2|chmod|Comando de Linux para cambiar los permisos
+2|chown|Comando de Linux para cambiar el propietario
+2|UAC|Control de cuentas de usuario de Windows: pide confirmación en tareas administrativas
+3|Contraseña segura|Contraseña larga con mayúsculas, minúsculas, números y símbolos
+3|Política de contraseñas|Reglas del sistema sobre longitud, caducidad y complejidad
+3|Bloqueo de cuenta|Desactivación tras varios intentos fallidos de inicio de sesión
+3|Autenticación|Proceso que comprueba la identidad de un usuario`),
+X:{2:'Valores numéricos: r = 4, w = 2, x = 1. chmod 755 = rwxr-xr-x.'},
+R:tb(['Valor','Permiso','Ejemplo'],[['4','r (lectura)','chmod 4'],['2','w (escritura)','chmod 2'],['1','x (ejecución)','chmod 1']])+'<p class="nt">Ejemplo: chmod 755 = rwx r-x r-x (propietario 7, grupo 5, otros 5). 7 = 4+2+1 y 5 = 4+1.</p>',
+M:[['Permisos básicos de Linux','Lectura,Escritura,Ejecución','Instalación,Formateo,Compilación'],['Comandos de gestión de usuarios en Linux','useradd,usermod,passwd,userdel','chmod,ping,top']],
+Q:QL(`t|¿Qué valor numérico tiene el permiso de lectura en Linux?|4|2|1|7|r = 4, w = 2, x = 1.
+t|¿Qué comando cambia los permisos de un archivo en Linux?|chmod|chown|passwd|useradd|chmod cambia permisos; chown el propietario.
+t|¿Qué es el usuario root?|El superusuario de Linux|Un usuario sin permisos|Un invitado|Un grupo|Tiene control total del sistema.
+v|chmod 755 da todos los permisos al propietario y lectura y ejecución al resto.|1|7 = rwx y 5 = r-x.
+v|Una contraseña segura debe ser corta y fácil de recordar.|0|Debe ser larga y compleja.
+v|Un grupo permite asignar permisos a varios usuarios a la vez.|1|Simplifica la administración.
+h|El fichero ___ de Linux contiene la lista de cuentas de usuario (escribe la ruta).|/etc/passwd|Ahí se listan las cuentas.
+h|El valor numérico del permiso de escritura (w) es ___.|2;dos|r = 4, w = 2, x = 1.`)},
+{t:'Sistema de archivos',S:['Conceptos básicos','Sistemas de archivos','Rutas y enlaces','Organización en Linux y Windows'],
+F:P(`0|Archivo|Conjunto de datos con un nombre guardado en un dispositivo
+0|Directorio (carpeta)|Contenedor que organiza archivos y otras carpetas
+0|Extensión|Parte final del nombre que indica el tipo de archivo, como .txt o .jpg
+0|Metadatos|Datos sobre un archivo: tamaño, fecha, propietario y permisos
+0|Sistema de archivos|Método que usa el SO para organizar y localizar los datos en un disco
+1|FAT32|Sistema de archivos sencillo y compatible, con ficheros de hasta 4 GB
+1|exFAT|Sistema pensado para memorias USB y tarjetas, sin el límite de 4 GB
+1|NTFS|Sistema de archivos de Windows con permisos, cifrado, cuotas y registro de cambios
+1|ext4|Sistema de archivos habitual de Linux con registro por diario
+1|Journaling|Registro que evita la corrupción de datos si hay un fallo
+1|Clúster|Unidad mínima de asignación de espacio en un sistema de archivos
+2|Ruta absoluta|Dirección completa de un archivo desde la raíz del sistema
+2|Ruta relativa|Dirección de un archivo a partir del directorio actual
+2|Enlace simbólico|Acceso directo que apunta a otra ruta
+2|Enlace duro|Segundo nombre para los mismos datos en el disco
+3|/home|Carpeta de Linux donde están los archivos personales de los usuarios
+3|/etc|Carpeta de Linux con los ficheros de configuración
+3|Raíz (/)|Directorio superior del que cuelga todo el sistema en Linux
+3|Unidad C:|Unidad principal de Windows donde suele instalarse el sistema
+3|Papelera|Almacén temporal de archivos borrados antes de eliminarlos definitivamente`),
+X:{1:'FAT32: límite de 4 GB por archivo. NTFS (Windows) y ext4 (Linux) son los más completos.'},
+R:tb(['Sistema','SO habitual','Característica'],[['FAT32','Todos','Archivos de hasta 4 GB'],['exFAT','Todos','Sin el límite de 4 GB'],['NTFS','Windows','Permisos, cifrado, cuotas'],['ext4','Linux','Journaling y permisos de Unix']]),
+M:[['Sistemas de archivos','FAT32,NTFS,ext4,exFAT','RAID,DHCP,UEFI,SSD'],['Directorios estándar de Linux','/home,/etc,/bin,/var','Papelera,Escritorio,Mis documentos']],
+Q:QL(`t|¿Qué sistema de archivos limita los ficheros a 4 GB?|FAT32|NTFS|ext4|exFAT|FAT32 no admite archivos mayores de 4 GB.
+t|¿Qué es una ruta absoluta?|La dirección completa desde la raíz|La dirección desde la carpeta actual|Un acceso directo|Un permiso|Empieza en la raíz del sistema.
+t|¿Qué directorio de Linux guarda los archivos personales de los usuarios?|/home|/etc|/bin|/var|/home contiene las carpetas personales.
+v|NTFS es el sistema de archivos habitual de Windows y admite permisos.|1|También cifrado y cuotas.
+v|Un enlace simbólico es una copia completa del archivo.|0|Solo apunta a otra ruta.
+v|El journaling ayuda a evitar la corrupción de datos tras un fallo.|1|Registra los cambios antes de aplicarlos.
+h|El directorio ___ de Linux contiene los ficheros de configuración.|/etc;etc|Ahí está la configuración.
+h|La unidad principal de Windows donde se instala el sistema suele ser la ___.|C;C:|Habitualmente C:.`)},
+{t:'Procesos y servicios',S:['Procesos e hilos','Planificación y memoria','Servicios y demonios','Herramientas de monitorización'],
+F:P(`0|Programa|Archivo con instrucciones guardado en disco
+0|Proceso|Programa en ejecución con su memoria y recursos
+0|PID|Número que identifica un proceso en el sistema
+0|Hilo|Unidad de ejecución dentro de un proceso
+0|Estado de un proceso|Situación del proceso: listo, en ejecución o bloqueado
+1|Planificador|Parte del SO que decide qué proceso usa la CPU
+1|Round Robin|Planificación por turnos iguales de tiempo
+1|Quantum|Tiempo máximo que un proceso usa la CPU de una vez
+1|Memoria virtual|Uso del disco como ampliación de la memoria RAM
+1|Interbloqueo (deadlock)|Situación en la que procesos esperan recursos que tiene otro
+2|Servicio|Programa que se ejecuta en segundo plano sin interfaz
+2|Demonio (daemon)|Nombre de los servicios en Linux
+2|systemd|Sistema de arranque y gestión de servicios habitual en Linux
+2|services.msc|Consola de Windows para administrar servicios
+2|Inicio automático|Servicio configurado para arrancar con el sistema
+3|Administrador de tareas|Herramienta de Windows para ver y finalizar procesos
+3|top|Comando de Linux que muestra los procesos en tiempo real
+3|ps|Comando de Linux que lista los procesos activos
+3|kill|Comando de Linux que envía una señal para finalizar un proceso
+3|Monitor de recursos|Herramienta que muestra el uso de CPU, RAM, disco y red`),
+X:{0:'Programa = archivo en disco. Proceso = programa en ejecución.'},
+R:fl(['Nuevo','Listo','En ejecución','Bloqueado','Terminado'])+'<p class="nt">El planificador mueve los procesos entre estados. Un proceso bloqueado espera un recurso (por ejemplo, una lectura de disco).</p>',
+M:[['Estados de un proceso','Listo,En ejecución,Bloqueado','Compilado,Guardado,Formateado'],['Comandos de procesos en Linux','ps,top,kill,htop','ping,mkdir,chmod']],
+Q:QL(`t|¿Qué es un proceso?|Un programa en ejecución|Un archivo en disco|Una carpeta|Un dispositivo|El programa es el archivo; el proceso, su ejecución.
+t|¿Qué comando de Linux muestra los procesos en tiempo real?|top|ls|cd|cp|top se actualiza continuamente.
+t|¿Qué identifica a un proceso en el sistema?|El PID|El UID|La IP|La MAC|PID = Process ID.
+v|Un servicio se ejecuta en segundo plano sin interfaz.|1|Por ejemplo, el servicio de impresión.
+v|Un interbloqueo ocurre cuando un proceso usa poca memoria.|0|Es cuando varios procesos esperan recursos que tiene otro.
+v|Round Robin reparte la CPU por turnos de igual duración.|1|Cada turno es un quantum.
+h|En Linux, los servicios en segundo plano se llaman ___.|demonios;daemons;daemon;demonio|Daemon = demonio.
+h|El comando ___ envía una señal para finalizar un proceso en Linux.|kill|kill PID.`)},
+{t:'Dispositivos, discos y RAID',S:['Dispositivos y controladores','Discos y particiones','RAID y copias de seguridad','Mantenimiento del disco'],
+F:P(`0|Dispositivo de entrada|Dispositivo que envía datos al equipo, como el teclado o el ratón
+0|Dispositivo de salida|Dispositivo que muestra o reproduce datos, como el monitor o la impresora
+0|Dispositivo de almacenamiento|Dispositivo que guarda datos de forma permanente, como un SSD
+0|Plug and Play|Detección e instalación automática de dispositivos al conectarlos
+0|Administrador de dispositivos|Herramienta de Windows para gestionar el hardware y sus controladores
+1|HDD|Disco duro mecánico con platos magnéticos
+1|SSD|Unidad de estado sólido sin partes móviles, mucho más rápida que un HDD
+1|Disco básico|Disco con particiones tradicionales
+1|Volumen|Partición formateada que el SO puede utilizar
+1|Punto de montaje|Directorio de Linux donde se conecta una partición
+2|RAID 0|Reparte los datos entre discos para ganar velocidad, sin tolerancia a fallos
+2|RAID 1|Espejo: duplica los datos en dos discos
+2|RAID 5|Reparto con paridad: tolera la caída de un disco y exige mínimo tres
+2|Copia de seguridad|Duplicado de los datos para recuperarlos si se pierden
+2|Copia incremental|Copia que solo guarda lo que cambió desde la última copia
+3|Desfragmentación|Reorganización de los archivos de un HDD para acelerar el acceso
+3|Cuota de disco|Límite de espacio que puede usar cada usuario
+3|Comprobación de disco|Búsqueda y reparación de errores del sistema de archivos
+3|Liberador de espacio|Herramienta que elimina archivos temporales innecesarios`),
+X:{2:'RAID 0 = velocidad, RAID 1 = seguridad (espejo), RAID 5 = equilibrio con paridad.'},
+R:tb(['RAID','Discos mínimos','Tolerancia','Característica'],[['0','2','Ninguna','Velocidad'],['1','2','1 disco','Espejo'],['5','3','1 disco','Paridad'],['10','4','1 por espejo','Velocidad y seguridad']]),
+M:[['Niveles RAID','RAID 0,RAID 1,RAID 5,RAID 10','NTFS,GPT,UEFI'],['Dispositivos de almacenamiento','HDD,SSD,Pendrive,Tarjeta SD','Teclado,Ratón,Monitor']],
+Q:QL(`t|¿Qué nivel RAID reparte los datos entre discos sin redundancia?|RAID 0|RAID 1|RAID 5|RAID 6|RAID 0 solo busca velocidad.
+t|¿Qué tipo de disco no tiene partes móviles?|SSD|HDD|Disquete|CD|El SSD usa memoria flash.
+t|¿Qué es la desfragmentación?|Reorganizar los archivos de un HDD|Formatear el disco|Comprimir carpetas|Cifrar datos|Acelera el acceso en discos mecánicos.
+v|RAID 1 tolera el fallo de un disco.|1|Tiene una copia espejo.
+v|Una copia incremental guarda todos los datos cada vez.|0|Solo guarda lo que cambió.
+v|En Linux, una partición se conecta a un directorio llamado punto de montaje.|1|Se hace con mount.
+h|El RAID ___ necesita como mínimo tres discos y usa paridad.|5;cinco|RAID 5.
+h|El programa que permite al SO usar un dispositivo es el ___.|controlador;driver|Driver = controlador.`)},
+{t:'Redes y seguridad básica',S:['Configuración de red','Recursos compartidos','Seguridad del equipo','Copias y recuperación'],
+F:P(`0|Dirección IP|Número que identifica a un equipo en una red
+0|Máscara de subred|Valor que indica qué parte de la IP es red y cuál es equipo
+0|Puerta de enlace|Dirección del router por el que se sale a otras redes
+0|DNS|Servicio que traduce nombres de dominio en direcciones IP
+0|DHCP|Servicio que asigna la configuración de red automáticamente
+0|ping|Comando que comprueba si hay comunicación con otro equipo
+0|ipconfig|Comando de Windows que muestra la configuración de red
+0|ip a|Comando de Linux que muestra las interfaces y sus direcciones
+1|Recurso compartido|Carpeta o impresora accesible desde otros equipos de la red
+1|SMB|Protocolo de Windows para compartir archivos e impresoras
+1|Grupo de trabajo|Red de igual a igual de equipos Windows sin servidor
+1|Samba|Software de Linux para compartir recursos con Windows
+2|Firewall|Cortafuegos que filtra el tráfico de red permitido o bloqueado
+2|Antivirus|Programa que detecta y elimina software malicioso
+2|Malware|Software malicioso: virus, troyanos o ransomware
+2|Actualizaciones de seguridad|Parches que corrigen vulnerabilidades del sistema
+2|Phishing|Engaño para robar datos haciéndose pasar por una entidad de confianza
+3|Punto de restauración|Estado guardado del sistema al que se puede volver
+3|Restaurar|Recuperar datos o el sistema desde una copia de seguridad
+3|Regla 3-2-1|Tres copias, en dos soportes distintos y una fuera del lugar
+3|Copia completa|Copia de todos los datos seleccionados`),
+X:{0:'IP + máscara + puerta de enlace + DNS son los cuatro datos básicos de configuración.'},
+R:fl(['Dirección IP','Máscara','Puerta de enlace','DNS'])+'<p class="nt">Regla 3-2-1: 3 copias, en 2 soportes distintos y 1 fuera del lugar.</p>',
+M:[['Medidas de seguridad','Firewall,Antivirus,Actualizaciones,Copias de seguridad','Ping,Hub,Cable coaxial'],['Datos de configuración IP','Dirección IP,Máscara de subred,Puerta de enlace,DNS','RAID,Swap,Kernel']],
+Q:QL(`t|¿Qué servicio traduce nombres de dominio en direcciones IP?|DNS|DHCP|FTP|SMTP|DNS = Sistema de nombres de dominio.
+t|¿Qué comando comprueba la comunicación con otro equipo?|ping|ipconfig|ls|mount|ping envía paquetes de prueba.
+t|¿Qué regla de copias recomienda tres copias, en dos soportes y una fuera del lugar?|3-2-1|1-2-3|2-2-2|5-4-3|Es la regla 3-2-1.
+v|Un firewall filtra el tráfico de red permitido o bloqueado.|1|Es un cortafuegos.
+v|El phishing es un tipo de memoria RAM.|0|Es un engaño para robar datos.
+v|La puerta de enlace es la dirección del router.|1|Permite salir a otras redes.
+h|El servicio ___ asigna la configuración de red automáticamente.|DHCP|DHCP asigna IP, máscara, puerta de enlace y DNS.
+h|En Windows, el comando ___ muestra la configuración de red.|ipconfig|En Linux se usa ip a.`)},
+{t:'Automatización y scripts',S:['Scripts y lotes','Bash y PowerShell','Programar tareas','Variables y control de flujo'],
+F:P(`0|Script|Archivo de texto con órdenes que el sistema ejecuta en secuencia
+0|Archivo por lotes|Script de Windows con extensión .bat que usa comandos de la consola
+0|Shebang|Primera línea de un script de Linux que indica el intérprete, como #!/bin/bash
+0|Comentario|Texto del script que el intérprete ignora
+1|Bash|Intérprete de comandos más habitual en Linux
+1|PowerShell|Consola y lenguaje de scripts avanzado de Windows
+1|chmod +x|Orden que da permiso de ejecución a un script en Linux
+1|Tubería (pipe)|Envía la salida de un comando a la entrada de otro mediante la barra vertical
+2|cron|Servicio de Linux que ejecuta tareas programadas
+2|crontab|Fichero donde se definen las tareas de cron
+2|Programador de tareas|Herramienta de Windows para programar ejecuciones
+2|Tarea programada|Acción que se ejecuta automáticamente en una fecha u hora
+3|Variable|Nombre que guarda un valor en un script
+3|Condicional (if)|Estructura que ejecuta órdenes solo si se cumple una condición
+3|Bucle (for o while)|Estructura que repite órdenes varias veces
+3|Parámetro|Valor que se pasa al script al ejecutarlo
+3|Código de salida|Número que devuelve un comando: 0 si todo ha ido bien`),
+X:{3:'Código de salida 0 = éxito. Cualquier otro valor indica un error.'},
+R:tb(['Sistema','Intérprete','Extensión'],[['Windows','cmd / PowerShell','.bat / .ps1'],['Linux','Bash','.sh']])+'<pre>#!/bin/bash\necho "Hola mundo"\nfor i in 1 2 3; do echo $i; done</pre>',
+M:[['Intérpretes de comandos','Bash,PowerShell,cmd','NTFS,Samba,GRUB'],['Estructuras de control','if,for,while,case','chmod,ping,cron']],
+Q:QL(`t|¿Qué indica la primera línea #!/bin/bash en un script?|El intérprete que lo ejecuta|Un comentario|El nombre del autor|La versión del script|Es el shebang.
+t|¿Qué servicio de Linux ejecuta tareas programadas?|cron|ssh|grub|samba|Las tareas se definen en crontab.
+t|¿Qué extensión tienen los scripts por lotes de Windows?|.bat|.sh|.exe|.iso|Los scripts de Linux usan .sh.
+v|Un script es un archivo de texto con órdenes que se ejecutan en secuencia.|1|Automatiza tareas repetitivas.
+v|El código de salida 0 indica que el comando terminó con error.|0|El 0 significa éxito.
+v|Un bucle repite órdenes varias veces.|1|Por ejemplo, for y while.
+h|El comando ___ +x da permiso de ejecución a un script en Linux.|chmod|chmod +x script.sh.
+h|Un valor que se pasa al script al ejecutarlo se llama ___.|parametro;argumento|Se lee como $1, $2...`)}
+];
+
+const SUBJ=[
+ {id:'rl',n:'Redes Locales',ic:'🌐',c:'#22d3ee',d:'Comunicación de datos, modelo OSI, topologías, dispositivos y numeración binaria.',T:[RL1,{t:'Tema 2',p:1},{t:'Tema 3',p:1}]},
+ {id:'som',n:'Sistemas Operativos Monopuesto',ic:'🖥️',c:'#a78bfa',d:'Instalación, usuarios, archivos, procesos, discos, redes básicas y scripts. 8 temas completos.',T:SO}
+];
+const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const PTS={'Verdadero o falso':1,'Test':1.5,'Teoría':1.5,'Varias respuestas':2,'Unir':3,'Rellenar huecos':1.5,'Cálculo binario':2};
+const ORD=Object.keys(PTS);
+const KT=[['vf','V/F'],['mc','Test'],['th','Teoría'],['mu','Varias'],['ma','Unir'],['fh','Huecos'],['bi','Binario']];
+const TABS=[['te','📖 Teoría'],['p','✍️ Práctica'],['e','🎯 Examen'],['lab','🧮 Binario'],['su','🗒️ Sucio']];
+const GR=n=>n>=9?{l:'A',t:'Sobresaliente',c:'#34d399'}:n>=7?{l:'B',t:'Notable',c:'#38bdf8'}:n>=6?{l:'C',t:'Aprobado · Bien',c:'#fbbf24'}:n>=5?{l:'C',t:'Aprobado · Suficiente',c:'#fbbf24'}:{l:'F',t:'Suspenso · Insuficiente',c:'#f87171'};
+const MSG={A:['Nivel sobresaliente: dominas el tema.','¡Examen bordado! Pasa al siguiente tema.'],B:['Muy buen resultado. Repasa los fallos y llegarás al sobresaliente.','Notable: te faltan solo unos detalles.'],C:['Aprobado. Repasa la teoría de los apartados que has fallado.','Has aprobado, pero aún puedes mejorar bastante.'],F:['Suspenso: lee la teoría y vuelve a intentarlo con otra ronda.','Todavía no: usa la práctica con pistas y repite el examen.']};
+let timer=null;const app=$('#app');
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
+const bst=(si,ti,m)=>{const v=parseFloat(ls.g(`cd.${si}.${ti}.${m}`));return isNaN(v)?null:v};
+
+/* ---------- generador de preguntas (aleatorio) ---------- */
+function binQ(ri,sh){const v=10+ri(246),b=v.toString(2).padStart(8,'0'),t=ri(10),H=v.toString(16).toUpperCase(),h='Pesos: 128 · 64 · 32 · 16 · 8 · 4 · 2 · 1',
+ F=(q,chk,disp,x,ph)=>({k:'fh',s:'Cálculo binario',q,chk,disp,x,h,ph:ph||'resultado'});
+ if(t<2){const d=t==1,ds=new Set([d?String(v):b]);while(ds.size<4){if(d)ds.add(String(Math.max(1,v+ri(21)-10)));else{const k=ri(8);ds.add(b.slice(0,k)+(b[k]=='1'?0:1)+b.slice(k+1))}}const p=sh([...ds]);return{k:'mc',s:'Cálculo binario',q:d?`¿Cuánto vale ${b} en decimal?`:`Pasa a binario el número ${v}:`,o:p,a:p.indexOf(d?String(v):b),h,x:`${b} = ${v}`}}
+ if(t==2){const a=5+ri(90),c=5+ri(90);return F(`${a.toString(2)} + ${c.toString(2)} = ___ (en binario)`,s=>/^[01]+$/.test(s)&&parseInt(s,2)===a+c,(a+c).toString(2),`${a} + ${c} = ${a+c} = ${(a+c).toString(2)}`)}
+ if(t==3)return F(`${b} (binario) = ___ (hexadecimal)`,s=>/^[0-9a-f]+$/i.test(s)&&parseInt(s,16)===v,H,`${b} = ${v} = ${H}`);
+ if(t==4)return F(`${H} (hexadecimal) = ___ (binario)`,s=>/^[01]+$/.test(s)&&parseInt(s,2)===v,b,`${H} = ${v} = ${b}`);
+ if(t==5)return F(`${v} (decimal) = ___ (hexadecimal)`,s=>/^[0-9a-f]+$/i.test(s)&&parseInt(s,16)===v,H,`${v} = ${H}`);
+ if(t==6){const n=1+ri(100),a=(256-n).toString(2).padStart(8,'0');return F(`Complemento a 2 con 8 bits de -${n}: ___`,s=>s===a,a,`Invierte los bits de ${n} y suma 1: ${a}`,'8 bits')}
+ if(t==7){const k=3+ri(8);return F(`¿Cuántos valores distintos se pueden representar con ${k} bits? ___`,s=>+s===2**k,String(2**k),`2^${k} = ${2**k}`,'número')}
+ if(t==8){const m=25+ri(6),r=256-2**(32-m);return F(`Máscara /${m} en decimal: 255.255.255.___`,s=>s!==''&&+s===r,String(r),`256 - 2^(32-${m}) = ${r}`,'número')}
+ const m=22+ri(8),r=2**(32-m)-2;return F(`Hosts utilizables en una red /${m}: ___`,s=>s!==''&&+s===r,String(r),`2^(32-${m}) - 2 = ${r}`,'número')}
+function gen(T,n,types,seed){
+ const R=mul(seed),ri=k=>Math.floor(R()*k),sh=a=>{a=[...a];for(let i=a.length;i>1;i--){const j=ri(i);[a[i-1],a[j]]=[a[j],a[i-1]]}return a};
+ const F=T.F,S=T.S,same=f=>sh(F.filter(x=>x[0]==f[0]&&x!==f)),dist=(f,k)=>{let p=same(f).slice(0,k);if(p.length<k)p=p.concat(sh(F.filter(x=>x!==f&&!p.includes(x)&&x[1]!==f[1])).slice(0,k-p.length));return p};
+ const pool=sh(F);let pi=0;const nx=()=>pool[pi++%pool.length],ref=f=>'Repasa: '+S[f[0]],fx=f=>`${f[1]}: ${f[2]}.`;
+ const Q=T.Q||[],th=sh(Q.filter(l=>l[0]!='h')),hq=sh(Q.filter(l=>l[0]=='h')),mus=sh(T.M||[]),mas=sh(S.map((_,i)=>i).filter(i=>F.filter(x=>x[0]==i).length>=4));
+ const mk={
+  vf(){const f=nx(),t=R()<.5,g=t?f:dist(f,1)[0];return{k:'vf',s:'Verdadero o falso',q:`${f[1]}: ${g[2]}.`,a:t,h:ref(f),x:fx(f)}},
+  mc(){const f=nx(),p=sh([f[1],...dist(f,3).map(x=>x[1])]);return{k:'mc',s:'Test',q:`¿A qué corresponde? «${f[2]}»`,o:p,a:p.indexOf(f[1]),h:ref(f),x:fx(f)}},
+  th(){const l=th.pop();if(!l)return mk.mc();if(l[0]=='v')return{k:'vf',s:'Teoría',q:l[1],a:l[2]=='1',h:'Piensa en la definición exacta',x:l[3]||''};const p=sh([l[2],l[3],l[4],l[5]]);return{k:'mc',s:'Teoría',q:l[1],o:p,a:p.indexOf(l[2]),h:'Repasa la teoría del tema',x:l[6]||''}},
+  fh(){const l=hq.pop();if(l){const a=l[2].split(';');return{k:'fh',s:'Rellenar huecos',q:l[1],a:a.map(norm),disp:a[0],ph:'palabra',h:'Empieza por «'+a[0][0]+'»',x:l[3]||''}}const f=nx();return{k:'fh',s:'Rellenar huecos',q:`___: ${f[2]}.`,a:vari(f[1]),disp:f[1],ph:'término',h:'Empieza por «'+f[1][0]+'»',x:fx(f)}},
+  mu(){const g=mus.pop();if(!g)return mk.mc();const G=g[1].split(','),gd=sh(G).slice(0,Math.min(G.length,2+ri(2))),bd=sh(g[2].split(',')).slice(0,2),p=sh([...gd,...bd]);return{k:'mu',s:'Varias respuestas',q:g[0]+' (marca todas las correctas):',o:p,a:p.map((t,i)=>gd.includes(t)?i:-1).filter(i=>i>=0),h:'Pueden ser 2 o 3 correctas',x:'Correctas: '+gd.join(', ')}},
+  ma(){const s=mas.pop();if(s===undefined)return mk.mc();const fs=sh(F.filter(x=>x[0]==s)).slice(0,4),r=sh(fs.map(x=>x[2]));return{k:'ma',s:'Unir',q:`Une cada concepto con su definición (${S[s]}):`,l:fs.map(x=>x[1]),r,a:fs.map(x=>r.indexOf(x[2])),h:'Repasa: '+S[s],x:fs.map(x=>x[1]+' → '+x[2]).join(' · ')}},
+  bi(){return binQ(ri,sh)}};
+ const W0={vf:2.2,mc:2,th:2.4,mu:1,ma:1,fh:2.2,bi:T.bw||.9};
+ let en=types.filter(t=>t in W0&&(t!='th'||th.length)&&(t!='mu'||mus.length)&&(t!='ma'||mas.length));if(!en.length)en=['mc'];
+ const tot=en.reduce((a,t)=>a+W0[t],0),qs=[];
+ for(let i=0;i<n;i++){let r=R()*tot,k=en[0];for(const t of en){if((r-=W0[t])<0){k=t;break}}qs.push(mk[k]())}
+ qs.forEach(q=>q.pt=PTS[q.s]);
+ return ORD.map(s=>[s,qs.filter(q=>q.s==s)]).filter(s=>s[1].length)}
+
+/* ---------- render de preguntas ---------- */
+const qtext=q=>q.k=='fh'?q.q.replace('___',`<input class="fi" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="${q.ph||'…'}">`):q.q;
+const body=(q,i)=>q.k=='vf'?['Verdadero','Falso'].map((t,j)=>`<label><input type="radio" name="q${i}" value="${j==0?1:0}"> ${t}</label>`).join(''):q.k=='mc'?q.o.map((t,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${t}</label>`).join(''):q.k=='mu'?q.o.map((t,j)=>`<label><input type="checkbox" value="${j}"> ${t}</label>`).join(''):q.k=='ma'?`<div>${q.l.map((t,j)=>`<div class="mrow"><span>${t}</span><select data-j="${j}"><option value="">—</option>${q.r.map((_,r)=>`<option value="${r}">${'ABCD'[r]}</option>`).join('')}</select></div>`).join('')}</div><ol class="rl" type="A">${q.r.map(t=>`<li>${t}</li>`).join('')}</ol>`:'';
+const sel=(e,j)=>$(`select[data-j="${j}"]`,e);
+function score(q,e){
+ if(q.k=='vf'){const c=$('input:checked',e);return c&&(c.value=='1')===q.a?1:0}
+ if(q.k=='mc'){const c=$('input:checked',e);return c&&+c.value===q.a?1:0}
+ if(q.k=='mu'){const c=$$('input:checked',e).map(x=>+x.value),h=c.filter(v=>q.a.includes(v)).length;return Math.max(0,h-(c.length-h))/q.a.length}
+ if(q.k=='ma')return q.l.filter((_,j)=>sel(e,j).value!==''&&+sel(e,j).value===q.a[j]).length/q.l.length;
+ const v=$('.fi',e).value.trim();return v&&(q.chk?q.chk(v):q.a.includes(norm(v)))?1:0}
+const answered=(q,e)=>q.k=='ma'?$$('select',e).every(s=>s.value!==''):q.k=='fh'?!!$('.fi',e).value.trim():!!$('input:checked',e);
+function reveal(q,e,fr){
+ e.classList.add('done',fr>=.999?'ok':'ko');$('.mk',e).innerHTML=fr>=.999?MK(1):fr>0?'◐':MK(0);$$('input,select',e).forEach(x=>x.disabled=true);
+ if(q.k=='vf'||q.k=='mc'||q.k=='mu')$$('label',e).forEach(l=>{const inp=$('input',l),v=+inp.value,r=q.k=='vf'?(v==1)===q.a:q.k=='mc'?v===q.a:q.a.includes(v);if(r)l.classList.add('right');else if(inp.checked)l.classList.add('wrong')});
+ if(q.k=='ma')$$('.mrow',e).forEach((r,j)=>{const s=$('select',r),ok=s.value!==''&&+s.value===q.a[j];r.classList.add(ok?'right':'wrong');if(!ok)r.append(' → '+'ABCD'[q.a[j]])});
+ if(q.k=='fh'){$('.fi',e).classList.add(fr?'right':'wrong');if(!fr){const b=document.createElement('b');b.className='ans';b.textContent=' → '+q.disp;$('.qq',e).append(b)}}
+ $('.ex',e).textContent=q.x?'💬 '+q.x:'';const p=$('.pt',e);if(p)p.textContent=`${+(fr*q.pt).toFixed(2)} / ${q.pt}`}
+
+/* ---------- vistas ---------- */
+const st={v:'home',si:0,ti:0,tab:'te',ap:0};
+function go(v,si,ti,tab){clearInterval(timer);$('#tmr').hidden=true;Object.assign(st,{v,si:si??st.si,ti:ti??st.ti,tab:tab||'te',ap:0});({home:vHome,subj:vSubj,tema:vTema})[v]();crumb();scrollTo(0,0)}
+function crumb(){const a=[['Inicio',()=>go('home')]];if(st.v!='home')a.push([SUBJ[st.si].n,st.v=='tema'?()=>go('subj',st.si):null]);if(st.v=='tema')a.push(['Tema '+(st.ti+1)]);const c=$('#cr');c.innerHTML='';a.forEach((x,i)=>{const b=document.createElement(x[1]?'button':'span');b.textContent=x[0];if(x[1])b.onclick=x[1];c.append(b);if(i<a.length-1)c.append(' › ')})}
+function vHome(){app.innerHTML=`<section class="hero"><p class="eyebrow">Centro de estudio · 2026</p><h1>Tu cuaderno digital.<br><span class="grad">Estudia, practica, examínate.</span></h1><p class="lead">Teoría por temas, ejercicios aleatorios, exámenes con nota (A, B, C, F), rellenar huecos y laboratorio de binario.</p></section><div class="grid g2" id="sg"></div>`;
+ SUBJ.forEach((s,i)=>{const b=document.createElement('button');b.className='card';b.style.setProperty('--c',s.c);b.innerHTML=`<span class="ic">${s.ic}</span><h3>${s.n}</h3><p>${s.d}</p><div class="chips"><span>${s.T.filter(t=>!t.p).length} temas</span><span>${s.T.filter(t=>!t.p).reduce((a,t)=>a+t.F.length,0)} conceptos</span></div>`;b.onclick=()=>go('subj',i);$('#sg').append(b)})}
+function vSubj(){const s=SUBJ[st.si];app.innerHTML=`<div class="head"><p class="eyebrow">Asignatura</p><h1>${s.n}</h1><p class="lead">${s.d}</p></div><div class="grid g2" id="tg"></div>`;
+ s.T.forEach((t,i)=>{const b=document.createElement('button');b.className='card'+(t.p?' dis':'');b.style.setProperty('--c',s.c);
+  if(t.p){b.innerHTML=`<span class="num">${i+1}</span><h3>${t.t}</h3><p>Próximamente</p>`;b.disabled=true}
+  else{const p=bst(st.si,i,'p'),e=bst(st.si,i,'e');b.innerHTML=`<span class="num">Tema ${i+1}</span><h3>${t.t}</h3><p>${t.F.length} conceptos · ${t.S.length} apartados</p><div class="chips"><span>Práctica ${p==null?'—':p.toFixed(1)}</span><span>Examen ${e==null?'—':e.toFixed(1)}</span></div>`;b.onclick=()=>go('tema',st.si,i)}
+  $('#tg').append(b)})}
+function vTema(){const s=SUBJ[st.si],T=s.T[st.ti];app.style.setProperty('--c',s.c);
+ app.innerHTML=`<div class="head"><p class="eyebrow">${s.n} · Tema ${st.ti+1}</p><h1>${T.t}</h1></div><div class="tabs" role="tablist">${TABS.map(t=>`<button role="tab" data-t="${t[0]}" class="${st.tab==t[0]?'on':''}">${t[1]}</button>`).join('')}</div><div id="tc" class="panel"></div>`;
+ $$('.tabs button').forEach(b=>b.onclick=()=>{clearInterval(timer);$('#tmr').hidden=true;st.tab=b.dataset.t;vTema()});
+ ({te:tTe,p:T=>tQz('p',T),e:T=>tQz('e',T),lab:tLab,su:tSu})[st.tab](T)}
+function tTe(T){const el=$('#tc'),n=T.S.length+(T.R?1:0);
+ const draw=()=>{const i=st.ap;el.innerHTML=`<div class="pills">${Array.from({length:n},(_,k)=>`<button class="pill${k==i?' on':''}" data-k="${k}">${k<T.S.length?(k+1)+'. '+T.S[k]:'Resumen'}</button>`).join('')}</div><div id="tx"></div><div class="row"><button class="btn s" id="pv">← Anterior</button><button class="btn" id="nx">Siguiente →</button></div>`;
+  $('#tx').innerHTML=i<T.S.length?`<h2>${i+1}. ${T.S[i]}</h2><div class="defs">${T.F.filter(f=>f[0]==i).map(f=>`<div class="def"><b>${f[1]}</b><span>${f[2]}.</span></div>`).join('')}</div>`+(T.X&&T.X[i]?`<p class="nt">💡 ${T.X[i]}</p>`:'')+(T.TXa&&T.TXa[i]||''):`<h2>Resumen del tema</h2>${T.R}`;
+  $$('.pill',el).forEach(b=>b.onclick=()=>{st.ap=+b.dataset.k;draw()});$('#pv').onclick=()=>{st.ap=(i+n-1)%n;draw();scrollTo(0,0)};$('#nx').onclick=()=>{st.ap=(i+1)%n;draw();scrollTo(0,0)}};draw()}
+function tQz(m,T){const ex=m=='e',el=$('#tc');
+ el.innerHTML=`<div class="cfg"><div class="fld"><label>Preguntas</label><select id="qn">${[10,20,30,40,50,60].map(v=>`<option${v==(ex?30:20)?' selected':''}>${v}</option>`).join('')}</select></div>${ex?`<div class="fld"><label>Tiempo</label><select id="qt"><option value="0">Sin tiempo</option><option value="15">15 min</option><option value="20">20 min</option><option value="30" selected>30 min</option><option value="45">45 min</option></select></div>`:''}<div class="fld"><label>Semilla (vacío = aleatoria)</label><input id="qs" type="number" placeholder="aleatoria"></div></div><div class="chips" id="kt">${KT.map(k=>`<label class="chip"><input type="checkbox" value="${k[0]}" checked><span>${k[1]}</span></label>`).join('')}</div><p class="mut">${ex?'Sin pistas y con nota final. Si eliges tiempo y se agota sin entregar, la nota es 0.':'Con pistas 💡 y explicación de cada respuesta.'} Cada vez salen preguntas distintas y al azar.</p><button class="btn big" id="go">${ex?'Empezar examen →':'Generar práctica →'}</button><div id="fm"></div>`;
+ $('#go').onclick=()=>start(m,T)}
+function start(m,T){clearInterval(timer);$('#tmr').hidden=true;const ex=m=='e',n=+$('#qn').value,types=$$('#kt input:checked').map(x=>x.value);if(!types.length){toast('Elige al menos un tipo de pregunta');return}
+ const sv=$('#qs').value,seed=sv?+sv:Math.floor(Math.random()*4e9),secs=gen(T,n,types,seed),Q=secs.flatMap(s=>s[1]);let k=0,armed=0,done=0;
+ $('#fm').innerHTML=`<div class="qhead">${Q.length} preguntas · semilla ${seed}</div>`+secs.map(s=>`<div class="sec"><h3>${s[0]}</h3>`+s[1].map(q=>{const i=k++;return`<div class="q" data-i="${i}"><div class="qt"><span class="qn">${i+1}</span><div class="qb"><div class="qq">${qtext(q)}<small class="pt">${q.pt} pt</small>${ex?'':' <button class="hb" title="Pista">💡</button>'}</div><i class="hn"></i><div class="ops">${body(q,i)}</div><div class="ex"></div></div><span class="mk"></span></div></div>`}).join('')+'</div>').join('')+`<div class="row"><button class="btn big" id="sub">${ex?'Entregar':'Corregir'} ✓</button><button class="btn s" id="clr">Nuevas preguntas ↻</button></div><div id="rs"></div>`;
+ const E=$$('#fm .q');if(!ex)Q.forEach((q,i)=>{$('.hb',E[i]).onclick=()=>$('.hn',E[i]).textContent=' '+q.h});
+ $('#clr').onclick=()=>start(m,T);
+ const tm=ex?+$('#qt').value:0;
+ if(tm){let left=tm*60;const t0=$('#tmr'),tk=()=>{t0.textContent='⏱ '+Math.floor(left/60)+':'+String(left%60).padStart(2,'0');t0.className=left<60?'bad':left<300?'warn':''};t0.hidden=false;tk();
+  timer=setInterval(()=>{if(done){clearInterval(timer);return}left--;tk();if(left<=0){clearInterval(timer);t0.hidden=true;done=1;Q.forEach((q,i)=>reveal(q,E[i],0));result(m,0,Q.reduce((a,q)=>a+q.pt,0),0,Q.length,{},$('#rs'),1);$('#sub').disabled=true}},1000)}
+ $('#sub').onclick=async()=>{if(done)return;const un=Q.filter((q,i)=>!answered(q,E[i])).length;if(un&&!armed){armed=1;$('#rs').innerHTML=`<p class="warn">Te faltan ${un} sin responder (contarán como fallo). Pulsa otra vez para ${ex?'entregar':'corregir'}.</p>`;return}
+  done=1;clearInterval(timer);$('#tmr').hidden=true;$('#sub').disabled=true;let earned=0,okc=0;const total=Q.reduce((a,q)=>a+q.pt,0),tl={},frs=Q.map((q,i)=>score(q,E[i]));
+  await correct(Q,E,frs);
+  Q.forEach((q,i)=>{const fr=frs[i];earned+=fr*q.pt;if(fr>=.999)okc++;const t=tl[q.s]=tl[q.s]||[0,0];t[0]+=fr*q.pt;t[1]+=q.pt});
+  result(m,earned,total,okc,Q.length,tl,$('#rs'));$('#sub').disabled=true}}
+function result(m,earned,total,okc,n,tl,box,to){const nota=earned/total*10,g=GR(nota),key=`cd.${st.si}.${st.ti}.${m}`,prev=bst(st.si,st.ti,m);if(prev==null||nota>prev)ls.s(key,nota.toFixed(2));
+ box.innerHTML=`<div class="res" style="--g:${g.c}"><div class="big">${g.l}</div><div><h2>${to?'⏱ Tiempo agotado · nota 0':'Nota '+nota.toFixed(2)+' / 10'}</h2><p><b>${g.t}</b> · ${okc} / ${n} correctas · ${earned.toFixed(2)} / ${total} puntos${prev!=null?' · Mejor marca: '+Math.max(prev,nota).toFixed(2):''}</p><p>${MSG[g.l][Math.floor(Math.random()*2)]}</p><p class="mut">${Object.keys(tl).map(k=>k+': '+tl[k][0].toFixed(1)+'/'+tl[k][1]).join(' · ')}</p><p class="mut"><b>Escala:</b> A Sobresaliente 9–10 · B Notable 7–8,99 · C Aprobado 5–6,99 (Suficiente 5, Bien 6) · F Suspenso menos de 5</p></div></div>`;box.scrollIntoView({behavior:'smooth'})}
+function tLab(){const el=$('#tc'),B={d:10,b:2,h:16,o:8},V={d:/^[0-9]+$/,b:/^[01]+$/,h:/^[0-9a-f]+$/i,o:/^[0-7]+$/};
+ el.innerHTML=`<h2>Conversor y laboratorio binario</h2><div class="cfg">${[['d','Decimal'],['b','Binario'],['h','Hexadecimal'],['o','Octal']].map(x=>`<div class="fld"><label>${x[1]}</label><input class="fi mono" id="l${x[0]}" autocomplete="off"></div>`).join('')}</div><div id="lst" class="steps"></div><h3>Suma y resta binaria</h3><div class="row"><input class="fi mono" id="a1" placeholder="1011"><select id="op" style="width:auto"><option>+</option><option>−</option></select><input class="fi mono" id="a2" placeholder="0110"><b id="ar" class="mono"></b></div><h3>Entrenador de cálculo binario</h3><div id="tr" class="q"></div>`;
+ Object.keys(B).forEach(k=>$('#l'+k).oninput=()=>{const s=$('#l'+k).value.trim();if(!s||!V[k].test(s)){if(!s)Object.keys(B).forEach(j=>$('#l'+j).value='');$('#lst').innerHTML=s?'<p class="warn">Valor no válido para esa base</p>':'';return}const n=parseInt(s,B[k]);if(n>9e15){$('#lst').innerHTML='<p class="warn">Número demasiado grande</p>';return}
+  Object.keys(B).forEach(j=>{if(j!=k)$('#l'+j).value=n.toString(B[j]).toUpperCase()});const b=n.toString(2),d=[];let x=n;while(x>0){d.push(`${x} ÷ 2 = ${Math.floor(x/2)} resto ${x%2}`);x=Math.floor(x/2)}
+  $('#lst').innerHTML=`<p><b>Decimal → binario</b> (se lee de abajo arriba):</p><pre>${d.join('\n')||'0'}</pre><p>Resultado: <b class="mono">${b}</b></p><p><b>Binario → decimal</b> (suma de pesos): <span class="mono">${b.split('').map((c,i)=>c=='1'?2**(b.length-1-i):null).filter(v=>v!=null).join(' + ')||'0'} = ${n}</span></p>`});
+ const ar=()=>{const a=$('#a1').value.trim(),c=$('#a2').value.trim();if(!/^[01]+$/.test(a)||!/^[01]+$/.test(c)){$('#ar').textContent='';return}const x=parseInt(a,2),y=parseInt(c,2),p=$('#op').value=='+',r=p?x+y:x-y;$('#ar').textContent=`= ${r<0?'-':''}${Math.abs(r).toString(2)}  (decimal: ${x} ${p?'+':'−'} ${y} = ${r})`};
+ ['a1','a2','op'].forEach(i=>$('#'+i).oninput=ar);
+ let streak=0;const next=()=>{const ri=k=>Math.floor(Math.random()*k),sh=a=>[...a].sort(()=>Math.random()-.5),q=binQ(ri,sh);q.pt=2;const b=$('#tr');b.className='q';
+  b.innerHTML=`<div class="qt"><span class="qn">🧮</span><div class="qb"><div class="qq">${qtext(q)}</div><i class="hn">${q.h}</i><div class="ops">${body(q,0)}</div><div class="ex"></div><div class="row"><button class="btn" id="ck">Comprobar</button><button class="btn s" id="nt">Otro ejercicio</button><span class="mut">Racha: ${streak}</span></div></div><span class="mk"></span></div>`;
+  $('#ck').onclick=()=>{if(b.classList.contains('done'))return;const fr=score(q,b);reveal(q,b,fr);streak=fr>=.999?streak+1:0;$('#ck').disabled=true};$('#nt').onclick=next};next()}
+function tSu(){const el=$('#tc');el.innerHTML=`<h2>Hoja de sucio</h2><p class="mut">Pesos: <b class="mono">128 · 64 · 32 · 16 · 8 · 4 · 2 · 1</b>. Se guarda automáticamente.</p><textarea id="ta" placeholder="Escribe aquí tus cuentas..."></textarea><div class="row"><button class="btn s" id="tc2">Borrar</button></div>`;
+ $('#ta').value=ls.g('cd.sucio')||'';$('#ta').oninput=()=>ls.s('cd.sucio',$('#ta').value);$('#tc2').onclick=()=>{$('#ta').value='';$('#ta').oninput()}}
+/* tema claro / oscuro */
+const root=document.documentElement,th0=ls.g('cd.theme')||(matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');root.dataset.theme=th0;
+$('#th').onclick=()=>{root.dataset.theme=root.dataset.theme=='dark'?'light':'dark';ls.s('cd.theme',root.dataset.theme)};$('#hm').onclick=()=>go('home');
+go('home');
+
+/* ===== Animaciones: mano con bolígrafo 3D corrigiendo ===== */
+const ANIM=()=>ls.g('cd.anim')!=='0'&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+const wait=ms=>new Promise(r=>setTimeout(r,ms));let sk=false;
 const MK=g=>g?'<svg viewBox="0 0 48 48"><path pathLength="1" d="M5 26 Q11 31 16 40 Q26 17 43 6"/></svg>':'<svg viewBox="0 0 48 48"><path pathLength="1" d="M7 8 Q22 21 41 41"/><path pathLength="1" d="M41 7 Q24 24 6 40"/></svg>';
-const LG=n=>(n=>n>=97?'A+':n>=93?'A':n>=90?'A-':n>=87?'B+':n>=83?'B':n>=80?'B-':n>=77?'C+':n>=73?'C':n>=70?'C-':n>=60?'D':'F')(n*10);
-const K=[{transform:'rotateY(0)'},{transform:'rotateX(2deg) rotateY(-28deg) skewY(2.5deg)',offset:.3},{transform:'rotateX(-1deg) rotateY(-72deg) skewY(-4deg)',offset:.68},{transform:'rotateY(-118deg)'}],KB=[{transform:'rotateY(-118deg)'},{transform:'rotateX(-1deg) rotateY(-72deg) skewY(-4deg)',offset:.32},{transform:'rotateX(2deg) rotateY(-28deg) skewY(2.5deg)',offset:.7},{transform:'rotateY(0)'}];
-function flip(fn,host,dir,tgt){host=host||$('#pg');dir=dir||1;const par=host.parentElement,D=1000,hp=host.id=='pg',EA='cubic-bezier(.55,.05,.35,1)';
-const mk=s=>{const c=s.cloneNode(true);c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));c.removeAttribute('id');c.hidden=false;Object.assign(c.style,{position:'absolute',left:s.offsetLeft+'px',top:s.offsetTop+'px',width:s.offsetWidth+'px',height:s.offsetHeight+'px',margin:0,transformOrigin:'left center',pointerEvents:'none',backfaceVisibility:'hidden',zIndex:5});return c};
-const ov=c=>{const d=document.createElement('div');d.style.cssText='position:absolute;pointer-events:none;'+c;return d};
-const old=mk(host),sh=ov('inset:0;background:linear-gradient(90deg,rgba(0,0,0,.05),rgba(0,0,0,.28) 45%,rgba(255,255,255,.22) 58%,rgba(0,0,0,.6));opacity:0;border-radius:0 10px 10px 0'),cs=ov(`left:${host.offsetLeft}px;top:${host.offsetTop}px;width:${host.offsetWidth}px;height:${host.offsetHeight}px;z-index:4;background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,.15) 55%,transparent);border-radius:0 10px 10px 0`);let nw;
-host.style.minHeight=host.offsetHeight+'px';par.style.perspective='2600px';par.append(old);snd();
-const end=()=>{host.style.minHeight='';par.style.perspective='';[old,cs,nw].forEach(x=>x&&x.remove())};
-if(dir>0){old.append(sh);if(hp)par.append(cs);fn();scrollTo(0,0);sh.animate([{opacity:0},{opacity:1}],{duration:D,easing:'ease-in',fill:'forwards'});cs.animate([{opacity:.95},{opacity:0}],{duration:D,fill:'forwards'});old.animate(K,{duration:D,easing:EA,fill:'forwards'}).onfinish=end}
-else{old.style.zIndex=3;fn();scrollTo(0,0);nw=mk(tgt||host);nw.append(sh);par.append(nw);sh.animate([{opacity:1},{opacity:0}],{duration:D,easing:'ease-out',fill:'forwards'});nw.animate(KB,{duration:D,easing:EA,fill:'forwards'}).onfinish=end}}
-$('#skip').onclick=()=>skip=1;
-init('p',$('#sFo'));init('e',$('#sEx'));
-try{$('#ta').value=localStorage.getItem('sucioRL')||''}catch(e){}
-$('#ta').oninput=()=>{try{localStorage.setItem('sucioRL',$('#ta').value)}catch(e){}};$('#tc').onclick=()=>{$('#ta').value='';$('#ta').oninput()};
+function aim(el){const r=el.getBoundingClientRect();$('#hand').style.transform=`translate(${r.left+r.width/2-14}px,${r.top+r.height/2-158}px)`}
+async function correct(Q,E,frs){const hand=$('#hand'),sb=$('#skipb');sk=false;
+ if(ANIM()){hand.classList.add('on');sb.hidden=false;
+  for(let i=0;i<Q.length&&!sk;i++){E[i].scrollIntoView({block:'center',behavior:'auto'});aim($('.mk',E[i]));await wait(360);if(sk)break;hand.classList.add('wr');reveal(Q[i],E[i],frs[i]);await wait(240);hand.classList.remove('wr')}}
+ Q.forEach((q,i)=>{if(!E[i].classList.contains('done'))reveal(q,E[i],frs[i])});
+ hand.classList.remove('on','wr');sb.hidden=true}
+$('#skipb').onclick=()=>{sk=true};
+const syncAn=()=>{$('#an').classList.toggle('off',!ANIM())};$('#an').onclick=()=>{ls.s('cd.anim',ANIM()?'0':'1');syncAn();toast(ANIM()?'Animaciones activadas':'Animaciones desactivadas')};syncAn();
+document.addEventListener('pointermove',e=>{if(!ANIM())return;const c=e.target.closest&&e.target.closest('.card:not(:disabled)');if(!c)return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(700px) rotateX(${(-y*6).toFixed(2)}deg) rotateY(${(x*8).toFixed(2)}deg) translateY(-3px)`});
+document.addEventListener('pointerout',e=>{const c=e.target.closest&&e.target.closest('.card');if(c)c.style.transform=''});
 </script></body></html>
